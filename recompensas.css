@@ -1,0 +1,174 @@
+/* ===== Variables de Color y Fuentes (Igual que antes) ===== */
+:root{--amarillo-principal:#FFDB00;--azul-oscuro:#0D2F4F;--naranja-acento:#F37021;--blanco:#FFFFFF;--gris-claro:#f8f9fa;--gris-medio:#e9ecef;--gris-oscuro:#6c757d;--texto-principal:#333;--verde-exito:#28a745;--color-error:#dc3545;--fuente-principal:'Poppins',sans-serif;}
+
+/* ===== Reseteo Básico y Estilos Globales ===== */
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--fuente-principal);line-height:1.6;color:var(--texto-principal);background-color:var(--gris-claro);display:flex;flex-direction:column;min-height:100vh;position:relative; /* Para el canvas */}
+main{flex-grow:1;}
+h1,h2,h3{color:var(--azul-oscuro);margin-bottom:1rem;line-height:1.3;}
+h1{font-size:2.5rem;text-align:center;}
+h2{font-size:1.8rem;text-align:center;}
+h3{font-size:1.1rem;color:var(--naranja-acento);margin-bottom:0.5rem;margin-top:1rem;}
+a{color:var(--naranja-acento);text-decoration:none;font-weight:600;}
+a:hover{text-decoration:underline;}
+img{max-width:100%;height:auto;display:block;}
+.container{max-width:800px;margin:0 auto;padding:0 1.5rem;}
+.bg-azul-oscuro{background-color:var(--azul-oscuro);}
+.text-blanco{color:var(--blanco) !important;}
+.text-blanco p{color:var(--blanco);}
+
+/* Canvas Confeti */
+#confetti-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10; /* Encima de otros elementos */
+    pointer-events: none; /* Para poder clickear a través */
+}
+
+/* Wrapper para asegurar footer abajo */
+.page-wrapper { display: flex; flex-direction: column; min-height: 100vh; }
+
+/* ===== Encabezado ===== */
+.reward-header{background-color:var(--amarillo-principal);padding:2rem 0;text-align:center;margin-bottom:2rem;border-bottom:5px solid var(--azul-oscuro);}
+.reward-header .company-logo{max-width:120px;margin:0 auto 1rem auto;}
+.reward-header p{color:var(--azul-oscuro);font-size:1.1rem;}
+
+/* Secciones */
+.info-section, .claim-section, .result-display {
+    background-color: var(--blanco);
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+}
+.info-section ul { list-style: none; padding-left: 0; }
+.info-section li { padding-left: 1.5rem; position: relative; margin-bottom: 0.5rem; }
+.info-section li::before { content: '🎁'; position: absolute; left: 0; }
+
+/* Formulario Email */
+.claim-section { text-align: center; }
+.form-group { margin-bottom: 1.5rem; text-align: left; max-width: 400px; margin-left: auto; margin-right: auto;}
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; font-size: 0.9rem; color: var(--gris-oscuro); }
+.form-group input[type="email"] {
+    width: 100%; padding: 0.9rem 1rem; border: 1px solid var(--gris-medio); border-radius: 5px; font-size: 1rem; font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-group input[type="email"]:focus { outline: none; border-color: var(--naranja-acento); box-shadow: 0 0 0 3px rgba(243, 112, 33, 0.2); }
+.error-message { color: var(--color-error); font-size: 0.9rem; margin-top: 0.5rem; }
+
+/* Botón */
+.btn{display:inline-block;padding:0.8rem 1.8rem;border:none;border-radius:5px;font-weight:bold;cursor:pointer;transition:background-color 0.3s ease,transform 0.2s ease;text-align:center;font-size:1rem;margin-top:1rem;}
+.btn-naranja{background-color:var(--naranja-acento);color:var(--blanco);}
+.btn-naranja:hover{background-color:#d95f1a;transform:scale(1.03);color:var(--blanco);}
+.btn-azul{background-color:var(--azul-oscuro);color:var(--blanco);}
+.btn-azul:hover{background-color:#1a4a75;transform:scale(1.03);color:var(--blanco);}
+#claimButton { width: 100%; max-width: 300px; } /* Botón del form */
+
+/* ===== Ruleta ===== */
+.wheel-container { text-align: center; padding: 2rem 0; }
+.wheel-wrapper {
+    position: relative;
+    width: 300px; /* Tamaño de la ruleta */
+    height: 300px;
+    margin: 1.5rem auto;
+    overflow: hidden; /* Oculta partes fuera del círculo si es necesario */
+}
+.wheel-pointer {
+    position: absolute;
+    top: -10px; /* Ajusta para que apunte bien */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    color: var(--naranja-acento);
+    z-index: 5;
+}
+.wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 5px solid var(--azul-oscuro);
+    position: relative;
+    background: conic-gradient( /* Genera segmentos con gradiente cónico */
+        var(--amarillo-principal) 0deg 60deg,
+        var(--blanco) 60deg 120deg,
+        var(--naranja-acento) 120deg 180deg,
+        var(--azul-info, #17a2b8) 180deg 240deg, /* Color azul claro opcional */
+        var(--gris-medio) 240deg 300deg,
+        var(--verde-exito) 300deg 360deg
+    );
+    transition: transform 5s cubic-bezier(0.3, 1, 0.4, 1); /* Animación del giro */
+    /* El giro inicial se aplica con JS */
+}
+/* Estilos de los segmentos (alternativa si no usas conic-gradient) */
+.wheel .segment {
+    position: absolute;
+    top: 0; left: 50%; /* Centrado horizontal */
+    width: 50%; height: 50%; /* Cuadrante superior derecho */
+    transform-origin: 0% 100%; /* Punto de rotación en esquina inferior izquierda (centro rueda) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Ocultamos estos divs si usamos conic-gradient */
+    display: none;
+}
+.wheel .segment span {
+    display: block;
+    transform: rotate(30deg) skewY(-30deg); /* Ajusta texto al segmento */
+    padding-left: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--azul-oscuro);
+}
+/* Rotación para cada segmento (si no usas conic-gradient) */
+/* .wheel .segment:nth-child(1) { transform: rotate(0deg) skewY(30deg); background: var(--amarillo-principal);}
+   .wheel .segment:nth-child(2) { transform: rotate(60deg) skewY(30deg); background: var(--blanco);} */
+/* ... etc ... */
+
+.wait-message { margin-top: 1rem; font-style: italic; color: var(--gris-oscuro); }
+
+/* ===== Resultados ===== */
+.result-display { text-align: center; }
+.prize-won {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--verde-exito);
+    margin: 0.5rem 0 1rem 0;
+}
+.reward-code {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--blanco);
+    background-color: var(--naranja-acento);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    display: inline-block; /* Para que el fondo se ajuste */
+    margin-bottom: 2rem;
+    letter-spacing: 2px; /* Espaciado */
+}
+.redemption-instructions {
+    margin-top: 1rem;
+    background-color: var(--gris-claro);
+    padding: 1.5rem;
+    border-radius: 5px;
+    border: 1px dashed var(--gris-oscuro);
+    text-align: left;
+}
+.redemption-instructions h3 { text-align: center; margin-top: 0; }
+.redemption-instructions strong { color: var(--naranja-acento); }
+.redemption-instructions .btn { margin-top: 1rem; display: block; max-width: 200px; margin-left: auto; margin-right: auto; }
+
+/* ===== Footer ===== */
+.footer{padding:1.5rem 0;text-align:center;font-size:0.9rem;margin-top:auto;} /* margin-top auto */
+
+/* ===== Animaciones (para entrada de secciones) ===== */
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.animate-fade-in{opacity:0;animation:fadeIn 0.8s ease-out forwards;}
+
+/* ===== Responsividad ===== */
+@media(max-width: 768px){h1{font-size:2rem;}h2{font-size:1.6rem;} .container{padding:0 1rem;} .wheel-wrapper{width:250px;height:250px;} .wheel-pointer{font-size:2rem;}}
+@media(max-width: 480px){h1{font-size:1.8rem;} .reward-header p{font-size:1rem;} .info-section, .claim-section, .result-display{padding:1.2rem;} .wheel-wrapper{width:220px;height:220px;} .prize-won{font-size:1.5rem;} .reward-code{font-size:1.2rem;}}

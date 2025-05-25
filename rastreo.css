@@ -1,0 +1,379 @@
+/* ... (Variables y estilos globales existentes sin cambios) ... */
+:root {
+    --amarillo-principal: #FFDB00;
+    --azul-oscuro: #0D2F4F;
+    --naranja-acento: #F37021;
+    --blanco: #FFFFFF;
+    --gris-claro: #f8f9fa;
+    --gris-medio: #e9ecef;
+    --gris-oscuro: #6c757d;
+    --texto-principal: #333;
+    --verde-exito: #28a745;
+    --azul-info: #17a2b8;
+    --color-error: #dc3545;
+
+    --fuente-principal: 'Poppins', sans-serif;
+}
+
+/* ... (Reseteo, body, main, h1, h2, a, img, container, utilidades existentes) ... */
+
+body {
+    font-family: var(--fuente-principal);
+    line-height: 1.6;
+    color: var(--texto-principal);
+    background-color: var(--gris-claro);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
+h1, h2 {
+    color: var(--azul-oscuro);
+    margin-bottom: 0.8rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--naranja-acento);
+    font-weight: bold; /* Hacer enlaces más visibles */
+}
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.bg-azul-oscuro { background-color: var(--azul-oscuro); }
+.text-blanco { color: var(--blanco) !important; }
+.text-blanco p { color: var(--blanco); }
+
+
+/* ===== Encabezado de Rastreo (Actualizado) ===== */
+.rastreo-header {
+    background-color: var(--amarillo-principal);
+    padding: 2.5rem 0;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    border-bottom: 5px solid var(--naranja-acento);
+}
+
+.rastreo-header .rastreo-logo {
+    max-width: 130px;
+    margin: 0 auto 1rem auto;
+}
+
+.rastreo-header h1 {
+    color: var(--azul-oscuro);
+    font-size: 2.5rem;
+    margin-bottom: 0.3rem;
+}
+
+.rastreo-header p {
+    color: var(--azul-oscuro);
+    font-size: 1rem;
+}
+/* Estilo para el tagline en el header */
+.rastreo-header p strong {
+    display: block; /* Pone el tagline en una nueva línea (opcional) */
+    margin-top: 0.3rem;
+    font-size: 1.1rem; /* Un poco más grande */
+}
+
+
+/* ===== NUEVO: Secciones de Información Adicional ===== */
+.info-section, .tips-section {
+    background-color: var(--blanco); /* Fondo blanco para destacar */
+    padding: 1.5rem 2rem; /* Más padding */
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06); /* Sombra suave */
+    border-left: 5px solid var(--naranja-acento); /* Barra lateral naranja */
+}
+
+.info-section h3, .tips-section h3 {
+    color: var(--azul-oscuro);
+    margin-bottom: 1rem;
+    font-size: 1.2rem; /* Tamaño adecuado para subtítulo */
+    padding-bottom: 0.5rem;
+    /* Quitamos borde inferior, usamos barra lateral */
+}
+
+.info-section ul, .tips-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.info-section li, .tips-section li {
+    margin-bottom: 0.9rem; /* Más espacio entre ítems */
+    padding-left: 2rem; /* Espacio para el icono */
+    position: relative;
+    font-size: 0.95rem;
+    color: var(--texto-principal);
+    line-height: 1.5; /* Mejor lectura */
+}
+.info-section li:last-child, .tips-section li:last-child {
+    margin-bottom: 0; /* Sin margen extra al final */
+}
+
+/* Icono/Viñeta personalizada */
+.info-section li::before, .tips-section li::before {
+    /* Usamos un icono relacionado (puedes cambiarlo o usar Font Awesome) */
+    content: 'ℹ️'; /* Icono de información */
+    position: absolute;
+    left: 0;
+    top: 2px; /* Ajuste vertical fino */
+    font-size: 1.1em;
+    line-height: 1;
+    /* Quitamos color naranja para usar el color del emoji */
+}
+.tips-section li::before {
+    content: '💡'; /* Icono de idea/consejo */
+}
+
+/* Estilos para la lista anidada de tiempos */
+.info-section ul ul {
+    margin-top: 0.5rem;
+    padding-left: 1.5rem; /* Indentación */
+}
+.info-section ul ul li {
+     margin-bottom: 0.4rem;
+     font-size: 0.9rem;
+     padding-left: 1.2rem;
+     color: var(--gris-oscuro); /* Color más suave para sub-items */
+}
+.info-section ul ul li::before {
+     content: '-'; /* Viñeta simple */
+     color: var(--gris-oscuro);
+     font-size: 1em;
+     top: 0px; /* Ajuste vertical */
+ }
+
+.info-section strong, .tips-section strong {
+     color: var(--azul-oscuro);
+}
+/* =================================================== */
+
+
+/* ===== Sección de Búsqueda (Existente - sin cambios) ===== */
+.search-section {
+    text-align: center;
+    margin-bottom: 2rem; /* Ajuste ligero de margen */
+    padding: 1.5rem;
+    background-color: var(--blanco);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+/* ... (Resto de estilos de search-section, search-wrapper, input, btn sin cambios) ... */
+.search-section label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--azul-oscuro);
+}
+.search-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+.search-wrapper input[type="text"] {
+    padding: 0.9rem 1.2rem;
+    border: 1px solid var(--gris-medio);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: inherit;
+    min-width: 250px;
+    flex-grow: 1;
+    max-width: 400px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.search-wrapper input[type="text"]:focus {
+    outline: none;
+    border-color: var(--naranja-acento);
+    box-shadow: 0 0 0 3px rgba(243, 112, 33, 0.2);
+}
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+.btn-naranja {
+    background-color: var(--naranja-acento);
+    color: var(--blanco);
+}
+.btn-naranja:hover {
+    background-color: #d95f1a;
+    transform: scale(1.03);
+    color: var(--blanco);
+}
+.search-icon {
+    font-size: 1.1em;
+}
+
+
+/* ===== Sección de Resultados (Existente - sin cambios internos) ===== */
+.results-section {
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    /* Quitamos margen superior, ya lo tienen las secciones de info/tips */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+/* ... (Resto de estilos de results-section, placeholder, timeline, etc. sin cambios) ... */
+.results-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.results-placeholder, .error-message {
+    text-align: center;
+    color: var(--gris-oscuro);
+    font-style: italic;
+    padding: 1rem 0;
+}
+.error-message {
+    color: var(--color-error);
+    font-weight: bold;
+    font-style: normal;
+}
+.tracking-timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+.tracking-timeline::before {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 15px;
+    bottom: 15px;
+    width: 3px;
+    background-color: var(--gris-medio);
+    border-radius: 2px;
+}
+.timeline-item {
+    position: relative;
+    padding-left: 70px;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed var(--gris-medio);
+}
+.timeline-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+.timeline-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--azul-info);
+    color: var(--blanco);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    z-index: 1;
+    border: 3px solid var(--blanco);
+    box-shadow: 0 0 0 3px var(--azul-info);
+}
+.icon-recibido { background-color: var(--naranja-acento); box-shadow: 0 0 0 3px var(--naranja-acento); }
+.icon-transito { background-color: var(--azul-info); box-shadow: 0 0 0 3px var(--azul-info); }
+.icon-oficina { background-color: var(--azul-oscuro); box-shadow: 0 0 0 3px var(--azul-oscuro); }
+.icon-entrega { background-color: #ffc107; color: var(--texto-principal); box-shadow: 0 0 0 3px #ffc107;}
+.icon-entregado { background-color: var(--verde-exito); box-shadow: 0 0 0 3px var(--verde-exito); }
+.icon-error { background-color: var(--color-error); box-shadow: 0 0 0 3px var(--color-error); }
+.timeline-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    color: var(--azul-oscuro);
+}
+.timeline-content p {
+    font-size: 0.9rem;
+    color: var(--gris-oscuro);
+    margin: 0;
+}
+
+
+/* ===== Footer (Existente) ===== */
+.footer {
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 3rem;
+}
+
+/* ===== Animaciones (Existente) ===== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* ===== Responsividad (Ajustes menores si son necesarios) ===== */
+@media (max-width: 768px) {
+    .rastreo-header h1 { font-size: 2rem; }
+    .rastreo-header p strong { font-size: 1rem;}
+    .search-wrapper { flex-direction: column; gap: 1rem; }
+    .search-wrapper input[type="text"] { min-width: 100%; }
+    .btn { width: 100%; justify-content: center; }
+    .results-section { padding: 1.5rem; }
+    .timeline-item { padding-left: 60px; }
+    .timeline-icon { width: 40px; height: 40px; left: 10px; font-size: 1.2rem; }
+    .tracking-timeline::before { left: 30px; }
+
+    /* Ajuste para secciones de info/tips */
+    .info-section, .tips-section { padding: 1.5rem; border-left-width: 4px;}
+    .info-section h3, .tips-section h3 { font-size: 1.1rem;}
+    .info-section li, .tips-section li { padding-left: 1.5rem; }
+     .info-section li::before, .tips-section li::before { left: -2px; } /* Ajuste icono */
+
+}
+/* ... (media 480px existente sin cambios necesarios para esto) ... */
+@media (max-width: 480px) {
+    .rastreo-header { padding: 2rem 0; margin-bottom: 2rem; }
+    .rastreo-header h1 { font-size: 1.8rem; }
+    .container { padding: 0 1rem; }
+    .timeline-content h3 { font-size: 1rem; }
+    .timeline-content p { font-size: 0.85rem; }
+
+    /* Ajuste móvil info/tips */
+    .info-section li, .tips-section li { font-size: 0.9rem;}
+     .info-section ul ul li { font-size: 0.85rem;}
+
+}

@@ -1,0 +1,154 @@
+/* ===== Variables, Reset, Globales, Panel Layout, Header (Igual que style-digitacion.css) ===== */
+:root{--amarillo-principal:#FFDB00;--azul-oscuro:#0D2F4F;--naranja-acento:#F37021;--blanco:#FFFFFF;--gris-claro:#f8f9fa;--gris-medio:#e9ecef;--gris-oscuro:#6c757d;--texto-principal:#333;--fuente-principal:'Poppins',sans-serif; --verde-exito: #198754; --color-error: #dc3545; --rojo-eliminar: #bb2d3b; --azul-info: #0dcaf0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--fuente-principal);line-height:1.6;color:var(--texto-principal);background-color:var(--gris-claro);font-size:15px;}
+h1,h2,h3{color:var(--azul-oscuro);margin-bottom:1rem;line-height:1.3;}
+h1{font-size:1.6rem; margin: 0; color: var(--blanco);}
+h2{font-size:1.4rem; margin-bottom:1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--gris-medio); display: flex; align-items: center; gap: 0.7rem;}
+h2 i { color: var(--naranja-acento); font-size: 0.9em; }
+a{color:var(--naranja-acento);text-decoration:none;font-weight:600;}
+img{max-width:100%;height:auto;display:block;}
+p{margin-bottom:1rem;}
+button { font-family: inherit; cursor: pointer;}
+.container{max-width:1200px;margin:0 auto;padding:0 1.5rem;}
+.bg-azul-oscuro{background-color:var(--azul-oscuro);}
+.text-blanco{color:var(--blanco) !important;}
+.text-blanco p{color:var(--blanco);}
+.digitization-panel { display: flex; flex-direction: column; min-height: 100vh; }
+.panel-header{padding:1rem 0;background-color: var(--azul-oscuro);color:var(--blanco); border-bottom: 4px solid var(--amarillo-principal); }
+.panel-header .container.header-content{display:flex;align-items:center; justify-content: space-between; gap: 1.5rem;}
+.panel-logo{max-width:160px;height: auto; flex-shrink: 0;}
+.header-info { text-align: left;}
+.header-info .branch-name { margin: 0; color: var(--amarillo-principal); font-size: 1rem; font-weight: 600;}
+.header-info .branch-name i { margin-right: 0.5em; }
+.panel-main { padding-top: 2.5rem; padding-bottom: 3rem; flex-grow: 1; }
+.add-package-section, .pending-packages-section, .promo-management-section, .subscription-section, .client-plans-section {
+    background-color: var(--blanco); padding: 2rem; border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07); margin-bottom: 2.5rem; border: 1px solid var(--gris-medio);
+}
+
+/* Formulario */
+.data-form { }
+.form-row { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.form-group { margin-bottom: 1.2rem; flex: 1; min-width: calc(50% - 0.75rem); }
+.form-group label { display: block; margin-bottom: 0.4rem; font-weight: 600; font-size: 0.9rem; }
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="email"], /* Para email de suscripción */
+.form-group select {
+    width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--gris-medio); border-radius: 5px; font-size: 1rem; font-family: inherit;
+}
+.form-group input:focus, .form-group select:focus { outline: none; border-color: var(--azul-oscuro); box-shadow: 0 0 0 2px rgba(13, 47, 79, 0.15); }
+.form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%236c757d'%3E%3Cpath fill-rule='evenodd' d='M8 11.5a.5.5 0 0 1-.354-.146l-4-4a.5.5 0 0 1 .708-.708L8 10.293l3.646-3.647a.5.5 0 0 1 .708.708l-4 4A.5.5 0 0 1 8 11.5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.7rem center; background-size: 1em; padding-right: 2.5rem; cursor: pointer;}
+
+
+/* Resumen de Precio en Formulario de Paquete */
+.price-summary {
+    background-color: var(--gris-claro);
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    border: 1px solid var(--gris-medio);
+}
+.price-summary p { margin-bottom: 0.5rem; font-size: 0.95rem; display: flex; justify-content: space-between;}
+.price-summary strong { color: var(--naranja-acento); font-size: 1.1em;}
+.price-summary span { font-weight: 600; color: var(--azul-oscuro); }
+
+/* Lista de Códigos Promocionales */
+.promo-list { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed var(--gris-medio); }
+.promo-list h3 { font-size: 1.1rem; margin-bottom: 0.5rem; text-align: left;}
+#existingPromosList { list-style: none; padding: 0; }
+#existingPromosList li {
+    background-color: var(--gris-claro);
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#existingPromosList .promo-code-value { font-weight: bold; font-family: monospace; color: var(--azul-oscuro);}
+#existingPromosList .promo-discount-value { color: var(--verde-exito); }
+#existingPromosList .delete-promo-btn { background: none; border: none; color: var(--rojo-eliminar); cursor: pointer; font-size: 1.1em;}
+
+
+/* Feedback del Formulario */
+.form-feedback { margin-top: 1rem; padding: 0.8rem; border-radius: 5px; font-weight: 500; font-size: 0.95rem; display: none; text-align: center; }
+.form-feedback.success { background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; }
+.form-feedback.error { background-color: #f8d7da; color: #842029; border: 1px solid #f5c2c7; }
+
+/* Tabla de Paquetes y Planes */
+.table-container{overflow-x:auto;}
+#pendingPackagesTable, #clientPlansTable {width:100%;border-collapse:collapse;min-width:700px;}
+#pendingPackagesTable th,#pendingPackagesTable td,
+#clientPlansTable th, #clientPlansTable td {padding:.7rem .9rem;text-align:left;border-bottom:1px solid var(--gris-medio);vertical-align:middle;font-size:0.9rem;}
+#pendingPackagesTable th, #clientPlansTable th {background-color:var(--gris-claro);font-weight:600;color:var(--azul-oscuro);font-size:.8rem;text-transform:uppercase; white-space: nowrap;}
+#pendingPackagesTable tbody tr:hover, #clientPlansTable tbody tr:hover {background-color:#f1f5f9;}
+.loading-placeholder{text-align:center;color:var(--gris-oscuro);font-style:italic;padding:1.5rem;}
+.plan-name-display { font-weight: bold; }
+.plan-active { color: var(--verde-exito); }
+.plan-expiring { color: var(--naranja-acento); }
+.plan-expired { color: var(--rojo-eliminar); }
+
+/* Acciones en Tabla */
+.table-actions button {
+    background:none; border:none; cursor:pointer; font-size:0.9rem; margin:0 .2rem; padding: .3rem .6rem; transition:opacity .2s ease; opacity: 0.8;
+    display: inline-flex; align-items: center; gap: 0.3rem; border-radius: 4px; font-weight: 600;
+}
+.table-actions button:hover { opacity: 1; }
+.btn-paid { color: var(--verde-exito); border: 1px solid var(--verde-exito); }
+.btn-paid:hover { background-color: var(--verde-exito); color: var(--blanco); }
+.btn-delete { color: var(--rojo-eliminar); border: 1px solid var(--rojo-eliminar); }
+.btn-delete:hover { background-color: var(--rojo-eliminar); color: var(--blanco); }
+.btn-cancel-subscription { color: var(--rojo-eliminar); border: 1px solid var(--rojo-eliminar); }
+.btn-cancel-subscription:hover { background-color: var(--rojo-eliminar); color: var(--blanco); }
+
+
+/* Totales */
+.summary-totals { margin-top: 1.5rem; padding-top: 1rem; border-top: 2px solid var(--azul-oscuro); text-align: right; font-size: 1.1rem; font-weight: 600; }
+.summary-totals strong { color: var(--naranja-acento); }
+
+/* Botones Generales */
+.btn{display:inline-flex; align-items: center; gap: 0.6rem; padding:.8rem 1.8rem;border:none;border-radius:5px;font-weight:700;cursor:pointer;transition:all .3s ease;text-align:center;font-size:1rem;text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.5;}
+.btn i { font-size: 0.9em; }
+.btn-naranja{background-color:var(--naranja-acento);color:var(--blanco); border: 2px solid var(--naranja-acento);}
+.btn-naranja:hover:not(:disabled){background-color:#d95f1a;transform:scale(1.02);color:var(--blanco); border-color: #d95f1a;}
+.btn:disabled { background-color: var(--gris-oscuro); border-color: var(--gris-oscuro); cursor: not-allowed; opacity: 0.7; }
+.btn-secondary{background-color:var(--gris-oscuro);color:var(--blanco); border: 2px solid var(--gris-oscuro);}
+.btn-secondary:hover{background-color:#5a6268;transform:scale(1.03);color:var(--blanco); border-color: #5a6268;}
+.btn-verde { background-color: var(--verde-exito); color: var(--blanco); border: 2px solid var(--verde-exito); }
+.btn-verde:hover:not(:disabled) { background-color: #147a41; border-color: #147a41; transform: scale(1.02); }
+
+
+/* ===== Footer ===== */
+.panel-footer{padding:1rem 0;text-align:center;font-size:0.9rem;margin-top:auto;}
+.panel-footer p{color:var(--blanco);margin-bottom: 0;}
+
+/* ===== Animaciones ===== */
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.animate-fade-in{opacity:0;animation:fadeIn 1s ease-out forwards;}
+.animate-slide-up{opacity:0;animation:slideUp 0.8s ease-out forwards;}
+/* Aplicar */
+.add-package-section, .pending-packages-section, .promo-management-section, .subscription-section, .client-plans-section { animation-delay: 0.1s; }
+
+/* ===== Responsividad ===== */
+@media(max-width: 992px){
+    .form-group { min-width: 100%; } /* Campos del form uno debajo de otro antes */
+    .form-row { flex-direction: column; gap: 0; }
+}
+@media(max-width: 768px){
+    h1{font-size:1.4rem;} h2{font-size:1.2rem;}
+    .panel-main { padding-top: 1.5rem; padding-bottom: 2rem;}
+    .add-package-section, .pending-packages-section, .promo-management-section, .subscription-section, .client-plans-section { padding: 1.5rem; margin-bottom: 2rem; }
+    #pendingPackagesTable th, #pendingPackagesTable td,
+    #clientPlansTable th, #clientPlansTable td {padding:.6rem .8rem; font-size: 0.85rem;}
+}
+@media(max-width: 480px){
+    h1{font-size:1.2rem;}
+    .panel-header .container.header-content { flex-direction: column; gap: 0.5rem; text-align: center;}
+    .header-info .branch-name { font-size: 0.9rem; }
+    .btn{padding: 0.7rem 1.5rem; font-size: 0.9rem;}
+    .price-summary p { font-size: 0.9rem; }
+}

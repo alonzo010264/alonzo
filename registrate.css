@@ -1,0 +1,301 @@
+/* ===== Variables y Reset (Basado en tu CSS de inicio) ===== */
+:root {
+    --amarillo-principal: #FFDB00;
+    --azul-oscuro: #0D2F4F;
+    --naranja-acento: #F37021;
+    --blanco: #FFFFFF;
+    --gris-claro: #f8f9fa;
+    --gris-medio: #e9ecef;
+    --gris-oscuro: #6c757d;
+    --texto-principal: #333;
+    --fuente-principal: 'Poppins', sans-serif;
+    --verde-exito: #198754;
+    --color-error: #dc3545;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    line-height: 1.6;
+    color: var(--texto-principal);
+    background-color: var(--azul-oscuro); /* Fondo azul oscuro */
+}
+
+/* ===== Contenedor Principal ===== */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+}
+
+/* ===== Caja de Registro ===== */
+.register-box {
+    background-color: var(--blanco);
+    padding: 2.5rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+.logo-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.company-logo {
+    max-width: 200px;
+    height: auto;
+}
+
+.register-box h1 {
+    font-size: 2rem;
+    color: var(--azul-oscuro);
+    margin-bottom: 0.5rem;
+}
+
+.register-subtitle {
+    font-size: 1rem;
+    color: var(--gris-oscuro);
+    margin-bottom: 2rem;
+}
+
+/* Formulario */
+#registrationForm {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--texto-principal);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--gris-medio);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color .3s ease, box-shadow .3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--naranja-acento);
+    box-shadow: 0 0 0 3px rgba(243,112,33,0.2);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 70px;
+}
+.form-group small { /* Estilo para la nota del código EB */
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gris-oscuro);
+    margin-top: 0.3rem;
+}
+
+/* Password Group & Toggle */
+.password-group {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: calc(50% + 8px); /* Ajustado para padding del input y line-height */
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--gris-oscuro);
+    font-size: 1.1rem;
+    user-select: none;
+    padding: 5px; /* Para hacer el área clickeable un poco más grande */
+    line-height: 1;
+}
+.toggle-password i {
+    font-size: inherit;
+}
+
+.toggle-password:hover {
+    color: var(--naranja-acento);
+}
+
+/* Propósito de Cuenta */
+.form-group.purpose-title label {
+    margin-bottom: 0.8rem;
+    font-weight: bold;
+}
+
+.purpose-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radio-option input[type="radio"] {
+    margin-right: 0.8rem;
+    cursor: pointer;
+    transform: scale(1.1);
+    accent-color: var(--naranja-acento);
+}
+
+.radio-option label {
+    margin-bottom: 0;
+    font-weight: normal;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.icon-radio {
+    color: var(--naranja-acento);
+    margin-right: 0.5rem;
+    width: 18px;
+    text-align: center;
+}
+
+/* Botón Registrarse */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: .8rem 1.8rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color .3s ease, transform .2s ease, opacity 0.3s ease;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.btn-naranja {
+    background-color: var(--naranja-acento);
+    color: var(--blanco);
+}
+
+.btn-naranja:hover:not(:disabled) {
+    background-color: #d95f1a;
+    transform: scale(1.03);
+}
+
+.btn-register {
+    width: 100%;
+}
+
+.btn:disabled {
+    background-color: var(--gris-oscuro);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Enlace a Iniciar Sesión */
+.login-link {
+    text-align: center;
+    margin-top: 1.8rem;
+    font-size: 0.9rem;
+    color: var(--texto-principal);
+}
+
+.login-link a {
+    color: var(--azul-oscuro);
+    font-weight: bold;
+}
+
+/* Nota Privacidad */
+.privacy-note {
+    font-size: 0.8rem;
+    color: var(--gris-oscuro);
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.privacy-note a {
+    color: var(--gris-oscuro);
+    font-size: inherit;
+    text-decoration: underline;
+    font-weight: normal;
+}
+
+.privacy-note a:hover {
+    color: var(--azul-oscuro);
+}
+
+/* Mensaje Feedback */
+.form-feedback {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 5px;
+    font-weight: 500;
+    text-align: center;
+    /* display: none; se maneja con JS */
+}
+
+.form-feedback.success {
+    background-color: #d1e7dd;
+    color: var(--verde-exito);
+    border: 1px solid #badbcc;
+}
+
+.form-feedback.error {
+    background-color: #f8d7da;
+    color: var(--color-error);
+    border: 1px solid #f5c2c7;
+}
+
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+    animation-delay: 0.1s;
+}
+
+/* Responsividad */
+@media (max-width: 576px) {
+    .register-box { padding: 2rem 1.5rem; }
+    h1 { font-size: 1.8rem; }
+    .company-logo { max-width: 160px; }
+    .btn { font-size: 0.95rem; padding: 0.7rem 1.5rem; }
+    .purpose-options { gap: 0.6rem; }
+    .radio-option label { font-size: 0.95rem; }
+}
