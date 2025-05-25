@@ -1,0 +1,289 @@
+// --- mi-cuenta-script.js ---
+document.addEventListener('DOMContentLoaded', () => {
+    const headerUserName = document.getElementById('headerUserName');
+    const headerUserEBCode = document.getElementById('headerUserEBCode');
+    const welcomeName = document.getElementById('welcomeName');
+    const logoutButton = document.getElementById('logoutButton');
+    const clientPackageTableBody = document.getElementById('clientPackageTableBody');
+    const noPackagesMessage = document.getElementById('noPackagesMessage');
+    const preAlertForm = document.getElementById('preAlertForm');
+    const preAlertMessage = document.getElementById('preAlertMessage');
+    const notificationsButton = document.getElementById('notificationsButton');
+    const notificationBadge = document.getElementById('notificationBadge');
+    const notificationsSection = document.getElementById('notificationsSection');
+    const notificationsList = document.getElementById('notificationsList');
+    const closeNotificationsButton = document.getElementById('closeNotifications');
+    // ... (otros elementos DOM para autopago, notificar retiro si los mantienes)
+
+    const LOGGED_IN_USER_SESSION_KEY = 'expressboxrd_session_user_alonzo'; // <<< Clave de sesión
+    const ADMIN_DIGITIZED_PACKAGES_KEY = 'expressboxrd_admin_packages_v3';
+    const ALL_PREALERTS_KEY = 'expressboxrd_all_prealerts_v2'; // Nueva clave para prealertas generales
+    const NEW_PREALERT_EVENT_KEY = 'expressboxrd_new_prealert_event_v2';
+    const CLIENT_NOTIFICATIONS_KEY_PREFIX = 'expressboxrd_notifications_user_'; // + EBCode
+
+    let currentUser = null; // Guardará los datos de Alonzo
+
+    // Mapeo de estados (DEBE COINCIDIR CON EL DEL ADMIN)
+    const statusMap = {
+        'received_warehouse_origin': { text: 'Recibido Origen', class: 'status-received_warehouse_origin', icon: 'fas fa-warehouse' },
+        'in_transit_to_rd': { text: 'En Tránsito a RD', class: 'status-in_transit_to_rd', icon: 'fas fa-plane-departure' },
+        'customs_rd': { text: 'En Aduanas RD', class: 'status-customs_rd', icon: 'fas fa-building-shield' },
+        'pending_payment_customs': { text: 'Impuestos Pendientes', class: 'status-pending_payment_customs', icon: 'fas fa-file-invoice-dollar' },
+        'paid_customs': { text: 'Impuestos Pagados', class: 'status-paid_customs', icon: 'fas fa-check-circle' },
+        'ready_for_dispatch_cd': { text: 'Listo en CD ExpressBoxRD', class: 'status-ready_for_dispatch_cd', icon: 'fas fa-dolly-flatbed' },
+        'out_for_delivery_rd': { text: 'En Ruta de Entrega', class: 'status-out_for_delivery_rd', icon: 'fas fa-truck-fast' },
+        'delivered_rd': { text: 'Entregado', class: 'status-delivered_rd', icon: 'fas fa-house-chimney-user' },
+        'unknown_package_admin': {text: 'Paquete Desconocido (Admin)', class: 'status-unknown_package_admin', icon: 'fas fa-question-circle' }
+    };
+
+    function loadUserData() {
+        const userDataJson = sessionStorage.getItem(LOGGED_IN_USER_SESSION_KEY);
+        if (!userDataJson) {
+            window.location.href = 'inicio.html';
+            return;
+        }
+        currentUser = JSON.parse(userDataJson);
+
+        // Verificar si es Alonzo específicamente para esta demo
+        if (currentUser.email !== 'alonzo@gmail.com' || currentUser.expressBoxCode !== 'EB-746589') {
+            console.warn("MI CUENTA: Los datos de sesión no coinciden con Alonzo. Redirigiendo.");
+            sessionStorage.removeItem(LOGGED_IN_USER_SESSION_KEY); // Limpiar sesión incorrecta
+            window.location.href = 'inicio.html';
+            return;
+        }
+
+        if (headerUserName) headerUserName.textContent = currentUser.fullName;
+        if (headerUserEBCode) headerUserEBCode.textContent = currentUser.expressBoxCode;
+        if (welcomeName) welcomeName.textContent = currentUser.fullName;
+
+        loadClientPackages();
+        loadNotifications();
+        // loadAutopayStatus(); // Si mantienes esta funcionalidad
+    }
+
+    function loadClientPackages() {
+        if (!clientPackageTableBody || !currentUser || !currentUser.expressBoxCode) return;
+        const allAdminPackages = JSON.parse(localStorage.getItem(ADMIN_DIGITIZED_PACKAGES_KEY) || '[]');
+        const clientPackages = allAdminPackages.filter(pkg =>
+            pkg.clientEBCode && pkg.clientEBCode.toUpperCase() === currentUser.expressBoxCode.toUpperCase() &&
+            pkg.status !== 'unknown_package_admin'
+        );
+        // ... (resto de la función renderizado de la tabla de paquetes igual que antes)
+        // Asegúrate de que los botones de "Pagar Impuestos" y "Contactar" sean correctos
+        clientPackageTableBody.innerHTML = '';
+        if (noPackagesMessage) noPackagesMessage.style.display = clientPackages.length === 0 ? 'block' : 'none';
+        if (clientPackages.length === 0 && clientPackageTableBody.closest('table')) {
+            clientPackageTableBody.closest('table').style.display = 'none';
+            return;
+        }
+        if(clientPackageTableBody.closest('table')) clientPackageTableBody.closest('table').style.display = 'table';
+
+        clientPackages.forEach(pkg => {
+            const row = clientPackageTableBody.insertRow();
+            const statusInfo = statusMap[pkg.status] || { text: pkg.status || 'Desconocido', class: '', icon: 'fas fa-question' };
+            let taxesToPayText = 'N/A';
+            let actionsHTML = `<a href="rastreo-detallado.html?packageId=${pkg.id}" class="btn-icon-action" title="Ver Rastreo Completo"><i class="fas fa-search-location"></i></a>`;
+
+            const declaredValue = parseFloat(pkg.declaredValue); // Asegurar que es número
+            if (pkg.status === 'pending_payment_customs' && pkg.taxes > 0) {
+                taxesToPayText = `RD$ ${parseFloat(pkg.taxes || 0).toFixed(2)}`;
+                actionsHTML += `<a href="#" class="btn-icon-action action-btn-pay" data-package-id="${pkg.id}" title="Simular Pago Impuestos"><i class="fas fa-dollar-sign"></i> Pagar</a>`;
+            }
+
+            row.innerHTML = `
+                <td>${pkg.originalTracking || 'N/A'}</td>
+                <td>${pkg.content || 'No especificado'}</td>
+                <td>${declaredValue ? `$${declaredValue.toFixed(2)}` : 'N/A'}</td>
+                <td><span class="status-customs ${statusInfo.class}"><i class="${statusInfo.icon}"></i> ${statusInfo.text}</span></td>
+                <td>${taxesToPayText}</td>
+                <td class="table-actions">${actionsHTML}</td>
+            `;
+        });
+    }
+
+    // SIMULAR PAGO DE IMPUESTOS DESDE LA CUENTA DEL CLIENTE
+    if (clientPackageTableBody) {
+        clientPackageTableBody.addEventListener('click', function(event) {
+            const payButton = event.target.closest('.action-btn-pay');
+            if (payButton) {
+                event.preventDefault();
+                const packageIdToPay = payButton.dataset.packageId;
+                if (confirm(`Simular pago de impuestos para el paquete ID: ${packageIdToPay}?`)) {
+                    // Lógica para actualizar el estado del paquete en localStorage (simulando lo que haría el admin)
+                    let allPackages = JSON.parse(localStorage.getItem(ADMIN_DIGITIZED_PACKAGES_KEY) || '[]');
+                    const pkgIndex = allPackages.findIndex(p => p.id === packageIdToPay);
+                    if (pkgIndex > -1) {
+                        allPackages[pkgIndex].status = 'paid_customs'; // Cambiar estado
+                        allPackages[pkgIndex].taxes = 0; // Impuestos pagados
+                        allPackages[pkgIndex].lastUpdated = new Date().toISOString();
+                        localStorage.setItem(ADMIN_DIGITIZED_PACKAGES_KEY, JSON.stringify(allPackages));
+                        // Disparar evento para que el admin vea el cambio si tiene el panel abierto
+                        localStorage.setItem(ADMIN_DIGITIZED_PACKAGES_KEY + '_event_update', Date.now());
+
+                        loadClientPackages(); // Recargar la tabla del cliente
+                        alert("Simulación: Impuestos marcados como pagados. El paquete continuará su proceso.");
+                    }
+                }
+            }
+        });
+    }
+
+
+    if (preAlertForm) {
+        preAlertForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (!currentUser || !preAlertMessage) return;
+            const formData = new FormData(preAlertForm);
+            const preAlertData = {
+                id: 'pa_' + Date.now(),
+                clientName: currentUser.fullName,
+                clientEBCode: currentUser.expressBoxCode,
+                originalTracking: formData.get('originalTracking'),
+                storeSender: formData.get('storeSender'),
+                estimatedValue: formData.get('estimatedValue'),
+                packageDescriptionContent: formData.get('packageDescriptionContent'),
+                estimatedArrival: formData.get('estimatedArrival'),
+                timestamp: new Date().toISOString(),
+                status: 'Pre-Alertado'
+            };
+            // ... (Validaciones de campos del formulario) ...
+            const allPreAlerts = JSON.parse(localStorage.getItem(ALL_PREALERTS_KEY) || '[]');
+            allPreAlerts.unshift(preAlertData);
+            localStorage.setItem(ALL_PREALERTS_KEY, JSON.stringify(allPreAlerts));
+            localStorage.setItem(NEW_PREALERT_EVENT_KEY, JSON.stringify({...preAlertData, notifiedAt: Date.now()})); // Para que admin vea "al instante"
+
+            showFeedback(preAlertMessage, '¡Pre-alerta enviada con éxito! El administrador será notificado.', 'success');
+            preAlertForm.reset();
+        });
+    }
+
+    function loadNotifications() {
+        if (!notificationsList || !notificationBadge || !currentUser) return;
+        const userNotificationsKey = CLIENT_NOTIFICATIONS_KEY_PREFIX + currentUser.expressBoxCode.toUpperCase();
+        // ... (resto de loadNotifications igual que antes) ...
+        const storedNotifications = localStorage.getItem(userNotificationsKey);
+        const notifications = storedNotifications ? JSON.parse(storedNotifications) : [];
+        notificationsList.innerHTML = '';
+        let unreadCount = 0;
+        if (notifications.length === 0) {
+            notificationsList.innerHTML = '<li class="no-notifications">No tienes notificaciones.</li>';
+            notificationBadge.style.display = 'none'; return;
+        }
+        notifications.forEach(notif => {
+            const li = document.createElement('li');
+            if (!notif.read) { li.classList.add('unread'); unreadCount++; }
+            li.innerHTML = `<span class="notif-icon"><i class="${notif.icon || 'fas fa-info-circle'}"></i></span> <div class="notif-text"><p>${notif.message}</p><span class="notif-time">${new Date(notif.timestamp).toLocaleString('es-DO', {hour12: true, dateStyle: 'short', timeStyle: 'short'})}</span></div>`;
+            notificationsList.appendChild(li);
+        });
+        if (unreadCount > 0) { notificationBadge.textContent = unreadCount; notificationBadge.classList.add('visible');}
+        else { notificationBadge.classList.remove('visible'); }
+    }
+    if (notificationsButton && notificationsSection && closeNotificationsButton) {
+        // ... (lógica de abrir/cerrar notificaciones y marcar como leídas igual que antes, usando la clave correcta) ...
+        notificationsButton.addEventListener('click', () => {
+            const isVisible = notificationsSection.style.display === 'block';
+            notificationsSection.style.display = isVisible ? 'none' : 'block';
+            if (!isVisible && currentUser) {
+                loadNotifications();
+                const userNotificationsKey = CLIENT_NOTIFICATIONS_KEY_PREFIX + currentUser.expressBoxCode.toUpperCase();
+                let notifications = JSON.parse(localStorage.getItem(userNotificationsKey) || '[]');
+                notifications.forEach(n => n.read = true);
+                localStorage.setItem(userNotificationsKey, JSON.stringify(notifications));
+                if(notificationBadge) notificationBadge.classList.remove('visible');
+            }
+        });
+         closeNotificationsButton.addEventListener('click', () => { notificationsSection.style.display = 'none'; });
+    }
+
+    if (logoutButton) {
+        logoutButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            sessionStorage.removeItem(LOGGED_IN_USER_SESSION_KEY);
+            window.location.href = 'inicio.html';
+        });
+    }
+
+    function showFeedback(element, message, type) {
+        if (!element) return;
+        element.textContent = message;
+        element.className = `form-feedback ${type}`;
+        element.style.display = 'block';
+        if (type !== 'error') { setTimeout(() => { element.style.display = 'none'; }, 3000); }
+    }
+
+    loadUserData(); // Cargar datos al inicio
+
+    // Escuchar cambios de localStorage para paquetes y notificaciones del admin
+    window.addEventListener('storage', (event) => {
+        if (!currentUser) return;
+        if (event.key === ADMIN_DIGITIZED_PACKAGES_KEY || event.key === ADMIN_DIGITIZED_PACKAGES_KEY + '_event_update') {
+            loadClientPackages();
+        }
+        if (event.key === (CLIENT_NOTIFICATIONS_KEY_PREFIX + currentUser.expressBoxCode.toUpperCase())) {
+            loadNotifications();
+        }
+    });
+
+    // --- Autopago y Notificar Retiro (Funcionalidad de la respuesta anterior, mantenida por si la usas) ---
+    // ... (pega aquí el código de loadAutopayStatus, toggleAutopayUI, y el listener de notifyPickupForm
+    //      asegurándote de usar `currentUser.expressBoxCode` para las claves de localStorage si es necesario)
+    const autopayStatusSpan = document.getElementById('autopayStatus');
+    const activateAutopayButton = document.getElementById('activateAutopayButton');
+    const deactivateAutopayButton = document.getElementById('deactivateAutopayButton');
+    const autopayMessage = document.getElementById('autopayMessage');
+    const notifyPickupForm = document.getElementById('notifyPickupForm');
+    const pickupMessage = document.getElementById('pickupMessage');
+    const AUTOPAY_STATUS_KEY_PREFIX = 'expressboxrd_autopay_status_';
+
+    function loadAutopayStatus() {
+        if (!currentUser || !autopayStatusSpan) return;
+        const autopayKey = AUTOPAY_STATUS_KEY_PREFIX + currentUser.expressBoxCode.toUpperCase();
+        const isActive = localStorage.getItem(autopayKey) === 'true';
+        toggleAutopayUI(isActive);
+    }
+
+    function toggleAutopayUI(isActive) {
+        if (!autopayStatusSpan || !activateAutopayButton || !deactivateAutopayButton) return;
+        if (isActive) {
+            autopayStatusSpan.textContent = 'Activo';
+            autopayStatusSpan.className = 'status-indicator status-active';
+            activateAutopayButton.style.display = 'none';
+            deactivateAutopayButton.style.display = 'inline-flex';
+        } else {
+            autopayStatusSpan.textContent = 'Inactivo';
+            autopayStatusSpan.className = 'status-indicator status-inactive';
+            activateAutopayButton.style.display = 'inline-flex';
+            deactivateAutopayButton.style.display = 'none';
+        }
+    }
+    if (activateAutopayButton) {
+        activateAutopayButton.addEventListener('click', () => {
+            if (!currentUser) return;
+            const autopayKey = AUTOPAY_STATUS_KEY_PREFIX + currentUser.expressBoxCode.toUpperCase();
+            localStorage.setItem(autopayKey, 'true');
+            toggleAutopayUI(true);
+            showFeedback(autopayMessage, 'Autopago activado.', 'success');
+        });
+    }
+    if (deactivateAutopayButton) {
+        deactivateAutopayButton.addEventListener('click', () => {
+            if (!currentUser) return;
+            const autopayKey = AUTOPAY_STATUS_KEY_PREFIX + currentUser.expressBoxCode.toUpperCase();
+            localStorage.setItem(autopayKey, 'false');
+            toggleAutopayUI(false);
+            showFeedback(autopayMessage, 'Autopago desactivado.', 'info');
+        });
+    }
+    if (notifyPickupForm) {
+        notifyPickupForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if(!pickupMessage || !currentUser) return;
+            const trackingCodes = document.getElementById('pickupTrackingCodes').value;
+            if (!trackingCodes) { showFeedback(pickupMessage, 'Ingresa códigos de paquetes.', 'error'); return; }
+            console.log("Notificación Retiro:", { trackingCodes, client: currentUser.expressBoxCode });
+            showFeedback(pickupMessage, '¡Notificación de retiro enviada!', 'success');
+            notifyPickupForm.reset();
+        });
+    }
+
+});
