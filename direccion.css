@@ -1,0 +1,166 @@
+/* ===== Variables y Reset ===== */
+:root{--amarillo-principal:#FFDB00;--azul-oscuro:#0D2F4F;--naranja-acento:#F37021;--blanco:#FFFFFF;--gris-claro:#f8f9fa;--gris-medio:#e9ecef;--gris-oscuro:#6c757d;--texto-principal:#333;--fuente-principal:'Poppins',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--fuente-principal);line-height:1.6;color:var(--texto-principal);background-color:var(--blanco);display:flex;flex-direction:column;min-height:100vh;}
+main{flex-grow:1; padding-top: 70px; /* AJUSTA ESTE VALOR A LA ALTURA DE TU HEADER */}
+h1,h2,h3{color:var(--azul-oscuro);margin-bottom:1rem;line-height:1.3;text-align:center;}
+h1{font-size:2.6rem;}
+h2{font-size:2rem;margin-bottom:2.5rem;padding-bottom:0.5rem;border-bottom:3px solid var(--amarillo-principal);display:inline-block;} /* Centrado con subrayado amarillo */
+h3{font-size:1.3rem;margin-bottom:0.6rem;font-weight:700;}
+a{color:var(--naranja-acento);text-decoration:none;font-weight:600;}
+img{max-width:100%;height:auto;display:block;}
+p{margin-bottom:1rem; font-size: 1rem; line-height: 1.7;}
+ul{list-style:none;padding-left:0;margin:1rem 0;}
+li{padding-left:28px;position:relative;margin-bottom:0.8rem;}
+li .icon{position:absolute;left:0;top:2px;font-size:1.1em;}
+
+.container{max-width:1100px;margin:0 auto;padding:0 1.5rem;}
+.bg-azul{background-color:var(--azul-oscuro);}
+.bg-gris-claro{background-color:var(--gris-claro);}
+.bg-azul-oscuro{background-color:var(--azul-oscuro);}
+.text-blanco{color:var(--blanco) !important;}
+.text-blanco h1,.text-blanco h2,.text-blanco p{color:var(--blanco);}
+.text-blanco h2{border-bottom-color:var(--amarillo-principal);}
+.text-blanco a{color:var(--amarillo-principal);}
+.text-blanco li .icon { color: var(--amarillo-principal); }
+
+
+/* ===== Encabezado ===== */
+.how-to-header{padding:1rem 0;border-bottom:1px solid var(--gris-medio);background-color: var(--blanco); position: fixed; /* Hacerlo fijo */ top: 0; left: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.how-to-header .container{display:flex;justify-content:center;}
+.how-to-header .company-logo{max-width:180px;height: auto;}
+
+/* ===== Hero ===== */
+.how-to-hero{text-align:center;padding:3.5rem 1.5rem 3rem 1.5rem; margin-bottom: 3rem;}
+.how-to-hero h1{margin-bottom:0.5rem;}
+.how-to-hero .subtitle{font-size:1.2rem;color:var(--gris-claro);max-width:800px;margin:0 auto;}
+
+/* ===== Sección Introducción ===== */
+.intro-explanation { padding: 2rem 0; text-align: center; }
+.intro-explanation .container { max-width: 900px; }
+.intro-explanation h2 { display: table; margin: 0 auto 2.5rem auto; } /* Centrar H2 */
+
+/* ===== Sección Pasos ===== */
+.steps-section { padding: 4rem 0; text-align: center; }
+.steps-section h2 { display: table; margin: 0 auto 3rem auto; }
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+.step-item {
+    background-color: var(--blanco);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    border-top: 4px solid var(--naranja-acento); /* Borde superior naranja */
+}
+.step-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--naranja-acento);
+}
+.step-item h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--azul-oscuro);}
+.step-item p { font-size: 0.9rem; color: var(--texto-principal); margin-bottom: 0.5rem; }
+.step-item small { font-size: 0.8rem; color: var(--gris-oscuro); display: block; margin-top: 0.5rem;}
+
+/* ===== Sección Direcciones ===== */
+.addresses-section { padding: 4rem 0; }
+.addresses-section h2 { display: table; margin: 0 auto 2.5rem auto; }
+.address-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+.address-card {
+    background-color: var(--blanco);
+    border: 1px solid var(--gris-medio);
+    border-left: 5px solid var(--azul-oscuro); /* Borde izquierdo azul */
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.address-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+.address-location {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed var(--gris-medio);
+    color: var(--azul-oscuro);
+    text-align: left;
+    display: flex; /* Para alinear icono y texto */
+    align-items: center;
+    gap: 0.5rem;
+}
+.address-location .icon { font-size: 1.2em; /* Ajusta tamaño de bandera */ }
+.address-details p { margin-bottom: 0.4rem; font-size: 0.95rem; line-height: 1.5; text-align: left; }
+.address-details strong { color: var(--texto-principal); }
+.address-details .highlight { color: var(--naranja-acento); font-weight: 700; background-color: #fff3cd; padding: 2px 4px; border-radius: 3px;}
+.btn-copy-address { /* Estilo para botón copiar (si lo implementas con JS) */
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    /* ... otros estilos de botón ... */
+}
+
+/* ===== Sección Beneficios Plan ===== */
+.plans-benefit-section { padding: 3.5rem 1.5rem; text-align: center; margin: 3rem 0; border-radius: 8px; }
+.plans-benefit-section h2 { color: var(--amarillo-principal); border-bottom: none; font-size: 1.8rem; }
+.plans-benefit-section p { color: var(--gris-claro); max-width: 800px; margin-left: auto; margin-right: auto; }
+.plans-benefit-section ul { max-width: 600px; margin: 1.5rem auto; text-align: left; }
+.plans-benefit-section li { color: var(--blanco); }
+.btn-amarillo { background-color: var(--amarillo-principal); color: var(--azul-oscuro); font-weight: 700;}
+.btn-amarillo:hover { background-color: #e6c300; transform: scale(1.05); }
+
+
+/* ===== Sección CTA ===== */
+.how-to-cta { padding: 3rem 0; text-align: center; background-color: var(--gris-claro); }
+.how-to-cta h2 { display: table; margin: 0 auto 2rem auto; }
+.how-to-cta p { max-width: 600px; margin: 0 auto 1.5rem auto; }
+.how-to-cta .btn { margin: 0.5rem; }
+.btn{display:inline-block;padding:.8rem 1.8rem;border:none;border-radius:5px;font-weight:700;cursor:pointer;transition:background-color .3s ease,transform .2s ease, color .3s ease, border-color .3s ease;text-align:center;font-size:1rem;}
+.btn-naranja{background-color:var(--naranja-acento);color:var(--blanco);}
+.btn-naranja:hover{background-color:#d95f1a;transform:scale(1.05);}
+.btn-outline{background-color:transparent;color:var(--azul-oscuro);border:2px solid var(--azul-oscuro);}
+.btn-outline:hover{background-color:var(--azul-oscuro);color:var(--blanco);transform:scale(1.05);}
+
+/* ===== Footer ===== */
+.footer{padding:1.5rem 0;text-align:center;font-size:0.9rem;margin-top:auto;}
+
+/* ===== Animaciones ===== */
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(25px);}to{opacity:1;transform:translateY(0);}}
+.animate-fade-in{opacity:0;animation:fadeIn 1s ease-out forwards;}
+.animate-slide-up{opacity:0;animation:slideUp 0.7s ease-out forwards;}
+/* Retraso escalonado ya aplicado en HTML */
+
+/* ===== Responsividad ===== */
+@media(max-width: 992px){
+    h1{font-size:2.2rem;}h2{font-size:1.8rem;}
+    .steps-grid{grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));}
+    .address-grid{grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));}
+}
+@media(max-width: 768px){
+    h1{font-size:2rem;}h2{font-size:1.6rem;}
+    .container{padding:0 1rem;}
+    main { padding-top: 60px; /* Ajustar si la altura del header cambia */ }
+    .how-to-hero, .steps-section, .addresses-section, .plans-benefit-section, .how-to-cta { padding: 2.5rem 0; }
+    .steps-grid, .address-grid { gap: 1.5rem; }
+}
+@media(max-width: 480px){
+    h1{font-size:1.8rem;}h2{font-size:1.5rem;}
+    main { padding-top: 55px; /* Ajustar si la altura del header cambia */ }
+    .how-to-hero { padding: 2rem 1rem; }
+    .how-to-hero .subtitle { font-size: 1rem; }
+    .steps-grid, .address-grid { grid-template-columns: 1fr; } /* Apilar */
+    .address-card { padding: 1.2rem; }
+    .plans-benefit-section { padding: 2.5rem 1rem; }
+    .how-to-cta { padding: 2rem 0; }
+    .btn { width: 90%; max-width: 300px; margin: 0.5rem auto !important; display: block; }
+}

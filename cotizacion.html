@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización de Envíos B2B - ExpressBoxRD</title>
+    <link rel="stylesheet" href="assets/css/cotizacion.css">
+    <link rel="shortcut icon" href="assets/images/logo.jpg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <header class="b2b-header">
+        <div class="container">
+                        <a href="index.html">
+                 <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="company-logo">
+            </a>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="b2b-hero">
+            <div class="video-background-container">
+                <video loop muted autoplay playsinline poster="assets/images/avion.png" class="hero-video">
+
+                    <source src="videos/avion trabajando.mp4" type="video/mp4">
+                    Tu navegador no soporta videos.
+                </video>
+                <div class="hero-overlay"></div> 
+            </div>
+            <div class="container hero-content">
+                <h1 class="animate-fade-in">Soluciones Logísticas para tu Empresa</h1>
+                <p class="subtitle animate-fade-in" style="animation-delay: 0.2s;">Cotiza tus envíos masivos con ExpressBoxRD. Eficiencia y confianza para nuestros socios comerciales.</p>
+
+                <a href="#quoteFormSection" class="btn btn-amarillo hero-cta-button animate-fade-in" style="animation-delay: 0.4s;">
+                    <i class="fas fa-handshake"></i> Unirme y Cotizar Envíos
+                </a>
+            </div>
+        </section>
+
+
+        <section class="info-section">
+            <div class="container animate-slide-up">
+                <div class="info-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <h2>Información Importante sobre Aduanas</h2>
+                <p>Estimado socio comercial, le recordamos que la declaración precisa del contenido y valor de los paquetes es fundamental para un proceso aduanero fluido. <strong>ExpressBoxRD no se hace responsable por retenciones o inconvenientes si Aduanas detecta artículos ilícitos, no declarados o incorrectamente valorados en sus envíos.</strong></p>
+                <p>En tales casos, contactaremos inmediatamente a su empresa para informar la situación y explorar posibles soluciones. Entendemos que estos procesos pueden ser complejos; por ello, contamos con un <strong>equipo interno especializado en gestión aduanera</strong> que puede asistirle en casos específicos, aunque esto podría implicar costos adicionales según las exigencias de las autoridades.</p>
+            </div>
+        </section>
+
+
+        <section id="quoteFormSection" class="quote-form-section bg-gris-claro">
+            <div class="container">
+                <h2 class="section-title animate-slide-up">Solicitar Cotización de Envío</h2>
+                <form id="b2bQuoteForm" class="quote-form animate-slide-up" style="animation-delay: 0.1s;">
+
+                    <h3><i class="fas fa-box-open"></i> Detalles del Paquete / Carga</h3>
+                    <div class="form-group">
+                        <label for="companyName">Empresa Remitente:</label>
+                        <select id="companyName" name="companyName" required>
+                            <option value="" disabled selected>Selecciona tu empresa...</option>
+                            <option value="Amazon">Amazon</option>
+                            <option value="Temu">Temu</option>
+                            <option value="Shein">Shein</option>
+                            <option value="Other">Otra (Especificar)</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="otherCompanyGroup" style="display: none;">
+                         <label for="otherCompanyName">Nombre de tu Empresa:</label>
+                         <input type="text" id="otherCompanyName" name="otherCompanyName">
+                    </div>
+                    <div class="form-group">
+                        <label for="packageContent">Descripción General del Contenido:</label>
+                        <input type="text" id="packageContent" name="packageContent" required placeholder="Ej: Ropa variada, Electrónicos pequeños, Documentos">
+                    </div>
+                    <div class="form-group">
+                        <label for="packageWeight">Peso Total Estimado (en Kg):</label>
+                        <input type="number" id="packageWeight" name="packageWeight" required min="0.1" step="0.1" placeholder="Ej: 50.5">
+                        <small>Esto nos ayuda a verificar disponibilidad y tipo de transporte.</small>
+                    </div>
+
+                    <h3><i class="fas fa-map-marker-alt"></i> Información de Destino</h3>
+                    <div class="form-group">
+                        <label for="destinationCountry">País de Destino:</label>
+                        <input type="text" id="destinationCountry" name="destinationCountry" required placeholder="Ej: República Dominicana, USA, México">
+                    </div>
+                     <div class="form-group">
+                        <label for="recipientName">Nombre del Destinatario Final (o "Cliente"):</label>
+                        <input type="text" id="recipientName" name="recipientName" required placeholder="Nombre de la persona que recibe">
+                    </div>
+                     <div class="form-group">
+                        <label for="deliveryType">Tipo de Entrega Solicitada:</label>
+                        <select id="deliveryType" name="deliveryType">
+                            <option value="domicilio">Entrega a Domicilio del Cliente</option>
+                            <option value="sucursal">Retiro en Sucursal/Almacén ExpressBoxRD</option>
+                        </select>
+                    </div>
+
+                    <h3><i class="fas fa-building"></i> Contacto Empresarial</h3>
+                     <div class="form-group">
+                        <label for="companyEmail">Correo Electrónico de Contacto (Empresa):</label>
+                        <input type="email" id="companyEmail" name="companyEmail" required placeholder="Para seguimiento y notificaciones">
+                    </div>
+
+                     <div class="form-group">
+                         <label for="additionalInfo">Información Adicional o Requisitos Especiales (Opcional):</label>
+                         <textarea id="additionalInfo" name="additionalInfo" rows="4"></textarea>
+                     </div>
+
+
+                     <p id="formMessage" class="form-feedback" style="display: none;" aria-live="assertive"></p>
+
+                     <button type="submit" id="submitQuoteButton" class="btn btn-naranja">Enviar Solicitud de Cotización</button>
+
+                 </form>
+            </div>
+        </section>
+
+
+        <section id="quoteResultSection" class="result-section bg-gris-claro" style="display: none;">
+             <div class="container text-center animate-fade-in">
+                <h2>¡Solicitud Recibida!</h2>
+                <p>Gracias por solicitar una cotización con ExpressBoxRD. Hemos registrado tu solicitud.</p>
+                <div class="result-details">
+                    <p>Hemos generado la siguiente información preliminar para el seguimiento de tu cliente:</p>
+                    <p>Código de Rastreo Asignado: <strong id="trackingCodeResult" class="result-code">EB-XXXXXXX</strong></p>
+                    <p>Fecha Estimada de Entrega: <strong id="deliveryEstimateResult" class="result-date">Calculando...</strong></p>
+                    <p class="important-note"><strong>Importante:</strong> La fecha de entrega es una estimación inicial y podría cambiar. Te contactaremos al correo <strong id="contactEmailResult"></strong> con la cotización formal y cualquier actualización relevante.</p>
+                </div>
+                <button id="newQuoteButton" class="btn btn-secondary">Solicitar Nueva Cotización</button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer bg-azul-oscuro">
+        <div class="container text-blanco">
+            <p>© 2023 ExpressBoxRD. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+
+    <script src="assets/js/cotizacion.js"></script>
+
+</body>
+</html>

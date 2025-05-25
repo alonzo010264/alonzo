@@ -1,0 +1,208 @@
+/* ===== Variables y Reset ===== */
+:root{--amarillo-principal:#FFDB00;--azul-oscuro:#0D2F4F;--naranja-acento:#F37021;--blanco:#FFFFFF;--gris-claro:#f8f9fa;--gris-medio:#e9ecef;--gris-oscuro:#6c757d;--texto-principal:#333;--fuente-principal:'Poppins',sans-serif; --verde-online: #28a745; --rojo-offline: #dc3545; --chat-bg: #f0f2f5;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--fuente-principal);line-height:1.5;color:var(--texto-principal);background-color:var(--gris-claro);font-size:15px;}
+h1,h2{color:var(--azul-oscuro);margin-bottom:0.5rem;}
+img{max-width:100%;display:block;}
+button{font-family:inherit;cursor:pointer;transition: background-color 0.2s ease;}
+textarea{font-family:inherit;font-size:1rem;border:1px solid var(--gris-medio);border-radius:5px;padding:0.6rem;resize:none;}
+
+.container{max-width:1100px;margin:0 auto;padding:0 1.5rem;} /* Para headers/footers generales */
+
+/* ===== Contenedor Principal de la App de Chat ===== */
+.chat-app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Ocupar toda la altura */
+    max-height: 100vh;
+    background-color: var(--blanco);
+    max-width: 800px; /* Ancho máximo para la vista de cliente */
+    margin: 0 auto; /* Centrar */
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+/* Estilo específico para la vista del agente */
+.chat-app-container.agent-view {
+    max-width: 100%; /* Ocupar todo el ancho disponible */
+}
+
+
+/* ===== Encabezado del Chat ===== */
+.chat-header {
+    background-color: var(--azul-oscuro);
+    color: var(--blanco);
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espacio entre logo y título/estado */
+    border-bottom: 3px solid var(--amarillo-principal);
+    flex-shrink: 0; /* No encoger */
+}
+.chat-logo { max-height: 35px; width: auto; }
+.chat-header h1 { color: var(--blanco); font-size: 1.2rem; margin: 0; text-align: center; flex-grow: 1;}
+.agent-status { font-size: 0.8rem; padding: 0.2rem 0.6rem; border-radius: 10px; font-weight: 500;}
+.agent-status.offline { background-color: var(--gris-oscuro); }
+.agent-status.online { background-color: var(--verde-online); }
+.agent-header h1 { text-align: left; }
+
+/* Botón para Agente (Conectarse/Desconectarse) */
+.btn{display:inline-flex; align-items: center; gap: 0.5rem; padding:0.6rem 1.2rem;border:none;border-radius:5px;font-weight:600;font-size:0.9rem;text-transform: uppercase;}
+.btn-status { background-color: var(--verde-online); color: var(--blanco); }
+.btn-status.connected { background-color: var(--rojo-offline); }
+.btn-naranja{background-color:var(--naranja-acento);color:var(--blanco);}
+.btn-naranja:hover{background-color:#d95f1a;}
+
+
+/* ===== Pantallas Iniciales del Cliente ===== */
+.initial-message-screen, .queue-message-screen {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--chat-bg);
+}
+.initial-message-screen p, .queue-message-screen p { font-size: 1.1rem; color: var(--texto-principal); margin-bottom: 1rem;}
+.queue-message-screen p i { color: var(--naranja-acento); font-size: 1.5em; margin-bottom: 0.5rem; display: block;}
+.queue-message-screen strong { color: var(--azul-oscuro); font-size: 1.2em;}
+
+/* ===== Ventana de Chat (Cliente y Agente) ===== */
+.chat-window { /* Contenedor para cliente */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Para que el chat-box haga scroll */
+}
+.chat-box {
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: auto; /* Scroll para mensajes */
+    background-color: var(--chat-bg);
+    display: flex;
+    flex-direction: column; /* Mensajes se apilan */
+}
+/* Estilo para mensajes */
+.message {
+    max-width: 75%;
+    padding: 0.7rem 1rem;
+    margin-bottom: 0.8rem;
+    border-radius: 15px;
+    line-height: 1.4;
+    position: relative;
+    word-wrap: break-word; /* Evitar desbordes */
+}
+.message.sent { /* Agente o cliente enviando */
+    background-color: var(--azul-oscuro);
+    color: var(--blanco);
+    border-bottom-right-radius: 5px;
+    align-self: flex-end; /* Alinear a la derecha */
+}
+.message.received { /* Agente o cliente recibiendo */
+    background-color: var(--blanco);
+    color: var(--texto-principal);
+    border: 1px solid var(--gris-medio);
+    border-bottom-left-radius: 5px;
+    align-self: flex-start; /* Alinear a la izquierda */
+}
+.message .sender-name { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.2rem; opacity: 0.8;}
+.message.sent .sender-name { text-align: right;}
+.message .timestamp { display: block; font-size: 0.75rem; margin-top: 0.3rem; text-align: right; opacity: 0.7;}
+.message.received .timestamp { text-align: left; }
+
+/* --- Contenedor de Input (Cliente y Agente) --- */
+.chat-input-container {
+    display: flex;
+    align-items: center; /* Alinear items verticalmente */
+    padding: 0.8rem 1rem;
+    background-color: var(--blanco);
+    border-top: 1px solid var(--gris-medio);
+    flex-shrink: 0; /* No encoger */
+}
+.chat-input-container textarea {
+    flex-grow: 1;
+    padding: 0.7rem;
+    border: 1px solid var(--gris-medio);
+    border-radius: 20px; /* Bordes redondeados */
+    margin: 0 0.8rem;
+    max-height: 100px; /* Limitar altura del textarea */
+    overflow-y: auto;
+}
+.chat-input-container textarea:focus { outline: none; border-color: var(--naranja-acento); }
+.attach-btn, .send-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--gris-oscuro);
+    padding: 0.5rem;
+}
+.attach-btn:hover, .send-btn:hover { color: var(--naranja-acento); }
+.send-btn { color: var(--naranja-acento); }
+
+/* ===== Layout del Panel de Agente ===== */
+.agent-layout {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden; /* Evitar scroll doble */
+}
+.waiting-chats-list {
+    width: 280px; /* Ancho de la lista */
+    background-color: var(--gris-claro);
+    border-right: 1px solid var(--gris-medio);
+    padding: 1rem;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+.waiting-chats-list h2 { font-size: 1.1rem; margin-bottom: 1rem; text-align: left; border-bottom: 1px solid var(--gris-medio); padding-bottom: 0.5rem;}
+#waitingList { list-style: none; padding: 0;}
+#waitingList li {
+    padding: 0.8rem 0.5rem;
+    border-bottom: 1px solid var(--gris-medio);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 0.95rem;
+    position: relative; /* Para el punto de "nuevo" */
+}
+#waitingList li:hover { background-color: #e0e0e0; }
+#waitingList li.active-chat { background-color: var(--amarillo-principal); color: var(--azul-oscuro); font-weight: 600;}
+#waitingList li.no-waiting { text-align: center; color: var(--gris-oscuro); font-style: italic; cursor: default;}
+#waitingList li.has-new-message::after { /* Punto de notificación */
+    content: ''; display: inline-block; width: 8px; height: 8px; background-color: var(--naranja-acento);
+    border-radius: 50%; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+}
+
+.chat-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--chat-bg);
+}
+.chat-area h2 { font-size: 1.1rem; padding: 0.8rem 1.5rem; margin:0; background-color: var(--blanco); border-bottom: 1px solid var(--gris-medio); text-align: left;}
+.chat-area h2 span { font-weight: normal; }
+.agent-chat-box {
+    /* Hereda de .chat-box pero permite sobreescribir si es necesario */
+}
+.info-message { padding: 2rem; text-align: center; color: var(--gris-oscuro); flex-grow: 1; display: flex; align-items: center; justify-content: center;}
+
+
+/* ===== Responsividad ===== */
+@media(max-width: 768px) {
+    .chat-app-container { max-width: 100%; height: 100vh; border-radius: 0; box-shadow: none;}
+    .chat-header h1 { font-size: 1rem; }
+    .chat-logo { max-height: 30px; }
+
+    .agent-layout { flex-direction: column; } /* Apilar lista y chat en móvil para agente */
+    .waiting-chats-list {
+        width: 100%;
+        max-height: 200px; /* Limitar altura de la lista */
+        border-right: none;
+        border-bottom: 1px solid var(--gris-medio);
+    }
+    .chat-area h2 { display: block; } /* Asegurar que se muestre el "Chat con:" */
+}
+
+@media(max-width: 480px) {
+    .chat-input-container textarea { margin: 0 0.5rem; }
+    .attach-btn, .send-btn { font-size: 1.3rem; padding: 0.4rem; }
+    .message { max-width: 85%; padding: 0.6rem 0.9rem; }
+}

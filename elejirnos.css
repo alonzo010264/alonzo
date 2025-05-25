@@ -1,0 +1,161 @@
+/* ===== Variables y Reset (Igual que antes) ===== */
+:root{--amarillo-principal:#FFDB00;--azul-oscuro:#0D2F4F;--naranja-acento:#F37021;--blanco:#FFFFFF;--gris-claro:#f8f9fa;--gris-medio:#e9ecef;--gris-oscuro:#6c757d;--texto-principal:#333;--fuente-principal:'Poppins',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--fuente-principal);line-height:1.6;color:var(--texto-principal);background-color:var(--blanco);display:flex;flex-direction:column;min-height:100vh;}
+main{flex-grow:1;}
+h1,h2,h3{color:var(--azul-oscuro);margin-bottom:1rem;line-height:1.3;}
+h1{font-size:2.8rem;text-align:center;}
+h2{font-size:2rem;text-align:center;margin-bottom:0.8rem;} /* Ajuste h2 general */
+h3{font-size:1.3rem;color:var(--azul-oscuro);margin-bottom:0.6rem;}
+a{color:var(--naranja-acento);text-decoration:none;font-weight:600;}
+a:hover{text-decoration:underline;}
+img{max-width:100%;height:auto;display:block;border-radius:8px;}
+p{margin-bottom:1rem;color:#555;}
+
+.container{max-width:1100px;margin:0 auto;padding:0 1.5rem;}
+.bg-blanco{background-color:var(--blanco);}
+.bg-azul{background-color:var(--azul-oscuro);}
+.bg-naranja{background-color:var(--naranja-acento);}
+.bg-azul-oscuro{background-color:var(--azul-oscuro);}
+.bg-gris-claro{background-color:var(--gris-claro);}
+.text-blanco{color:var(--blanco) !important;}
+.text-blanco h1,.text-blanco h2,.text-blanco h3,.text-blanco p{color:var(--blanco);}
+.text-blanco a{color:var(--amarillo-principal);}
+.text-blanco h2{border-bottom-color:var(--amarillo-principal);}
+
+/* ===== Encabezado ===== */
+.why-us-header{padding:1rem 0;border-bottom:1px solid var(--gris-medio);background-color: var(--blanco); margin-bottom: 0;} /* Sin margen inferior */
+.why-us-header .container{display:flex;justify-content:center;}
+.why-us-header .company-logo{max-width:200px;height: auto;}
+
+/* ===== Hero ===== */
+.why-us-hero{text-align:center;padding:3rem 0 1.5rem 0;background-color:var(--amarillo-principal);margin-bottom:3.5rem;}
+.why-us-hero h1{color:var(--azul-oscuro);margin-bottom:0.5rem;}
+.why-us-hero .subtitle{font-size:1.2rem;color:var(--azul-oscuro);max-width:800px;margin:0.5rem auto 1.5rem auto;}
+.hero-image-area { max-width: 800px; margin: 1rem auto 0 auto; }
+.hero-image-area img { box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+
+/* ===== Sección de Beneficios ===== */
+.benefits-section { padding: 3rem 0; background-color: var(--gris-claro); }
+.section-title {
+    color: var(--azul-oscuro);
+    margin-bottom: 3rem; /* Más espacio después del título */
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--naranja-acento);
+    display: inline-block; /* Para que el borde se ajuste al texto */
+}
+
+/* Cuadrícula de Beneficios */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adaptable */
+    gap: 2rem;
+}
+.benefit-item {
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+    text-align: center;
+    border: 1px solid var(--gris-medio);
+    border-top: 5px solid transparent; /* Borde superior para hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-top-color 0.3s ease;
+}
+/* --- Efecto Hover --- */
+.benefit-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-top-color: var(--naranja-acento); /* Color en borde superior al pasar */
+}
+
+.benefit-icon {
+    font-size: 3rem; /* Tamaño icono */
+    color: var(--naranja-acento);
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+.benefit-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--azul-oscuro); /* Asegurar color */
+}
+.benefit-item p {
+    font-size: 0.95rem;
+    color: #555; /* Color de párrafo */
+    margin-bottom: 0; /* Sin margen extra */
+}
+
+/* ===== Sección Énfasis ===== */
+.emphasis-section { padding: 4rem 0; }
+.emphasis-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Imagen más pequeña */
+    gap: 3rem;
+    align-items: center;
+}
+.emphasis-image img { border: 5px solid var(--amarillo-principal); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+.emphasis-text h2 { text-align: left; border-bottom: none; display: block; }
+.emphasis-text p:last-of-type { font-style: italic; font-weight: 600; color: var(--amarillo-principal); }
+
+/* ===== Sección CTA ===== */
+.why-us-cta {
+    background-color: var(--naranja-acento);
+    padding: 3rem;
+    text-align: center;
+}
+.why-us-cta h2 { font-size: 2rem; margin-bottom: 1rem; }
+.why-us-cta p { max-width: 700px; margin: 0 auto 1.5rem auto; }
+.why-us-cta .btn { margin: 0.5rem; }
+
+/* Botones */
+.btn{display:inline-block;padding:0.9rem 2rem;border:none;border-radius:5px;font-weight:bold;cursor:pointer;transition:background-color .3s ease,transform .2s ease, color .3s ease;text-align:center;font-size:1rem;text-transform: uppercase; letter-spacing: 0.5px;}
+.btn-azul{background-color:var(--azul-oscuro);color:var(--blanco);}
+.btn-azul:hover{background-color:#1a4a75;transform:scale(1.05);color:var(--blanco);}
+.btn-blanco{background-color:var(--blanco);color:var(--naranja-acento);border: 2px solid var(--blanco);}
+.btn-blanco:hover{background-color:transparent;color:var(--blanco);transform:scale(1.05);}
+
+/* ===== Footer ===== */
+.footer{padding:1.5rem 0;text-align:center;font-size:0.9rem;margin-top:auto;background-color:var(--azul-oscuro);}
+.footer p{color:var(--blanco);}
+
+/* ===== Animaciones ===== */
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(25px);}to{opacity:1;transform:translateY(0);}}
+.animate-fade-in{opacity:0;animation:fadeIn 1s ease-out forwards;}
+.animate-slide-up{opacity:0;animation:slideUp 0.7s ease-out forwards;}
+/* Aplicar animaciones */
+.why-us-hero .container { animation-delay: 0.1s; }
+.hero-image-area { animation-delay: 0.3s; }
+.section-title { animation-delay: 0.1s; }
+/* Retraso escalonado para beneficios */
+.benefit-item:nth-child(1){animation-delay:0.2s;}
+.benefit-item:nth-child(2){animation-delay:0.3s;}
+.benefit-item:nth-child(3){animation-delay:0.4s;}
+.benefit-item:nth-child(4){animation-delay:0.2s;} /* Repite o ajusta para filas */
+.benefit-item:nth-child(5){animation-delay:0.3s;}
+.benefit-item:nth-child(6){animation-delay:0.4s;}
+.emphasis-section .container { animation-delay: 0.2s; }
+.why-us-cta .container { animation-delay: 0.2s; }
+
+/* ===== Responsividad ===== */
+@media(max-width:992px){
+    h1{font-size:2.5rem;}h2{font-size:1.8rem;}
+    .benefits-grid{grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;}
+    .emphasis-content{grid-template-columns:1fr; gap: 2rem; text-align: center;}
+    .emphasis-image{order: -1; margin: 0 auto 1.5rem auto; max-width: 400px;}
+    .emphasis-text h2 { text-align: center; }
+}
+@media(max-width:768px){
+    h1{font-size:2.2rem;}h2{font-size:1.6rem;}h3{font-size:1.2rem;}
+    .container{padding:0 1rem;}
+    .benefits-section, .emphasis-section, .why-us-cta{padding:2.5rem 1rem;}
+    .benefit-item { padding: 1.5rem; }
+}
+@media(max-width:576px){
+    h1{font-size:2rem;}h2{font-size:1.5rem;}
+    .why-us-hero{padding: 2rem 0 1rem 0;}
+    .benefits-grid{grid-template-columns: 1fr;} /* Una columna */
+    .why-us-cta{padding:2rem 1rem;}
+    .btn{width:100%;max-width:300px;margin:0.5rem 0 !important;}
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparte y Gana - Afiliados ExpressBoxRD</title>
+    <link rel="stylesheet" href="assets/css/afiliate..css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="assets/images/logo.jpg" type="image/x-icon">
+</head>
+<body>
+
+    <header class="affiliate-header">
+        <div class="container">
+
+            <a href="index.html">
+                 <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="company-logo">
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+
+
+        <section class="affiliate-hero">
+            <h1 class="animate-fade-in">¡Gana RD$ 500 por Compartir!</h1>
+            <p class="subtitle animate-fade-in" style="animation-delay: 0.1s;">Comparte tu enlace único de ExpressBoxRD con amigos en República Dominicana vía WhatsApp y obtén recompensas.</p>
+        </section>
+
+
+        <section class="rules-section">
+            <h2 class="section-title animate-slide-up">Reglas para Ganar</h2>
+            <div class="rules-content animate-slide-up" style="animation-delay: 0.1s;">
+                <ul>
+                    <li><span class="icon">✅</span> Debes compartir el enlace proporcionado usando el botón de WhatsApp.</li>
+                    <li><span class="icon">🇩🇴</span> La promoción es válida solo para compartir con contactos dentro de la <strong>República Dominicana</strong>.</li>
+                    <li><span class="icon">☝️</span> Se genera un código de recompensa por <strong>cada vez que compartes</strong> exitosamente a través del botón. (Nota: En un sistema real, esto se basaría en conversiones).</li>
+                    <li><span class="icon">💰</span> La recompensa base es de <strong>RD$ 500.00</strong>.</li>
+                    <li><span class="icon">🏦</span> Puedes canjear el código por el valor completo (RD$ 500.00) en <strong>cualquier sucursal oficial</strong> de ExpressBoxRD en RD.</li>
+                    <li><span class="icon">📦</span> Si canjeas el código en uno de nuestros <strong>almacenes nacionales</strong>, se aplicará una pequeña deducción del 2% (recibirás RD$ 490.00).</li>
+                     <li><span class="icon">⏳</span> Los códigos de recompensa tienen una validez limitada (consulta la fecha de expiración al recibirlo).</li>
+                     <li><span class="icon">🚫</span> ExpressBoxRD se reserva el derecho de validar los canjes y modificar la promoción.</li>
+                </ul>
+            </div>
+        </section>
+
+
+        <section id="shareSection" class="share-section bg-gris-claro">
+            <h2 class="section-title animate-slide-up">Tu Enlace para Compartir</h2>
+             <div class="link-display animate-fade-in" style="animation-delay: 0.1s;">
+                <p>Copia este enlace o usa el botón de WhatsApp:</p>
+                <input type="text" id="affiliateLink" value="https://expressboxrd.com/reg?ref=TU_ID_AFILIADO" readonly>
+                 <button id="copyLinkButton" class="btn btn-secondary">Copiar Enlace</button>
+            </div>
+            <div class="share-button-container animate-fade-in" style="animation-delay: 0.2s;">
+                <p>¡Haz clic aquí para compartir directamente por WhatsApp y generar tu recompensa!</p>
+                <button id="whatsappShareButton" class="btn btn-whatsapp">
+                    <span class="icon">📱</span> Compartir por WhatsApp y Ganar
+                </button>
+            </div>
+        </section>
+
+
+        <section id="rewardSection" class="reward-section" style="display: none;">
+             <h2 class="section-title">¡Felicidades! Has Ganado</h2>
+            <div class="reward-details">
+                <p class="reward-amount">RD$ 500.00</p>
+                <p>Tu código de canje es:</p>
+                <p id="rewardCode" class="reward-code">[CÓDIGO AQUÍ]</p>
+            </div>
+            <div class="redemption-info">
+                <h3>Opciones de Canje:</h3>
+                <ul>
+                    <li><strong>En Sucursal Oficial:</strong> Recibe <strong>RD$ 500.00</strong> completos.</li>
+                    <li><strong>En Almacén Nacional:</strong> Recibe <strong>RD$ <span id="warehouseAmount">490.00</span></strong> (aplicado 2% de cargo operativo).</li>
+                </ul>
+                <p>Presenta este código en el punto de canje saber que ese link es sobre nosotros solo comparte y gana el dinero se te sara en efectivo pero debes llenar una serie de papeles para colaborar con nosotros luego que te registre con nosotros  con nuestro papel seras el primero en enterarte de nuestros planes y demas para que se lo compartas a tus fans solo aplica para personas con 1000 seguidores sentimos mucho las personas que quisieran estar. Válido hasta 8-5-25.</p>
+                 <a href="contacto.html" class="btn btn-azul">Buscar Sucursales / Almacenes</a>
+            </div>
+             <button id="shareAgainButton" class="btn btn-secondary">Compartir de Nuevo</button>
+        </section>
+
+
+    </main>
+
+    <footer class="footer bg-azul-oscuro">
+        <div class="container text-blanco">
+            <p>© 2023 ExpressBoxRD. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/afiliate..js"></script>
+
+</body>
+</html>

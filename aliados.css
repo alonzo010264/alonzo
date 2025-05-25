@@ -1,0 +1,143 @@
+/* ===== Variables y Reset ===== */
+:root{--amarillo-principal:#FFDB00;--azul-oscuro:#0D2F4F;--naranja-acento:#F37021;--blanco:#FFFFFF;--gris-claro:#f8f9fa;--gris-medio:#e9ecef;--gris-oscuro:#6c757d;--texto-principal:#333;--fuente-principal:'Poppins',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--fuente-principal);line-height:1.7;color:var(--texto-principal);background-color:var(--gris-claro);display:flex;flex-direction:column;min-height:100vh;}
+main{flex-grow:1;}
+h1,h2,h3{color:var(--azul-oscuro);margin-bottom:1rem;line-height:1.3;}
+h1{font-size:2.6rem;text-align:center;}
+h2{font-size:2rem;text-align:center;margin-bottom:2.5rem;padding-bottom:0.5rem;border-bottom:3px solid var(--amarillo-principal);display:inline-block;}
+a{color:var(--naranja-acento);text-decoration:none;font-weight:600;}
+a:hover{text-decoration:underline;}
+img{max-width:100%;height:auto;display:block;}
+p{margin-bottom:1.1rem;font-size:1.05rem;} /* Texto ligeramente más grande */
+
+.container{max-width:1100px;margin:0 auto;padding:0 1.5rem;}
+.bg-azul{background-color:var(--azul-oscuro);}
+.bg-azul-oscuro{background-color:var(--azul-oscuro);}
+.text-blanco{color:var(--blanco) !important;}
+.text-blanco h1,.text-blanco h2,.text-blanco p{color:var(--blanco);}
+.text-blanco h2{border-bottom-color:var(--amarillo-principal);}
+
+/* ===== Encabezado ===== */
+.allies-header{padding:1rem 0;border-bottom:1px solid var(--gris-medio);background-color: var(--blanco);}
+.allies-header .container{display:flex;justify-content:center;}
+.allies-header .company-logo{max-width:200px;height: auto;}
+
+/* ===== Hero ===== */
+.allies-hero{text-align:center;padding:3.5rem 1.5rem;margin-bottom:3rem;}
+.allies-hero h1{margin-bottom:0.5rem;}
+.allies-hero .subtitle{font-size:1.2rem;color:var(--gris-claro);max-width:800px;margin:0 auto;}
+
+/* ===== Sección Gratitud ===== */
+.gratitude-section {
+    padding: 3rem 0;
+    text-align: center;
+    background-color: var(--blanco); /* Fondo blanco para destacar texto */
+    border-radius: 8px;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.gratitude-section .container { max-width: 900px; } /* Limitar ancho del texto */
+.gratitude-section h2 { display: table; margin-left: auto; margin-right: auto; } /* Centrar H2 */
+
+/* ===== Sección Logos Aliados ===== */
+.allies-logos-section {
+    padding: 3rem 0 4rem 0;
+    background-color: var(--gris-claro); /* Fondo sutilmente diferente */
+}
+.allies-logos-section h2 {
+     display: table; /* Centrar */
+     margin-left: auto;
+     margin-right: auto;
+     border-bottom-color: var(--naranja-acento); /* Acento naranja */
+}
+.allies-grid {
+    display: grid;
+    /* Columnas: ajusta minmax(150px,...) según el tamaño promedio de logos */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2.5rem; /* Espacio generoso */
+    align-items: center; /* Centrar verticalmente */
+    justify-items: center; /* Centrar horizontalmente */
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+.ally-logo-item {
+    background-color: var(--blanco);
+    padding: 1.5rem; /* Espacio alrededor del logo */
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%; /* Ocupa el espacio de la celda */
+    max-width: 220px; /* Limita el ancho máximo del contenedor del logo */
+    aspect-ratio: 3 / 2; /* Mantener proporción (opcional) */
+    display: flex; /* Centrar imagen dentro */
+    align-items: center;
+    justify-content: center;
+}
+.ally-logo-item img {
+    max-width: 100%;
+    max-height: 80px; /* Limita altura del logo */
+    height: auto;
+    object-fit: contain; /* Escala sin recortar */
+    filter: grayscale(80%); /* Logos en escala de grises inicialmente */
+    transition: filter 0.3s ease;
+}
+.ally-logo-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+.ally-logo-item:hover img {
+    filter: grayscale(0%); /* Color al pasar el cursor */
+}
+/* Estilo para el nombre opcional debajo del logo */
+.ally-logo-item p {
+    margin-top: 0.8rem;
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: var(--gris-oscuro);
+    text-align: center;
+    font-weight: 600;
+}
+
+.closing-remark {
+    text-align: center;
+    margin-top: 2rem;
+    font-style: italic;
+    color: var(--gris-oscuro);
+}
+
+/* ===== Footer ===== */
+.footer{padding:1.5rem 0;text-align:center;font-size:0.9rem;margin-top:auto;}
+
+/* ===== Animaciones ===== */
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(25px);}to{opacity:1;transform:translateY(0);}}
+.animate-fade-in{opacity:0;animation:fadeIn 1s ease-out forwards;}
+.animate-slide-up{opacity:0;animation:slideUp 0.7s ease-out forwards;}
+/* Aplicar animaciones */
+.allies-hero .container { animation-delay: 0.1s; }
+.gratitude-section .container { animation-delay: 0.3s; }
+.allies-logos-section h2 { animation-delay: 0.4s; }
+.closing-remark { animation-delay: 0.8s; }
+/* Retraso escalonado para los logos (se aplica en el HTML con style="") */
+
+
+/* ===== Responsividad ===== */
+@media(max-width:992px){h1{font-size:2.2rem;}h2{font-size:1.8rem;} .allies-grid{gap:2rem;}}
+@media(max-width:768px){
+    h1{font-size:2rem;}h2{font-size:1.6rem;}
+    .container{padding:0 1rem;}
+    .gratitude-section, .allies-logos-section {padding: 2.5rem 0;}
+    .allies-grid{grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));} /* Logos más pequeños */
+    .ally-logo-item { padding: 1rem; max-width: 180px; }
+    .ally-logo-item img { max-height: 60px; }
+}
+@media(max-width:480px){
+    h1{font-size:1.8rem;}h2{font-size:1.5rem;}
+    p { font-size: 1rem; }
+    .allies-hero { padding: 2.5rem 1rem; }
+    .gratitude-section, .allies-logos-section {padding: 2rem 0;}
+    .allies-grid{grid-template-columns: repeat(2, 1fr);} /* 2 columnas fijas en móvil */
+    .ally-logo-item { max-width: none; } /* Ocupa toda la celda */
+}

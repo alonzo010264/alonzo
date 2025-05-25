@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rastrea tu Paquete - ExpressBoxRD</title>
+    <!-- CAMBIAR: Nombre del archivo CSS -->
+    <link rel="stylesheet" href="assets/css/rastreo.1.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <header class="tracking-header">
+        <div class="container">
+            <a href="index.html">
+                 <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="company-logo">
+            </a>
+            <h1>Seguimiento de Envíos</h1>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Sección de Búsqueda -->
+        <section class="search-section animate-fade-in">
+            <label for="trackingNumberInput">Ingresa tu Código de Rastreo:</label>
+            <div class="search-wrapper">
+                <input type="text" id="trackingNumberInput" placeholder="Ej: EB-476474" aria-label="Código de Rastreo">
+                <button id="trackButton" class="btn btn-naranja">
+                    <i class="fas fa-search"></i> Rastrear
+                </button>
+            </div>
+        </section>
+
+        <!-- Sección de Resultados (Inicialmente oculta) -->
+        <section id="trackingResults" class="results-section" style="display: none;">
+            <h2 id="trackingCodeHeader">Resultados para: EB-XXXXXXX</h2>
+            <ul class="tracking-timeline" id="timelineList">
+                <!-- El historial de rastreo se insertará aquí -->
+            </ul>
+            <p id="errorMessage" class="error-message" style="display: none;"></p>
+        </section>
+
+        <!-- Sección Envío Flash -->
+        <section class="flash-shipping-info animate-slide-up" style="animation-delay: 0.1s;">
+             <div class="info-icon-flash"><i class="fas fa-bolt"></i></div>
+             <h2>¡Conoce Nuestro Envío Flash!</h2>
+             <p>¿Necesitas tu paquete aún más rápido? Contamos con servicio <strong>Envío Flash</strong> para entregas ultra rápidas dentro de la <strong>República Dominicana</strong>.</p>
+             <p>Si te encuentras en otro país y necesitas urgencia, ¡consúltanos! Estamos expandiendo nuestra flota de aviones y camiones en Latinoamérica y otros destinos para ofrecerte soluciones express internacionales.</p>
+             <a href="contacto.html" class="btn btn-secondary">Consultar Envío Flash</a>
+        </section>
+
+
+        <!-- Sección Advertencia de Seguridad -->
+        <section class="security-warning animate-fade-in" style="animation-delay: 0.2s;">
+            <div class="warning-icon"><i class="fas fa-shield-halved"></i></div>
+            <h2>¡Advertencia de Seguridad Importante!</h2>
+            <p><strong>Protege tu Código de Rastreo:</strong> ¡No lo compartas con nadie! Tu código de seguimiento es la llave de tu envío.</p>
+            <p>En ExpressBoxRD, bajo ciertas verificaciones, permitimos realizar cambios en la entrega (como la dirección) si nos contactan proporcionando el código correcto. Si compartes tu código, alguien más podría intentar realizar cambios no autorizados.</p>
+            <p><strong>ExpressBoxRD no se hace responsable por cambios o inconvenientes derivados de compartir tu código de rastreo.</strong> Estamos trabajando constantemente en implementar medidas de seguridad adicionales.</p>
+        </section>
+
+    </main>
+
+    <footer class="footer bg-azul-oscuro">
+        <div class="container text-blanco">
+            <p>© 2023 ExpressBoxRD. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Script para simulación de rastreo -->
+    <script src="assets/js/rastreo.1.js></script>
+
+</body>
+</html>

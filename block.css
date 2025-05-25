@@ -1,0 +1,219 @@
+/* ===== Variables de Color y Fuentes ===== */
+:root {
+    --amarillo-principal: #FFDB00;
+    --azul-oscuro: #0D2F4F;
+    --naranja-acento: #F37021;
+    --blanco: #FFFFFF;
+    --gris-claro: #f8f9fa;
+    --gris-medio: #e9ecef;
+    --gris-oscuro: #343a40;
+    --texto-principal: #333;
+
+    --fuente-principal: 'Poppins', sans-serif;
+}
+
+/* ===== Reseteo Básico y Estilos Globales ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    line-height: 1.6;
+    color: var(--texto-principal);
+    background-color: var(--gris-claro); /* Fondo general claro para el blog */
+}
+
+h1, h2, h3 {
+    color: var(--azul-oscuro);
+    margin-bottom: 0.8rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--naranja-acento);
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: #d95f1a; /* Naranja más oscuro */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Evita espacio extra debajo de la imagen */
+}
+
+/* ===== Contenedor ===== */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* ===== Utilidades de Color (si necesitas fondos específicos) ===== */
+.bg-azul-oscuro { background-color: var(--azul-oscuro); }
+.text-blanco { color: var(--blanco) !important; }
+.text-blanco h1, .text-blanco h2, .text-blanco p { color: var(--blanco); }
+
+/* ===== Encabezado del Blog ===== */
+.blog-header {
+    background-color: var(--amarillo-principal); /* Fondo amarillo */
+    padding: 3rem 0;
+    text-align: center;
+    margin-bottom: 3rem;
+    border-bottom: 5px solid var(--naranja-acento); /* Detalle naranja */
+}
+
+.blog-header .blog-logo {
+    max-width: 180px; /* Tamaño del logo en el encabezado del blog */
+    margin: 0 auto 1.5rem auto; /* Centrado y con espacio abajo */
+}
+
+.blog-header h1 {
+    color: var(--azul-oscuro);
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.blog-header p {
+    color: var(--azul-oscuro);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto; /* Centrar el párrafo */
+}
+
+/* ===== Feed de Noticias (Grid) ===== */
+.blog-feed {
+    display: grid;
+    /* Crea columnas responsivas: Mínimo 300px, máximo 1 fracción del espacio */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem; /* Espacio entre los bloques */
+    padding-bottom: 4rem; /* Espacio antes del footer */
+}
+
+/* ===== Estilo de cada Bloque/Post ===== */
+.blog-post {
+    background-color: var(--blanco);
+    border-radius: 10px;
+    overflow: hidden; /* Para que la imagen no se salga de los bordes redondeados */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* Para controlar mejor el contenido interno */
+    flex-direction: column; /* Apila imagen y contenido */
+}
+
+.blog-post:hover {
+    transform: translateY(-8px); /* Efecto sutil al pasar el cursor */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.post-image {
+    width: 100%;
+    height: 200px; /* Altura fija para todas las imágenes */
+    object-fit: cover; /* Recorta la imagen para que encaje sin distorsión */
+}
+
+.post-content {
+    padding: 1.5rem;
+    flex-grow: 1; /* Asegura que el contenido ocupe el espacio restante */
+    display: flex;
+    flex-direction: column;
+}
+
+.post-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.post-meta {
+    font-size: 0.85rem;
+    color: #6c757d; /* Gris suave */
+    margin-bottom: 1rem;
+}
+
+.post-excerpt {
+    font-size: 0.95rem;
+    flex-grow: 1; /* Empuja el botón hacia abajo si hay espacio */
+    margin-bottom: 1.5rem;
+}
+
+/* ===== Botón Dentro del Post ===== */
+.btn {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    align-self: flex-start; /* Alinea el botón a la izquierda */
+}
+
+.btn-naranja {
+    background-color: var(--naranja-acento);
+    color: var(--blanco);
+}
+.btn-naranja:hover {
+    background-color: #d95f1a; /* Naranja más oscuro */
+    transform: scale(1.05);
+    color: var(--blanco); /* Asegura que el color del texto no cambie */
+}
+
+.post-link {
+    margin-top: auto; /* Empuja el botón al final del div .post-content */
+}
+
+
+/* ===== Footer ===== */
+.footer {
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 2rem; /* Separación del último contenido */
+}
+
+/* ===== Animaciones ===== */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-up {
+    opacity: 0; /* Empieza invisible */
+    animation: slideUp 0.8s ease-out forwards;
+    /* Opcional: Retraso para efecto escalonado (más complejo si hay paginación) */
+    /* animation-delay: calc(0.1s * var(--animation-order, 1)); */
+}
+
+/* Si quieres retraso escalonado, necesitarías añadir style="--animation-order: N;" a cada article en el HTML */
+
+
+/* ===== Responsividad ===== */
+@media (max-width: 768px) {
+    .blog-header h1 { font-size: 2.2rem; }
+    .blog-feed {
+        grid-template-columns: 1fr; /* Una columna en pantallas medianas/pequeñas */
+        gap: 1.5rem;
+    }
+    .container { padding: 0 1rem; }
+}
+
+@media (max-width: 480px) {
+    .blog-header h1 { font-size: 1.8rem; }
+    .blog-header p { font-size: 1rem; }
+    .post-title { font-size: 1.2rem; }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Contactos - ExpressBoxRD</title>
+    <!-- CAMBIAR: Nombre del archivo CSS -->
+    <link rel="stylesheet" href="assets/css/contacto.from.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="admin-panel">
+        <!-- Sidebar (Opcional, podrías quitarla si solo es para contactos) -->
+        <aside class="sidebar">
+             <div class="sidebar-header">
+                 <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="admin-logo">
+             </div>
+             <nav class="sidebar-nav">
+                 <ul>
+                     <li><a href="admin.html#dashboard-content"><span class="icon">📊</span> Dashboard</a></li>
+                     <li class="active"><a href="#"><span class="icon">✉️</span> Mensajes</a></li>
+                     <li><a href="admin.html#users-content"><span class="icon">👥</span> Usuarios</a></li>
+                     <li><a href="admin.html#settings-content"><span class="icon">⚙️</span> Configuración</a></li>
+                     <li><a href="index.html"><span class="icon">🚪</span> Salir</a></li>
+                 </ul>
+             </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Bandeja de Entrada - Contactos</h1>
+                <button id="clearContactsButton" class="btn btn-danger">Limpiar Mensajes (Demo)</button>
+            </header>
+
+            <section class="content">
+                <div class="table-container">
+                    <table id="adminContactTable">
+                        <thead>
+                            <tr>
+                                <th>Fecha/Hora</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Asunto</th>
+                                <th>Mensaje (Inicio)</th>
+                                <th>Estado</th>
+                                <!-- <th>Acciones</th> -->
+                            </tr>
+                        </thead>
+                        <tbody id="adminContactTableBody">
+                            <!-- Nuevos mensajes aparecerán aquí -->
+                            <!-- Mensajes previos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+                <p id="noMessages" class="info-message" style="display: none;">No hay mensajes guardados.</p>
+            </section>
+        </main>
+    </div>
+
+    <!-- Script para escuchar localStorage -->
+    <script src="assets/js/contacto.from.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa de Afiliados - ExpressBoxRD</title>
+
+    <link rel="stylesheet" href="assets/css/afiliate.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="affiliate-header">
+        <div class="container">
+
+            <a href="index.html">
+                 <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="company-logo">
+            </a>
+        </div>
+    </header>
+
+    <main>
+
+
+        <section class="affiliate-hero bg-azul">
+            <div class="container animate-fade-in text-blanco">
+                <h1>¡Gana Recomendando ExpressBoxRD!</h1>
+                <p class="subtitle">Invita a tus amigos y familiares en República Dominicana a usar nuestros servicios y recibe recompensas en efectivo por cada nuevo cliente que complete su primer envío.</p>
+            </div>
+        </section>
+
+
+        <section class="how-it-works-section">
+            <div class="container">
+                <h2 class="section-title animate-slide-up">¿Cómo Funciona? ¡Es Muy Fácil!</h2>
+                <div class="steps-grid">
+
+                    <div class="step-item animate-slide-up" style="animation-delay: 0.1s;">
+                        <div class="step-icon">✉️</div>
+                        <h3>1. Ingresa los Correos</h3>
+                        <p>Utiliza el formulario más abajo. Escribe <strong>tu correo electrónico</strong> (para identificarte) y el correo electrónico de la persona que quieres invitar.</p>
+                    </div>
+
+                    <div class="step-item animate-slide-up" style="animation-delay: 0.2s;">
+                         <div class="step-icon">✅</div>
+                        <h3>2. Tu Invitado se Une</h3>
+                        <p>Le enviaremos una invitación de tu parte. Para que califiques, tu invitado debe registrarse y <strong>completar con éxito su primer envío</strong> pagado con ExpressBoxRD.</p>
+                    </div>
+
+                    <div class="step-item animate-slide-up" style="animation-delay: 0.3s;">
+                        <div class="step-icon">RD$</div>
+                        <h3>3. ¡Recibe tu Dinero!</h3>
+                        <p>Una vez confirmado que tu referido cumplió las condiciones, recibirás tu recompensa directamente en <strong>pesos dominicanos (DOP)</strong>.</p>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="rewards-section bg-gris-claro">
+             <div class="container animate-fade-in">
+                <div class="reward-highlight">
+                    <p>Gana <strong class="amount">RD$ 300.00$</strong>gana uet e invita a tus amigos ganaras mas</p> 
+                 </div>
+                 <p class="terms-note">*El monto exacto de la recompensa y el método de pago se confirmarán según los términos vigentes al momento de la invitación exitosa.</p>
+             </div>
+        </section>
+
+
+        <section class="invitation-form-section">
+             <div class="container animate-slide-up">
+                 <h2 class="section-title">¡Empieza a Invitar Ahora!</h2>
+                 <form id="invitationForm" class="invitation-form">
+                     <p>Completa los datos para enviar la invitación (válido solo para invitar residentes en Rep. Dominicana):</p>
+                     <div class="form-group">
+                         <label for="referrerEmail">Tu Correo Electrónico:</label>
+                         <input type="email" id="referrerEmail" name="referrerEmail" required placeholder="tu.correo@ejemplo.com" aria-label="Tu Correo Electrónico">
+                     </div>
+                     <div class="form-group">
+                         <label for="friendEmail">Correo Electrónico de tu Amigo(a):</label>
+                         <input type="email" id="friendEmail" name="friendEmail" required placeholder="amigo@ejemplo.com" aria-label="Correo Electrónico de tu Amigo(a)">
+                     </div>
+                     <button type="submit" id="sendInviteButton" class="btn btn-naranja">Enviar Invitación</button>
+
+                     <p id="formMessage" class="form-feedback" style="display: none;" aria-live="assertive"></p>
+                 </form>
+             </div>
+        </section>
+
+        <section class="terms-section bg-blanco">
+            <div class="container animate-fade-in">
+                <h2 class="section-title">Importante Saber</h2>
+                <div class="terms-content">
+                    <h3>Condiciones Clave del Programa:</h3>
+                    <ul>
+                        <li><span class="icon-bullet">📍</span> Este programa de afiliados es válido exclusivamente para referir a nuevos clientes que residan y realicen su primer servicio dentro de la <strong>República Dominicana</strong>.</li>
+                        <li><span class="icon-bullet">✔️</span> Se considera un referido exitoso cuando la persona invitada se registra utilizando un enlace o código asociado a tu invitación (esto se manejaría en el backend) y completa y paga su <strong>primer envío o servicio calificado</strong> con ExpressBoxRD.</li>
+                        <li><span class="icon-bullet">👤</span> El programa es para referir a nuevos clientes. No son válidas las auto-referencias ni invitar a usuarios ya existentes. El uso de correos temporales o fraudulentos invalidará la recompensa.</li>
+                         <li><span class="icon-bullet">💰</span> El pago de la recompensa se procesará en Pesos Dominicanos (DOP) mediante [Especificar Método de Pago Claro: Ej. transferencia a cuenta bancaria local / crédito en tu cuenta ExpressBoxRD].</li>
+                         <li><span class="icon-bullet">⏳</span> El pago se realizará en un plazo aproximado de [Especificar Plazo Realista: Ej. 10 a 15 días hábiles] después de verificar que el referido ha cumplido todas las condiciones.</li>
+                        <li><span class="icon-bullet">🚫</span> ExpressBoxRD se reserva el derecho de investigar actividades sospechosas y de modificar, suspender o cancelar este programa y sus términos en cualquier momento, notificando a través de sus canales oficiales.</li>
+                        <li><span class="icon-bullet">🔗</span> Adicionalmente, aplican nuestros <a href="terminos.html" target="_blank">Términos y Condiciones Generales</a> de servicio.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer bg-azul-oscuro">
+        <div class="container text-blanco">
+            <p>© 2023 ExpressBoxRD. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/afiliate.js"></script>
+
+</body>
+</html>

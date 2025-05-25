@@ -1,0 +1,1557 @@
+/* ===== Variables y Reset ===== */
+:root{--amarillo-principal:#FFDB00;--azul-oscuro:#0D2F4F;--naranja-acento:#F37021;--blanco:#FFFFFF;--gris-claro:#f8f9fa;--gris-medio:#e9ecef;--gris-oscuro:#6c757d;--texto-principal:#333;--fuente-principal:'Poppins',sans-serif; --verde-exito: #198754; --color-error: #dc3545; --rojo-stop: #dc3545; --azul-info: #0dcaf0; --color-aduana: #6f42c1; --color-unknown: #fd7e14;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--fuente-principal);line-height:1.6;color:var(--texto-principal);background-color:var(--gris-claro);display:flex;flex-direction:column;min-height:100vh;}
+main{flex-grow:1; padding-top: 1.5rem; padding-bottom: 3rem;}
+h1,h2,h3{color:var(--azul-oscuro);margin-bottom:1rem;line-height:1.3;}
+.page-title{font-size:2.2rem;text-align:center; margin-bottom: 2.5rem; color: var(--azul-oscuro);}
+.page-title span { color: var(--naranja-acento); }
+h2{font-size:1.6rem; margin-bottom:1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--gris-medio); text-align: left; display: flex; align-items: center; gap: 0.8rem;}
+h2 i { color: var(--naranja-acento); font-size: 0.9em;}
+a{color:var(--naranja-acento);text-decoration:none;font-weight:600;}
+img{max-width:100%;height:auto;display:block;}
+p{margin-bottom:1rem;}
+button { font-family: inherit; cursor: pointer; }
+
+.container{max-width:1200px;margin:0 auto;padding:0 1.5rem;}
+.bg-azul-oscuro{background-color:var(--azul-oscuro);}
+.text-blanco{color:var(--blanco) !important;}
+.text-blanco p{color:var(--blanco);}
+
+/* ===== Encabezado ===== */
+.account-page-header{padding:1rem 0;border-bottom:1px solid var(--gris-medio);background-color: var(--blanco);position: sticky; top:0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
+.account-page-header .container.header-container{display:flex;align-items:center; justify-content: space-between; gap: 1rem;}
+.logo-link-main { flex-shrink: 0; }
+.company-logo-main{max-width:160px;height: auto;}
+.user-info-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--azul-oscuro);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-left: auto; /* Pushes user info to the right before account actions */
+    flex-wrap: nowrap; /* Prevent wrapping of user info items */
+}
+.user-icon { font-size: 1.3em; color: var(--naranja-acento); }
+.header-separator { color: var(--gris-medio); }
+
+/* NEW: Styles for User Plan in Header */
+.user-plan-display {
+    font-size: 0.85em;
+    font-weight: 500;
+    padding: 0.2em 0.5em;
+    border-radius: 4px;
+    margin-left: 0.3em;
+    white-space: nowrap; /* Prevent plan name from wrapping */
+}
+.user-plan-display .plan-icon {
+    margin-right: 0.3em;
+}
+.plan-premium {
+    background-color: gold; /* More distinct premium color */
+    color: var(--azul-oscuro);
+    /* border: 1px solid var(--azul-oscuro); */
+}
+.plan-intermedio {
+    background-color: var(--azul-info);
+    color: var(--blanco);
+}
+.plan-basico {
+    background-color: var(--gris-oscuro);
+    color: var(--blanco);
+}
+.plan-default { /* Style for unspecified plan */
+    background-color: var(--gris-medio);
+    color: var(--texto-principal);
+}
+
+
+.account-actions { display: flex; align-items: center; gap: 1rem; margin-left: 1.5rem;} /* Keeps actions to the far right */
+.btn-icon { background: none; border: none; font-size: 1.4rem; color: var(--azul-oscuro); cursor: pointer; position: relative; padding: 0.5rem;}
+.btn-icon:hover { color: var(--naranja-acento); }
+.notification-badge {
+    position: absolute;
+    top: 0px; right: 0px;
+    background-color: var(--rojo-stop); color: var(--blanco);
+    border-radius: 50%; width: 18px; height: 18px;
+    font-size: 10px; font-weight: bold; display: flex;
+    align-items: center; justify-content: center; line-height: 1;
+    border: 1px solid var(--blanco);
+}
+.notification-badge.visible { display: flex; animation: popIn 0.3s ease-out; }
+@keyframes popIn { 0% { transform: scale(0.5); opacity: 0;} 70% { transform: scale(1.1); opacity: 1;} 100% { transform: scale(1); opacity: 1;} }
+
+
+.btn{display:inline-flex; align-items: center; gap: 0.6rem; padding:.8rem 1.8rem;border:none;border-radius:5px;font-weight:700;cursor:pointer;transition:all .3s ease;text-align:center;font-size:1rem;text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.5;}
+.btn-naranja{background-color:var(--naranja-acento);color:var(--blanco); border: 2px solid var(--naranja-acento);}
+.btn-naranja:hover:not(:disabled){background-color:#d95f1a;transform:scale(1.02);color:var(--blanco); border-color: #d95f1a;}
+.btn-secondary{background-color:var(--gris-oscuro);color:var(--blanco); border: 2px solid var(--gris-oscuro);}
+.btn-secondary:hover{background-color:#5a6268;transform:scale(1.03);color:var(--blanco); border-color: #5a6268;}
+.btn-logout {
+    background-color: transparent; color: var(--rojo-stop); border: 1px solid var(--rojo-stop);
+    font-size: 0.9rem; padding: 0.5rem 1rem; text-transform: none; letter-spacing: normal;
+}
+.btn-logout:hover { background-color: var(--rojo-stop); color: var(--blanco); }
+.btn-verde { background-color: var(--verde-exito); color: var(--blanco); border: 2px solid var(--verde-exito); }
+.btn-verde:hover:not(:disabled) { background-color: #147a41; border-color: #147a41; transform: scale(1.02); }
+.btn-rojo { background-color: var(--rojo-stop); color: var(--blanco); border: 2px solid var(--rojo-stop); }
+.btn-rojo:hover:not(:disabled) { background-color: #a0232f; border-color: #a0232f; transform: scale(1.02); }
+.btn-azul { background-color: var(--azul-oscuro); color: var(--blanco); border: 2px solid var(--azul-oscuro); } /* Added btn-azul from original admin.css context */
+.btn-azul:hover:not(:disabled) { background-color: #082038; border-color: #082038; transform: scale(1.02); }
+.btn.btn-small { padding: 0.5rem 1rem; font-size: 0.85rem; text-transform: none; letter-spacing: normal;}
+
+
+/* ===== Secciones de Cuenta ===== */
+.account-section {
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    margin-bottom: 2.5rem;
+    border: 1px solid var(--gris-medio);
+}
+.info-message { text-align: center; padding: 1.5rem; color: var(--gris-oscuro); font-style: italic; }
+
+/* NEW: Styles for "Mi Plan Actual" Section */
+#myPlanSection h2 i { /* Specific icon color for this section if needed, otherwise inherits */
+    color: var(--naranja-acento);
+}
+.plan-details-container {
+    padding: 1rem;
+    background-color: var(--gris-claro);
+    border-radius: 6px;
+    border: 1px solid var(--gris-medio);
+    text-align: center;
+}
+.plan-details-container p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+.plan-details-container strong {
+    color: var(--azul-oscuro);
+    text-transform: capitalize;
+}
+#clientPlanIcon { /* This targets the icon within the plan details section */
+    margin-left: 0.5rem;
+    font-size: 1.2em; /* Make icon slightly larger */
+    vertical-align: middle;
+}
+/* Specific colors for icons in plan details section */
+#clientPlanIcon.fa-crown { color: gold; }
+#clientPlanIcon.fa-star { color: #ffc107; } /* Bright star yellow */
+#clientPlanIcon.fa-shield-alt { color: var(--gris-oscuro); }
+#clientPlanIcon.fa-question-circle { color: var(--gris-oscuro); }
+
+
+/* Tabla Paquetes Cliente */
+.table-container{overflow-x:auto;}
+#clientPackageTable{width:100%;border-collapse:collapse;min-width:800px;} /* Ancho mínimo */
+#clientPackageTable th,#clientPackageTable td{padding:.7rem .9rem;text-align:left;border-bottom:1px solid var(--gris-medio);vertical-align:middle;font-size:0.9rem;}
+#clientPackageTable th{background-color:var(--gris-claro);font-weight:600;color:var(--azul-oscuro);font-size:.8rem;text-transform:uppercase; white-space: nowrap;}
+#clientPackageTable tbody tr:hover{background-color:#f1f5f9;}
+
+/* Mis Paquetes - Columna Peso (Added) */
+#clientPackageTable th:nth-child(4), /* Assuming Peso is 4th column */
+#clientPackageTable td:nth-child(4) {
+    text-align: center;
+}
+
+/* Clases de estado */
+.status-customs { display: inline-flex; align-items: center; gap: 0.4em; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600; text-transform: capitalize; white-space: nowrap;}
+.status-customs i { font-size: 0.9em; }
+.status-received_warehouse_origin { background-color: var(--azul-oscuro); color: var(--blanco); }
+.status-in_transit_to_rd { background-color: var(--azul-info); color: var(--blanco); }
+.status-customs_rd { background-color: var(--color-aduana); color: var(--blanco); }
+.status-pending_payment_customs { background-color: var(--naranja-acento); color: var(--blanco); }
+.status-paid_customs { background-color: var(--verde-exito); color: var(--blanco); }
+.status-ready_for_dispatch_cd { background-color: #5a6268; color: var(--blanco); } /* Changed to a distinct gray */
+.status-out_for_delivery_rd { background-color: var(--amarillo-principal); color: var(--azul-oscuro); border: 1px solid var(--azul-oscuro);}
+.status-delivered_rd { background-color: var(--verde-exito); color: var(--blanco); }
+.status-unknown_package_admin { background-color: var(--color-unknown); color: var(--blanco); }
+
+
+.table-actions { white-space: nowrap; text-align: right; } /* Ensure actions are right-aligned */
+.btn-icon-action { background: none; border: none; color: var(--azul-oscuro); font-size: 1em; /* Adjusted size */ margin: 0 0.3rem; cursor: pointer; padding: 0.4rem 0.6rem; transition: color 0.2s ease, background-color 0.2s; opacity: 0.8; border-radius: 4px; display: inline-flex; align-items: center; gap: 0.4rem;}
+.btn-icon-action:hover { color: var(--naranja-acento); opacity: 1; background-color: var(--gris-claro);}
+.action-btn-pay { color: var(--verde-exito); font-weight: bold;}
+.action-btn-pay:hover { color: #147a41; }
+
+
+/* Formulario Pre-Alerta y Notificar Retiro */
+.account-form { margin-top: 1rem; }
+.account-form p:first-of-type { margin-bottom: 1.5rem; color: var(--texto-principal); }
+.form-row { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.form-group { margin-bottom: 1.2rem; flex: 1; min-width: calc(50% - 0.75rem); }
+.form-group label { display: block; margin-bottom: 0.4rem; font-weight: 600; font-size: 0.9rem; }
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"] {
+    width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--gris-medio); border-radius: 5px; font-size: 1rem; font-family: inherit;
+}
+.form-group input:focus { outline: none; border-color: var(--azul-oscuro); box-shadow: 0 0 0 2px rgba(13, 47, 79, 0.15); }
+
+/* Feedback Formulario */
+.form-feedback { margin-top: 1rem; padding: 0.8rem; border-radius: 5px; font-weight: 500; font-size: 0.95rem; display: none; text-align: center; }
+.form-feedback.success { background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; }
+.form-feedback.error { background-color: #f8d7da; color: #842029; border: 1px solid #f5c2c7; }
+.form-feedback.info { background-color: #cff4fc; color: #055160; border: 1px solid #b6effb;} /* Added info style */
+
+/* Autopago */
+.autopay-content { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; background-color: var(--gris-claro); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--gris-medio); }
+.autopay-info { flex: 1; min-width: 280px; }
+.autopay-info p { margin-bottom: 0.5rem; }
+.status-indicator { font-weight: bold; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.9rem; }
+.status-active { background-color: var(--verde-exito); color: var(--blanco); }
+.status-inactive { background-color: var(--gris-oscuro); color: var(--blanco); }
+.autopay-actions { flex-shrink: 0; text-align: center; }
+.autopay-actions .btn { min-width: 180px; }
+.small-feedback { font-size: 0.9rem; padding: 0.6rem 1rem; text-align: center; margin-top: 1rem; }
+
+
+/* Sección Notificaciones (Popup/Modal) */
+.notifications-popup {
+    position: fixed; top: 65px; /* Debajo del header (ajusta si altura header cambia) */
+    right: 20px; width: 360px; max-height: 450px;
+    background-color: var(--blanco); border: 1px solid var(--gris-medio);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); border-radius: 8px;
+    z-index: 1001; padding: 1.5rem; overflow-y: auto;
+    animation: slideDownFadeIn 0.3s ease-out;
+}
+.notifications-popup h2 { font-size: 1.3rem; margin-bottom: 1rem; text-align: left; border-bottom: 1px solid var(--gris-medio); padding-bottom: 0.8rem;}
+#notificationsList { list-style: none; padding: 0; margin: 0;}
+#notificationsList li {
+    padding: 0.8rem 0.5rem; border-bottom: 1px solid var(--gris-claro);
+    font-size: 0.9rem; line-height: 1.5; display: flex;
+    align-items: flex-start; gap: 0.8rem; cursor: default; /* Default cursor */
+}
+#notificationsList li:last-child { border-bottom: none; }
+#notificationsList li.unread {
+    background-color: #eef7ff; /* Un azul muy claro para no leídos */
+    font-weight: 600;
+}
+#notificationsList li.read {
+    opacity: 0.8; /* Slightly faded for read items */
+}
+#notificationsList li .notif-icon {
+    color: var(--naranja-acento); font-size: 1.2em; margin-top: 2px;
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+#notificationsList li .notif-text {
+    flex-grow: 1; /* Allow text to take available space */
+}
+#notificationsList li .notif-time { display: block; font-size: 0.8rem; color: var(--gris-oscuro); margin-top: 0.3rem; }
+#notificationsList li.no-notifications { text-align: center; color: var(--gris-oscuro); font-style: italic; border-bottom: none; padding: 1rem 0;}
+#closeNotifications { margin-top: 1.5rem; display: block; width: 100%;}
+#markAllReadButton { /* Ensure style if it wasn't present */
+    margin-bottom: 0.5rem;
+    /* display:none; controlled by JS */
+}
+
+
+@keyframes slideDownFadeIn { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
+
+
+/* ===== Footer ===== */
+.footer{padding:1.5rem 0;text-align:center;font-size:0.9rem;margin-top:auto;}
+
+/* ===== Animaciones ===== */
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.animate-fade-in{opacity:0;animation:fadeIn 1s ease-out forwards;}
+.animate-slide-up{opacity:0;animation:slideUp 0.8s ease-out forwards;}
+/* .account-section { animation-delay: 0.1s; } */ /* Already in initial HTML, confirm if needed here */
+
+/* ===== Responsividad ===== */
+@media(max-width: 768px){
+    .page-title{font-size:1.8rem;} h2{font-size:1.4rem;}
+    main { padding-top: 1rem; }
+    .container{padding:0 1rem;}
+    .account-section { padding: 1.5rem; margin-bottom: 2rem; }
+    #clientPackageTable th, #clientPackageTable td{padding:.6rem .8rem; font-size: 0.85rem;}
+    .form-row { flex-direction: column; gap: 0; } /* Keep form groups stacking on mobile */
+    .form-group { min-width: 100%; margin-bottom: 1rem;}
+    .autopay-content { flex-direction: column; align-items: stretch; text-align: center; }
+    .autopay-actions .btn { width: 100%; max-width: 300px; margin-bottom: 0.5rem;}
+    .notifications-popup { width: calc(100% - 30px); right: 15px; max-height: 350px; top: 60px;}
+
+    .user-info-header {
+        font-size: 0.85rem; /* Slightly smaller user info on mobile */
+        gap: 0.4rem;
+    }
+    .user-plan-display {
+        font-size: 0.8em;
+        padding: 0.15em 0.4em;
+    }
+}
+@media(max-width: 580px){
+    .account-page-header .container.header-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-bottom: 0.5rem; /* Add some padding if header wraps */
+    }
+    .logo-link-main {
+        width: 100%; text-align: center; margin-bottom: 0.8rem; /* More space when wrapped */
+    }
+    .user-info-header {
+        order: 2; /* User info below logo */
+        width: 100%; /* Take full width */
+        justify-content: center; /* Center user info items */
+        margin: 0.5rem auto 0.5rem auto; /* Adjust margins */
+        font-size: 0.9rem;
+    }
+    .account-actions {
+        order: 3; /* Actions below user info */
+        margin-left: 0; width: 100%;
+        display: flex; justify-content: space-around;
+        margin-top: 0.8rem;
+    }
+    .page-title { font-size: 1.6rem; }
+    .btn{font-size: 0.9rem;}
+}
+
+/* ... (tus estilos existentes de cuenta.css) ... */
+
+/* Estilos para Sucursal en Header */
+.user-branch-display {
+    font-size: 0.85em;
+    font-weight: 500;
+    color: var(--texto-principal); /* O un color que destaque sutilmente */
+    margin-left: 0.3em;
+}
+.user-branch-display i {
+    margin-right: 0.3em;
+    color: var(--naranja-acento);
+}
+
+
+/* Sección Mi Plan Actual Clickable */
+.clickable-section {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.clickable-section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+.plan-details-container small {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gris-oscuro);
+    margin-top: 0.5rem;
+}
+
+/* Sección Mi Sucursal */
+#myBranchSection h2 i { color: var(--naranja-acento); }
+#clientBranchInfo strong { color: var(--azul-oscuro); }
+
+
+/* Modal para Beneficios del Plan */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1005; /* Encima de otros elementos */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+.modal-content {
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+.modal-overlay.visible .modal-content {
+    transform: scale(1);
+}
+.modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--gris-oscuro);
+    cursor: pointer;
+    line-height: 1;
+}
+.modal-close-btn:hover {
+    color: var(--rojo-stop);
+}
+#modalPlanName {
+    color: var(--azul-oscuro);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--gris-medio);
+    padding-bottom: 0.8rem;
+}
+#modalPlanBenefitsList {
+    list-style: none; /* O 'disc' inside if preferred */
+    padding-left: 0;
+    margin-bottom: 0;
+}
+#modalPlanBenefitsList li {
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+    border-bottom: 1px solid var(--gris-claro);
+    display: flex;
+    align-items: center;
+}
+#modalPlanBenefitsList li:last-child {
+    border-bottom: none;
+}
+#modalPlanBenefitsList li::before { /* Custom bullet */
+    content: "\f00c"; /* FontAwesome check icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: var(--verde-exito);
+    margin-right: 0.8rem;
+    font-size: 0.9em;
+}
+
+
+/* Sección Mi Dirección */
+.address-display-box {
+    background-color: var(--gris-claro);
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--gris-medio);
+    margin-bottom: 1rem;
+}
+.address-display-box p {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+.address-display-box p strong {
+    color: var(--azul-oscuro);
+    min-width: 120px; /* Align labels */
+    display: inline-block;
+}
+#addressForm textarea { /* Specific styling for textarea if needed */
+    min-height: 60px;
+}
+#addressForm button[type="button"] { /* Cancel button styling */
+    margin-left: 1rem;
+}
+
+/* Sección Soporte */
+#supportSection h2 i { color: var(--naranja-acento); }
+#supportTicketForm textarea { min-height: 80px; }
+
+/* ... (your existing cuenta.css) ... */
+
+/* Autorizar Retiro a Tercero Section */
+#authorizePickupSection h2 i { color: var(--naranja-acento); }
+#authorizePickupForm small {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gris-oscuro);
+    margin-top: 0.3rem;
+}
+
+/* cuenta.css - from your original */
+body{
+    font-family:var(--fuente-principal);
+    line-height:1.6;
+    color:var(--texto-principal);
+    background-color:var(--gris-claro);
+    display:flex; /* Added */
+    flex-direction:column; /* Added */
+    min-height:100vh; /* Added */
+}
+main{
+    flex-grow:1; /* Added */
+    padding-top: 1.5rem; 
+    padding-bottom: 3rem;
+}
+/* ... *//* From your original/corrected cuenta.css */
+body {
+    font-family: var(--fuente-principal);
+    line-height: 1.6;
+    color: var(--texto-principal);
+    background-color: var(--gris-claro);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Crucial for footer at bottom of viewport */
+}
+
+main {
+    flex-grow: 1; /* Allows main content to take up available space */
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+}
+
+/* ... other styles ... */
+
+.container { /* Your general container style */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem; /* This padding is for the content *inside* the container */
+}
+
+.bg-azul-oscuro { /* Utility class, used by your footer */
+    background-color: var(--azul-oscuro);
+}
+
+.text-blanco { /* Utility class */
+    color: var(--blanco) !important;
+}
+.text-blanco p { /* More specific for p tags within .text-blanco */
+    color: var(--blanco);
+    margin-bottom: 0; /* Good to remove default p margin in footer */
+}
+
+.footer{padding:1.5rem 0;text-align:center;font-size:0.9rem;margin-top:auto;}
+/* cuenta.css */
+
+/* Estilos para la sección de Solicitud de Cambio de Plan */
+#requestPlanChangeSection h2 i {
+    color: var(--naranja-acento); /* O el color que uses para iconos de títulos de sección */
+}
+
+#planChangeRequestForm input[readonly] {
+    background-color: var(--gris-medio); /* Estilo para campos de solo lectura */
+    cursor: not-allowed;
+}
+
+#planChangeRequestForm select,
+#planChangeRequestForm input[type="file"] {
+    /* Asegurar que el estilo sea consistente con otros inputs */
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--gris-medio);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: inherit;
+    margin-bottom: 0; /* Input[file] puede necesitar ajuste de margen */
+}
+#planChangeRequestForm input[type="file"] {
+    padding: 0.6rem 1rem; /* Ajuste para el input file */
+}
+
+#planChangeRequestForm small { /* Estilo para la nota del input file */
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gris-oscuro);
+    margin-top: 0.4rem;
+}
+.btn{
+    /* ... otros estilos ... */
+    transition:all .3s ease;
+}
+.btn-naranja:hover:not(:disabled){
+    background-color:#d95f1a;
+    transform:scale(1.02); /* Animación de escala sutil */
+}
+.account-form input:focus,
+.account-form select:focus,
+.account-form textarea:focus {
+    outline: none;
+    border-color: var(--naranja-acento);
+    box-shadow: 0 0 0 3px hsla(var(--naranja-acento-hsl-values, 23, 89%, 54%), 0.25);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Ya estaba en la definición base */
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.animate-slide-up{opacity:0;animation:slideUp 0.8s ease-out forwards;}
+/* ===== Variables y Reset (Consistente con tu diseño) ===== */
+:root {
+    --amarillo-principal: #FFDB00;
+    --azul-oscuro: #0D2F4F;
+    --naranja-acento: #F37021;
+    --naranja-acento-hover: #d95f1a; /* Para hover de naranja */
+    --naranja-acento-hsl-values: 23, 89%, 54%; /* Para box-shadow con hsla */
+    --blanco: #FFFFFF;
+    --gris-muy-claro: #fcfdff; /* Un blanco más suave para fondos de input */
+    --gris-claro: #f8f9fa;     /* Fondo general del body */
+    --gris-borde: #dde2e7;     /* Bordes sutiles para inputs y tarjetas */
+    --gris-medio: #e9ecef;
+    --gris-placeholder: #a0aec0; /* Color para placeholders */
+    --gris-oscuro: #6c757d;
+    --texto-principal: #4a5568; /* Un gris más suave para texto general */
+    --texto-titulos: var(--azul-oscuro); /* Azul oscuro para títulos */
+    --fuente-principal: 'Poppins', sans-serif;
+    --verde-exito: #28a745; /* Un verde más vibrante */
+    --verde-exito-fondo: #d4edda;
+    --color-error: #dc3545;
+    --color-error-fondo: #f8d7da;
+    --rojo-stop: #dc3545;
+    --azul-info: #17a2b8; /* Un azul más estándar para info */
+    --azul-info-fondo: #d1ecf1;
+    --color-aduana: #6f42c1;
+    --color-unknown: #fd7e14;
+
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 10px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+/* --- Reset y Base (Tu reset original es bueno, puedes mantenerlo) --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--fuente-principal);
+    line-height: 1.6;
+    color: var(--texto-principal);
+    background-color: var(--gris-claro);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+main { flex-grow: 1; padding-top: 2rem; padding-bottom: 3rem; } /* Aumentado padding superior */
+img { max-width: 100%; height: auto; display: block; }
+button { font-family: inherit; cursor: pointer; transition: all 0.2s ease-in-out; }
+a { color: var(--naranja-acento); text-decoration: none; font-weight: 600; transition: color 0.2s ease-in-out;}
+a:hover { color: var(--naranja-acento-hover); }
+
+/* --- Contenedor Principal --- */
+.container { max-width: 1140px; margin: 0 auto; padding: 0 15px; } /* Ligeramente más ancho */
+
+/* --- Títulos de Página y Sección --- */
+.page-title {
+    font-size: 2.5rem; /* Ligeramente más grande */
+    text-align: center;
+    margin-bottom: 3rem; /* Más espacio */
+    color: var(--texto-titulos);
+    font-weight: 700; /* Más énfasis */
+}
+.page-title span { color: var(--naranja-acento); }
+
+h2 { /* Estilo base para los títulos de sección H2 */
+    font-size: 1.8rem; /* Ligeramente más grande */
+    color: var(--texto-titulos);
+    margin-bottom: 1.8rem; /* Más espacio */
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--gris-borde); /* Borde más sutil */
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-weight: 600;
+}
+h2 i { color: var(--naranja-acento); font-size: 1em; /* Iconos al mismo tamaño del texto */ }
+
+
+/* --- ESTILO DE SECCIONES DE CUENTA MEJORADO --- */
+.account-section {
+    background-color: var(--blanco);
+    padding: 2rem 2.5rem; /* Más padding interno */
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md); /* Sombra más definida */
+    margin-bottom: 3rem; /* Más espacio entre secciones */
+    border: 1px solid var(--gris-borde); /* Borde sutil */
+}
+/* Animación de entrada (ya la tienes, asegúrate que se aplica) */
+.animate-slide-up { opacity:0; animation:slideUp 0.7s 0.2s ease-out forwards; }
+@keyframes slideUp{ from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:translateY(0);} }
+
+
+/* --- FORMULARIOS MEJORADOS DENTRO DE .account-form --- */
+.account-form { margin-top: 1.5rem; }
+
+.account-form .form-group {
+    margin-bottom: 1.8rem; /* Espacio entre grupos de campos */
+    position: relative; /* Para potencial label flotante o iconos dentro del input */
+}
+
+.account-form label {
+    display: block;
+    margin-bottom: 8px; /* Espacio entre label e input */
+    font-weight: 600; /* Labels más audaces */
+    font-size: 0.9rem;
+    color: var(--azul-oscuro);
+}
+
+.account-form input[type="text"],
+.account-form input[type="email"],
+.account-form input[type="number"],
+.account-form input[type="date"],
+.account-form select,
+.account-form textarea {
+    width: 100%;
+    padding: 12px 18px; /* Padding más generoso */
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--border-radius-sm); /* Bordes redondeados */
+    font-size: 1rem;
+    color: var(--texto-principal);
+    background-color: var(--gris-muy-claro); /* Fondo muy claro para inputs */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+.account-form input[type="text"]::placeholder,
+.account-form input[type="email"]::placeholder,
+.account-form input[type="number"]::placeholder,
+.account-form textarea::placeholder {
+    color: var(--gris-placeholder);
+    opacity: 1;
+}
+
+.account-form input:focus,
+.account-form select:focus,
+.account-form textarea:focus {
+    outline: none;
+    border-color: var(--naranja-acento);
+    background-color: var(--blanco);
+    box-shadow: 0 0 0 3px hsla(var(--naranja-acento-hsl-values), 0.2); /* Sombra naranja al enfocar */
+}
+
+.account-form select { /* Estilo mejorado para select */
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%234A5568' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 12px;
+    padding-right: 40px; /* Espacio para el ícono */
+    cursor: pointer;
+}
+.account-form input[type="date"] {
+    cursor: text; /* O pointer si prefieres */
+}
+.account-form input[type="file"] { /* Estilo base para input file */
+    padding: 10px 15px;
+    cursor: pointer;
+}
+.account-form input[type="file"]::-webkit-file-upload-button {
+    background-color: var(--naranja-acento);
+    color: var(--blanco);
+    border: none;
+    padding: 10px 15px;
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: background-color 0.2s ease;
+}
+.account-form input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: var(--naranja-acento-hover);
+}
+
+.account-form textarea {
+    min-height: 120px; /* Más altura para textareas */
+    resize: vertical;
+}
+
+.account-form .form-row {
+    display: flex;
+    gap: 1.8rem; /* Espacio entre columnas del form-row */
+    flex-wrap: wrap;
+}
+.account-form .form-row .form-group {
+    flex: 1 1 calc(50% - 0.9rem); /* Dos columnas con espacio */
+    min-width: 250px; /* Ancho mínimo antes de apilar */
+}
+@media (max-width: 768px) { /* Apilar en móvil */
+    .account-form .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .account-form .form-row .form-group {
+        min-width: 100%;
+        margin-bottom: 1.8rem; /* Mantener espacio vertical */
+    }
+}
+
+/* Botones de Formulario */
+.account-form .btn { /* Estilo base para botones en formularios de cuenta */
+    padding: 12px 28px;
+    font-size: 1rem;
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: var(--shadow-sm);
+}
+.account-form .btn:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px); /* Efecto sutil al pasar el mouse */
+}
+.account-form .btn:active {
+    transform: translateY(0px);
+    box-shadow: var(--shadow-sm);
+}
+.account-form .btn i {
+    margin-right: 8px; /* Espacio entre icono y texto */
+    font-size: 0.95em;
+}
+
+/* Mensajes de Feedback del Formulario */
+.account-form .form-feedback {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.95rem;
+    text-align: left; /* Alinear a la izquierda para mejor lectura */
+    border-left-width: 4px; /* Borde izquierdo distintivo */
+    border-left-style: solid;
+}
+.account-form .form-feedback.success {
+    background-color: var(--verde-exito-fondo); color: var(--verde-exito);
+    border-left-color: var(--verde-exito);
+}
+.account-form .form-feedback.error {
+    background-color: var(--color-error-fondo); color: var(--color-error);
+    border-left-color: var(--color-error);
+}
+.account-form .form-feedback.info { /* Añadido por si lo usas */
+    background-color: var(--azul-info-fondo); color: var(--azul-info);
+    border-left-color: var(--azul-info);
+}
+
+/* --- ESTILOS PARA ELEMENTOS INTERACTIVOS CON CURSOR --- */
+.clickable-section, /* Para la sección de plan clickeable */
+.account-form select,
+.account-form input[type="file"] {
+    cursor: pointer;
+}
+/* Puedes añadir .table-actions button:hover { cursor: pointer; } si no lo heredan */
+
+
+/* --- TABLA DE PAQUETES (pequeñas mejoras visuales) --- */
+#clientPackageTable {
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--border-radius-md); /* Redondear esquinas de la tabla */
+    overflow: hidden; /* Para que el border-radius afecte a las celdas */
+    box-shadow: var(--shadow-sm);
+}
+#clientPackageTable th {
+    background-color: var(--gris-claro); /* Fondo más claro para headers de tabla */
+    font-size: 0.85rem;
+    font-weight: 600; /* Un poco más de peso */
+    color: var(--azul-oscuro);
+    padding: 12px 15px; /* Ajustar padding */
+    border-bottom: 2px solid var(--gris-borde); /* Borde inferior más grueso */
+}
+#clientPackageTable td {
+    padding: 12px 15px; /* Consistencia en padding */
+    border-bottom: 1px solid var(--gris-claro); /* Líneas de fila más sutiles */
+    font-size: 0.9rem;
+}
+#clientPackageTable tbody tr:last-child td {
+    border-bottom: none; /* Quitar borde de la última fila */
+}
+#clientPackageTable tbody tr:hover {
+    background-color: hsla(var(--naranja-acento-hsl-values), 0.05); /* Naranja muy sutil al hover */
+}
+.table-actions .btn-icon-action:hover {
+    background-color: hsla(var(--naranja-acento-hsl-values), 0.1); /* Naranja más sutil para hover de botones de acción */
+}
+
+/* --- AUTOPAGO (Mejora visual) --- */
+.autopay-content {
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--border-radius-md);
+    padding: 1.8rem; /* Más padding */
+}
+.autopay-info p:first-child {
+    font-size: 1.05rem; /* Ligeramente más grande el texto principal */
+    margin-bottom: 0.8rem;
+}
+.status-indicator {
+    padding: 0.3rem 0.8rem; /* Padding más generoso */
+    font-size: 0.85rem;
+    border-radius: var(--border-radius-sm); /* Consistente */
+}
+
+
+/* --- NOTIFICACIONES POPUP (Mejora visual) --- */
+.notifications-popup {
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg); /* Sombra más pronunciada */
+}
+#notificationsList li {
+    padding: 1rem; /* Más padding */
+    gap: 1rem;
+}
+#notificationsList li.unread {
+    background-color: var(--azul-info-fondo); /* Fondo azul claro para no leídas */
+}
+#notificationsList li .notif-icon {
+    font-size: 1.4em; /* Icono un poco más grande */
+}
+#notificationsList li .notif-text {
+    font-size: 0.95rem;
+}
+
+/* --- Placeholder para variables HSL si no las tienes --- */
+/* En tu :root, si --naranja-acento es #F37021, añade:
+:root {
+    --naranja-acento-hsl-values: 23, 89%, 54%;
+}
+*/
+/* cuenta.css */
+.info-message.warning {
+    background-color: #fff3cd; /* Amarillo claro */
+    color: #856404;
+    border-left-color: #ffeeba;
+}
+.form-usage-info { /* Estilo para el contador de uso */
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: var(--gris-claro);
+    border: 1px solid var(--gris-borde);
+    text-align: center;
+}
+/* cuenta.css */
+/* Mensaje de restricción para formularios/secciones */
+.form-restriction-message,
+.section-restriction-message {
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--rojo-stop); /* O un color de advertencia */
+    background-color: var(--color-error-fondo); /* O un fondo de advertencia */
+    color: var(--color-error);
+    border-radius: var(--border-radius-sm);
+    text-align: center;
+    margin-bottom: 1.5rem; /* Espacio si el formulario sigue debajo (aunque usualmente se oculta) */
+}
+.form-restriction-message.visible, /* Si usas una clase para controlar visibilidad con JS */
+.section-restriction-message.visible {
+    display: block; /* O flex si es un contenedor flex */
+}
+
+.section-restriction-message i { /* Icono de candado o similar */
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+.section-restriction-message h3 {
+    font-size: 1.3rem;
+    color: var(--texto-titulos);
+    margin-bottom: 0.5rem;
+}
+.section-restriction-message p {
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
+}
+.section-restriction-message .btn-small { /* Para el botón "Mejorar Plan" */
+    font-size: 0.9rem;
+}
+
+/* Estilo para campos deshabilitados dentro de un formulario marcado */
+.account-form.form-fields-disabled input,
+.account-form.form-fields-disabled textarea,
+.account-form.form-fields-disabled select {
+    background-color: var(--gris-medio) !important;
+    cursor: not-allowed !important;
+    opacity: 0.7 !important;
+}
+.account-form.form-fields-disabled button[type="submit"] {
+    background-color: var(--gris-oscuro) !important;
+    border-color: var(--gris-oscuro) !important;
+    cursor: not-allowed !important;
+    opacity: 0.7 !important;
+}
+.account-form.form-fields-disabled button[type="submit"]:hover {
+    transform: none !important;
+}
+/* cuenta.css */
+
+/* ... (tus variables y estilos existentes) ... */
+:root {
+    /* ... tus colores ... */
+    --color-premium-gold: gold; /* O un dorado específico como #FFD700 */
+    --color-premium-bg: linear-gradient(135deg, var(--azul-oscuro) 0%, #1A4A7A 80%, var(--naranja-acento) 100%); /* Fondo degradado para la sección */
+    --color-premium-card-bg: hsla(210, 60%, 98%, 0.05); /* Fondo muy sutil para tarjetas */
+    --color-premium-card-border: hsla(0, 0%, 100%, 0.2);
+    --color-premium-icon: var(--amarillo-principal); /* Iconos de beneficios actuales */
+    
+    --color-upcoming-bg: hsla(120, 60%, 95%, 0.1); /* Fondo sutil para "Próximamente" */
+    --color-upcoming-border: hsla(120, 60%, 50%, 0.4);
+    --color-upcoming-icon: var(--verde-exito);
+    --color-upcoming-tag-bg: var(--verde-exito);
+
+    --color-future-bg: hsla(195, 60%, 95%, 0.1); /* Fondo sutil para "Futuro" */
+    --color-future-border: hsla(195, 60%, 50%, 0.4);
+    --color-future-icon: var(--azul-info);
+    --color-future-tag-bg: var(--azul-info);
+}
+
+.premium-benefits-box-section {
+    background: var(--color-premium-bg);
+    color: var(--blanco);
+    padding: 2.5rem;
+    border-radius: var(--border-radius-md);
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+}
+
+.premium-benefits-box-section h2 {
+    color: var(--blanco);
+    border-bottom-color: hsla(0,0%,100%,0.2);
+    font-size: 2rem; /* Ajusta según tu diseño */
+    margin-bottom: 1rem;
+}
+.premium-benefits-box-section h2 i {
+    color: var(--color-premium-gold);
+    margin-right: 10px;
+    animation: pulseCrown 2.5s infinite ease-in-out; /* Animación sutil para la corona */
+}
+
+@keyframes pulseCrown {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.15) rotate(5deg); }
+}
+
+.premium-intro-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto 2.5rem auto;
+    opacity: 0.9;
+}
+
+.premium-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
+    gap: 1.5rem; /* Espacio entre tarjetas */
+}
+
+.benefit-card {
+    background-color: var(--color-premium-card-bg);
+    padding: 1.8rem 1.5rem;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--color-premium-card-border);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    animation: fadeInCard 0.5s ease-out forwards;
+    opacity: 0; /* Para animación de entrada */
+}
+
+/* Animación de entrada para cada tarjeta, con delay escalonado */
+.premium-benefits-grid .benefit-card:nth-child(1) { animation-delay: 0.2s; }
+.premium-benefits-grid .benefit-card:nth-child(2) { animation-delay: 0.3s; }
+.premium-benefits-grid .benefit-card:nth-child(3) { animation-delay: 0.4s; }
+.premium-benefits-grid .benefit-card:nth-child(4) { animation-delay: 0.5s; }
+.premium-benefits-grid .benefit-card:nth-child(5) { animation-delay: 0.6s; }
+.premium-benefits-grid .benefit-card:nth-child(6) { animation-delay: 0.7s; }
+
+@keyframes fadeInCard {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+.benefit-card:hover {
+    transform: translateY(-8px) scale(1.03); /* Efecto de levantamiento sutil */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    background-color: hsla(0, 0%, 100%, 0.15);
+}
+
+.benefit-icon {
+    font-size: 2.8rem; /* Tamaño grande para el icono */
+    margin-bottom: 1rem;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+.benefit-card.current .benefit-icon i { color: var(--color-premium-icon); }
+.benefit-card.upcoming .benefit-icon i { color: var(--color-upcoming-icon); }
+.benefit-card.future .benefit-icon i { color: var(--color-future-icon); }
+
+.benefit-card:hover .benefit-icon {
+    transform: scale(1.1) rotate(-5deg); /* Animación sutil del icono al pasar el mouse */
+}
+
+.benefit-card h3 {
+    font-family: var(--ff-oswald);
+    font-size: 1.3rem; /* Tamaño de título de beneficio */
+    color: var(--blanco);
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+}
+
+.benefit-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: hsla(0,0%,100%,0.85); /* Texto ligeramente menos opaco que los títulos */
+    margin-bottom: 0; /* Quitar margen si es el último elemento antes del tag */
+}
+
+.benefit-card .status-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--blanco);
+    animation: pulseTag 2s infinite ease-in-out alternate; /* Animación para tags */
+}
+
+.status-tag.upcoming-tag { background-color: var(--color-upcoming-tag-bg); }
+.status-tag.future-tag   { background-color: var(--color-future-tag-bg); }
+
+@keyframes pulseTag {
+    from { transform: scale(1); opacity: 1; }
+    to   { transform: scale(1.05); opacity: 0.85; }
+}
+
+/* Estilos específicos para tarjetas "Próximamente" y "Futuro" */
+.benefit-card.upcoming {
+    background-color: var(--color-upcoming-bg);
+    border-color: var(--color-upcoming-border);
+}
+.benefit-card.future {
+    background-color: var(--color-future-bg);
+    border-color: var(--color-future-border);
+}
+
+.premium-cta {
+    margin-top: 3rem; /* Más espacio arriba del CTA */
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+.premium-cta a.upgrade-plan-link-box { /* Para distinguirlo de otros links de upgrade si es necesario */
+    color: var(--amarillo-principal);
+    font-weight: 700; /* Más audaz */
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease, border-bottom-color 0.2s ease;
+    padding-bottom: 2px;
+}
+.premium-cta a.upgrade-plan-link-box:hover {
+    color: var(--blanco);
+    border-bottom-color: var(--amarillo-principal);
+}
+
+/* Responsividad para la cuadrícula de beneficios */
+@media (max-width: 600px) {
+    .premium-benefits-grid {
+        grid-template-columns: 1fr; /* Una columna en móviles */
+    }
+    .premium-benefits-box-section h2 { font-size: 1.8rem; }
+    .premium-intro-text { font-size: 1rem; }
+    .benefit-card { padding: 1.5rem; }
+    .benefit-icon { font-size: 2.2rem; }
+    .benefit-card h3 { font-size: 1.15rem; }
+    .benefit-card p { font-size: 0.85rem; }
+}
+
+/* cuenta.css */
+
+/* ... (tus variables y estilos existentes, incluyendo los de .premium-benefits-box-section si los mantienes) ... */
+:root {
+    /* ... tus colores ... */
+    --color-basic-bg: var(--gris-claro); /* Fondo más claro y neutro para la sección básica */
+    --color-basic-card-bg: var(--blanco);
+    --color-basic-card-border: var(--gris-borde);
+    --color-basic-icon: var(--naranja-acento); /* Iconos en naranja para el básico */
+    --color-basic-title: var(--azul-oscuro);
+    --color-basic-text: var(--texto-principal);
+
+    --color-new-tag-bg: var(--azul-info); /* Para la etiqueta "¡Nuevo!" */
+}
+
+.basic-benefits-box-section {
+    background-color: var(--color-basic-bg);
+    color: var(--texto-principal);
+    padding: 2.5rem;
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--gris-borde);
+    text-align: center;
+    margin-top: 3rem; /* Espacio si viene después de la sección Premium */
+}
+
+.basic-benefits-box-section h2 {
+    color: var(--color-basic-title);
+    border-bottom-color: var(--gris-medio);
+    font-size: 1.8rem; /* Ligeramente más pequeño que el título Premium */
+    margin-bottom: 1rem;
+}
+.basic-benefits-box-section h2 i {
+    color: var(--gris-oscuro); /* Icono del escudo en gris oscuro */
+    animation: shieldShine 3s infinite ease-in-out; /* Animación sutil para el escudo */
+}
+
+@keyframes shieldShine {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+.basic-intro-text {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto 2.5rem auto;
+    color: var(--texto-principal);
+}
+
+.basic-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Ligeramente más pequeñas las tarjetas */
+    gap: 1.5rem;
+}
+
+.benefit-card-basic {
+    background-color: var(--color-basic-card-bg);
+    padding: 1.5rem; /* Padding ajustado */
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--color-basic-card-border);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow-sm);
+    animation: fadeInCardBasic 0.5s ease-out forwards; /* Animación de entrada similar */
+    opacity: 0;
+}
+
+/* Animación de entrada para cada tarjeta básica, con delay escalonado */
+.basic-benefits-grid .benefit-card-basic:nth-child(1) { animation-delay: 0.1s; }
+.basic-benefits-grid .benefit-card-basic:nth-child(2) { animation-delay: 0.2s; }
+.basic-benefits-grid .benefit-card-basic:nth-child(3) { animation-delay: 0.3s; }
+.basic-benefits-grid .benefit-card-basic:nth-child(4) { animation-delay: 0.4s; }
+.basic-benefits-grid .benefit-card-basic:nth-child(5) { animation-delay: 0.5s; }
+.basic-benefits-grid .benefit-card-basic:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInCardBasic { /* Puede ser la misma que fadeInCard o una variación */
+    from { opacity: 0; transform: translateY(15px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.benefit-card-basic:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.benefit-icon-basic {
+    font-size: 2.5rem; /* Tamaño de icono para básico */
+    margin-bottom: 0.8rem;
+    line-height: 1;
+    color: var(--color-basic-icon); /* Naranja para los iconos básicos */
+    transition: transform 0.3s ease;
+}
+
+.benefit-card-basic:hover .benefit-icon-basic {
+    transform: scale(1.1); /* Efecto sutil al icono */
+}
+
+.benefit-card-basic h3 {
+    font-family: var(--ff-oswald); /* O tu fuente principal para títulos */
+    font-size: 1.15rem;
+    color: var(--color-basic-title);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.benefit-card-basic p {
+    font-size: 0.88rem; /* Texto de descripción un poco más pequeño */
+    line-height: 1.5;
+    color: var(--texto-principal);
+    margin-bottom: 0;
+}
+
+/* Etiqueta "¡Nuevo!" para beneficios básicos (si la usas) */
+.benefit-card-basic .status-tag.new-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-top: 0.8rem;
+    text-transform: uppercase;
+    background-color: var(--color-new-tag-bg);
+    color: var(--blanco);
+    animation: pulseTag 2.2s infinite ease-in-out alternate;
+}
+
+.basic-cta {
+    margin-top: 2.5rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--texto-principal);
+}
+.basic-cta a { /* Hereda el estilo de a, pero puedes especificarlo */
+    color: var(--naranja-acento);
+    font-weight: 700;
+}
+.basic-cta a:hover {
+    color: var(--naranja-acento-hover);
+}
+
+/* Responsividad para la cuadrícula de beneficios básicos */
+@media (max-width: 600px) {
+    .basic-benefits-grid {
+        grid-template-columns: 1fr; /* Una columna en móviles */
+    }
+    .basic-benefits-box-section h2 { font-size: 1.6rem; }
+    .basic-intro-text { font-size: 0.95rem; }
+}
+/* cuenta.css */
+
+:root {
+    /* ... tus variables de color existentes ... */
+    --azul-oscuro: #0D2F4F;
+    --naranja-acento: #F37021;
+    --azul-intermedio-para-grad: #1A4A7A; /* Un azul entre oscuro y más claro para suavizar */
+    --blanco-transparente-fondo: hsla(0, 0%, 100%, 0.03); /* Para las tarjetas sobre el degradado */
+    --blanco-transparente-borde: hsla(0, 0%, 100%, 0.15);
+}
+
+/* ... otros estilos ... */
+
+.basic-benefits-box-section {
+    /* OPCIÓN 1: Degradado Diagonal Sutil con tus colores principales */
+    background: linear-gradient(135deg, 
+        var(--azul-oscuro) 0%, 
+        var(--azul-intermedio-para-grad) 50%, 
+        var(--naranja-acento) 100%
+    );
+    
+    /* OPCIÓN 2: Degradado Radial más centrado (si el admin usa algo así) */
+    /* background: radial-gradient(circle at top left, 
+        var(--naranja-acento) 0%, 
+        var(--azul-intermedio-para-grad) 60%, 
+        var(--azul-oscuro) 100%
+    ); */
+
+    /* OPCIÓN 3: Si el fondo del admin es más como el de la sección Premium que te di antes */
+    /* background: linear-gradient(135deg, var(--azul-oscuro) 0%, #1A4A7A 80%, var(--naranja-acento) 100%); */
+
+    color: var(--blanco); /* Texto blanco para buen contraste sobre fondo oscuro */
+    padding: 2.5rem;
+    border-radius: var(--border-radius-md);
+    /* No necesitarás un borde si el fondo es oscuro y distintivo */
+    /* border: 1px solid var(--gris-borde); */
+    text-align: center;
+    margin-top: 3rem;
+    box-shadow: var(--shadow-lg); /* Una sombra para darle profundidad */
+}
+
+.basic-benefits-box-section h2 {
+    color: var(--blanco); /* Título en blanco */
+    border-bottom-color: hsla(0,0%,100%,0.2); /* Línea divisoria sutil */
+    /* ... resto de los estilos de h2 como estaban ... */
+}
+.basic-benefits-box-section h2 i {
+    color: var(--amarillo-principal); /* Icono del escudo en amarillo/dorado para destacar */
+    /* ... animación del escudo como estaba ... */
+}
+
+.basic-intro-text {
+    color: hsla(0,0%,100%,0.9); /* Texto introductorio ligeramente transparente */
+    /* ... resto de los estilos como estaban ... */
+}
+
+/* Tarjetas de Beneficios para el Plan Básico sobre el nuevo fondo */
+.benefit-card-basic {
+    background-color: var(--blanco-transparente-fondo); /* Fondo muy sutil y transparente para las tarjetas */
+    border: 1px solid var(--blanco-transparente-borde); /* Borde sutil y transparente */
+    color: var(--blanco); /* Texto de la tarjeta en blanco */
+    /* ... resto de los estilos de .benefit-card-basic como: padding, borderRadius, textAlign, transition, boxShadow, animation ... */
+    /* Es posible que necesites ajustar la opacidad o el color de fondo de las tarjetas
+       para asegurar buena legibilidad sobre el nuevo fondo degradado. */
+}
+
+.benefit-card-basic:hover {
+    background-color: hsla(0, 0%, 100%, 0.15); /* Un poco más opaco al pasar el mouse */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25); /* Sombra un poco más fuerte sobre fondo oscuro */
+}
+
+.benefit-icon-basic i { /* Hereda color del texto de la tarjeta, o especifica */
+    color: var(--amarillo-principal); /* Íconos en amarillo para destacar sobre fondo oscuro */
+}
+/* Si usaste una clase general .benefit-icon-basic para el div contenedor del icono:
+.benefit-icon-basic { color: var(--amarillo-principal); }
+*/
+
+
+.benefit-card-basic h3 {
+    color: var(--blanco); /* Títulos de beneficio en blanco */
+    /* ... resto de los estilos de h3 ... */
+}
+
+.benefit-card-basic p {
+    color: hsla(0,0%,100%,0.85); /* Texto de descripción ligeramente transparente */
+    /* ... resto de los estilos de p ... */
+}
+
+/* Etiqueta "¡Nuevo!" (si la usas, asegúrate que contrasta bien) */
+.benefit-card-basic .status-tag.new-tag {
+    background-color: var(--amarillo-principal); /* Amarillo para "Nuevo" */
+    color: var(--azul-oscuro); /* Texto oscuro sobre amarillo para contraste */
+    /* ... animación como estaba ... */
+}
+
+.basic-cta {
+    color: hsla(0,0%,100%,0.9);
+    /* ... resto de los estilos ... */
+}
+.basic-cta a {
+    color: var(--amarillo-principal); /* Enlace CTA en amarillo */
+    /* ... resto de los estilos ... */
+}
+.basic-cta a:hover {
+    color: var(--blanco);
+    /* ... */
+}
+/* cuenta.css */
+
+/* ... (tus variables y estilos existentes) ... */
+:root {
+    /* ... tus colores ... */
+    --color-intermediate-bg: linear-gradient(135deg, var(--azul-info) 0%, var(--azul-oscuro) 90%); /* Degradado con azul info y azul oscuro */
+    --color-intermediate-card-bg: hsla(202, 72%, 15%, 0.4); /* Azul oscuro semitransparente para tarjetas */
+    --color-intermediate-card-border: hsla(202, 75%, 47%, 0.5); /* Borde con azul info */
+    --color-intermediate-icon: var(--amarillo-principal); /* Iconos en amarillo/dorado */
+    --color-intermediate-title: var(--blanco);
+    --color-intermediate-text: hsla(0,0%,100%,0.85);
+    --color-upcoming-tag-intermediate-bg: var(--naranja-acento); /* Tag "Acceso Beta" en naranja */
+}
+
+.intermediate-benefits-box-section {
+    background: var(--color-intermediate-bg);
+    color: var(--blanco);
+    padding: 2.5rem;
+    border-radius: var(--border-radius-md);
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    margin-top: 3rem; /* Espacio si viene después de otra sección de plan */
+}
+
+.intermediate-benefits-box-section h2 {
+    color: var(--blanco);
+    border-bottom-color: hsla(0,0%,100%,0.2);
+    font-size: 1.9rem; /* Ligeramente diferente al básico y premium */
+    margin-bottom: 1rem;
+}
+.intermediate-benefits-box-section h2 i {
+    color: var(--blanco); /* Icono del cohete en blanco o amarillo */
+    animation: launchRocket 3s infinite ease-in-out;
+}
+
+@keyframes launchRocket {
+    0%   { transform: translateY(0) rotate(-5deg); }
+    25%  { transform: translateY(-5px) rotate(5deg); }
+    50%  { transform: translateY(0) rotate(0deg); }
+    75%  { transform: translateY(-3px) rotate(-3deg); }
+    100% { transform: translateY(0) rotate(-5deg); }
+}
+
+.intermediate-intro-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto 2.5rem auto;
+    opacity: 0.9;
+}
+
+.intermediate-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.5rem;
+}
+
+.benefit-card-intermediate {
+    background-color: var(--color-intermediate-card-bg);
+    padding: 1.8rem 1.5rem;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--color-intermediate-card-border);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    animation: fadeInCardIntermediate 0.5s ease-out forwards; /* Puedes reusar fadeInCardBasic o crear una nueva */
+    opacity: 0;
+}
+
+/* Animación de entrada para cada tarjeta, con delay escalonado */
+.intermediate-benefits-grid .benefit-card-intermediate:nth-child(1) { animation-delay: 0.15s; }
+.intermediate-benefits-grid .benefit-card-intermediate:nth-child(2) { animation-delay: 0.25s; }
+.intermediate-benefits-grid .benefit-card-intermediate:nth-child(3) { animation-delay: 0.35s; }
+.intermediate-benefits-grid .benefit-card-intermediate:nth-child(4) { animation-delay: 0.45s; }
+.intermediate-benefits-grid .benefit-card-intermediate:nth-child(5) { animation-delay: 0.55s; }
+.intermediate-benefits-grid .benefit-card-intermediate:nth-child(6) { animation-delay: 0.65s; }
+
+@keyframes fadeInCardIntermediate { /* Puede ser la misma que fadeInCard o una variación */
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.benefit-card-intermediate:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+    background-color: hsla(202, 72%, 15%, 0.6); /* Más opaco al pasar el mouse */
+}
+
+.benefit-icon-intermediate {
+    font-size: 2.6rem;
+    margin-bottom: 0.9rem;
+    line-height: 1;
+    color: var(--color-intermediate-icon);
+    transition: transform 0.3s ease;
+}
+
+.benefit-card-intermediate:hover .benefit-icon-intermediate {
+    transform: rotate(5deg) scale(1.1);
+}
+
+.benefit-card-intermediate h3 {
+    font-family: var(--ff-oswald);
+    font-size: 1.2rem;
+    color: var(--color-intermediate-title);
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+}
+
+.benefit-card-intermediate p {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--color-intermediate-text);
+    margin-bottom: 0;
+}
+
+/* Etiqueta "Acceso Beta" para beneficios intermedios */
+.benefit-card-intermediate .status-tag.upcoming-tag { /* Reutilizando la clase upcoming-tag pero con color específico */
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: var(--color-upcoming-tag-intermediate-bg); /* Naranja para el tag beta */
+    color: var(--blanco);
+    animation: pulseTag 2s infinite ease-in-out alternate;
+}
+
+.intermediate-cta {
+    margin-top: 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.intermediate-cta a {
+    color: var(--amarillo-principal);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease, border-bottom-color 0.2s ease;
+    padding-bottom: 2px;
+}
+.intermediate-cta a:hover {
+    color: var(--blanco);
+    border-bottom-color: var(--amarillo-principal);
+}
+
+/* Responsividad para la cuadrícula de beneficios intermedios */
+@media (max-width: 600px) {
+    .intermediate-benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    .intermediate-benefits-box-section h2 { font-size: 1.7rem; }
+    .intermediate-intro-text { font-size: 1rem; }
+}

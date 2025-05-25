@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estado de Embarques - ExpressBoxRD</title>
+    <link rel="stylesheet" href="assets/css/embarques.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="assets/images/logo.jpg" type="image/x-icon">
+</head>
+<body>
+
+    <header class="embarques-header">
+        <div class="container">
+            <a href="index.html">
+                 <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="company-logo">
+            </a>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="hero-section bg-azul">
+            <div class="container animate-fade-in text-blanco">
+                <h1>Estado de Embarques</h1>
+                <p class="subtitle">Consulta la llegada estimada o confirmada de tus paquetes en nuestros vuelos de carga y buques marítimos.</p>
+                <p class="last-update">Fecha Última Actualización: <span id="update-date">17 de abril del 2025</span></p> 
+            </div>
+        </section>
+
+        <section class="status-section">
+            <div class="container status-grid-container">
+
+                <div class="status-column confirmed animate-slide-up">
+                    <h2 class="status-title">
+                        <img src="assets/images/avion verde.jpg" alt="Avión Verde" class="status-icon">
+                        Confirmados:
+                    </h2>
+                    <div class="date-group">
+                        <h3>Martes 15</h3>
+                        <ul class="code-list">
+                            <li>345-38053503</li>
+                            <li>345-38053525</li>
+                        </ul>
+                    </div>
+                     <div class="date-group">
+                        <h3>Lunes 14</h3>
+                        <ul class="code-list">
+                            <li>112-98765432</li>
+                            <li>112-12345678</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="status-column pending animate-slide-up" style="animation-delay: 0.2s;">
+                     <h2 class="status-title">
+                        <img src="assets/images/avion rojo.jpg" alt="Avión Rojo" class="status-icon">
+                        Pendientes:
+                    </h2>
+                    <div class="date-group">
+                        <h3>Miércoles 16</h3>
+                        <ul class="code-list">
+                            <li>406-05532262</li>
+                            <li>345-38053536</li>
+                            <li>345-38053540</li>
+                        </ul>
+                    </div>
+                     <div class="date-group">
+                        <h3>Jueves 17</h3>
+                        <ul class="code-list">
+                            <li>555-11223344</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer bg-azul-oscuro">
+        <div class="container text-blanco">
+            <p>© 2023 ExpressBoxRD. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

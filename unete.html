@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Únete como Socio de Envíos - ExpressBoxRD</title>
+    <link rel="stylesheet" href="assets/css/unete.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <header class="partner-apply-header">
+        <div class="container">
+
+            <a href="index.html">
+                 <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="company-logo">
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="partner-hero">
+            <div class="video-background-container">
+
+                <video loop muted autoplay playsinline poster="assets/images/nuestro equipo  sacando mercancia de ustedes.png" class="hero-video">
+                    <source src="videos/escaneando.mp4" type="video/mp4">
+                    Tu navegador no soporta videos.
+                </video>
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="container hero-content">
+                <h1 class="animate-fade-in">Asóciate con ExpressBoxRD</h1>
+                <p class="subtitle animate-fade-in" style="animation-delay: 0.2s;">Expande tu alcance y optimiza tus envíos uniéndote a nuestra red logística.</p>
+                 <a href="#applicationFormSection" class="btn btn-amarillo hero-cta-button animate-fade-in" style="animation-delay: 0.4s;">
+                    <i class="fas fa-hands-helping"></i> Solicitar Unión Ahora
+                </a>
+            </div>
+        </section>
+
+
+        <section class="benefits-section">
+            <div class="container text-center animate-slide-up">
+                <h2 class="section-title">¿Por Qué Asociarte con Nosotros?</h2>
+                <div class="benefits-list">
+                    <span><i class="fas fa-truck-fast"></i> Logística Eficiente</span>
+                    <span><i class="fas fa-globe-americas"></i> Cobertura Amplia</span>
+                    <span><i class="fas fa-users"></i> Equipo Dedicado</span>
+                    <span><i class="fas fa-cogs"></i> Tecnología Avanzada</span>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="applicationFormSection" class="application-form-section bg-gris-claro">
+            <div class="container">
+                 <h2 class="section-title animate-slide-up">Formulario de Solicitud para Empresas</h2>
+                 <form id="partnerApplicationForm" class="application-form animate-slide-up" style="animation-delay: 0.1s;">
+
+                    <h3><i class="fas fa-building"></i> Información de la Empresa</h3>
+                    <div class="form-group">
+                        <label for="companyName">Nombre Comercial de la Empresa:</label>
+                        <input type="text" id="companyName" name="companyName" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="companyRNC">RNC (Rep. Dominicana) o ID Fiscal/Gubernamental:</label>
+                        <input type="text" id="companyRNC" name="companyRNC" required placeholder="Identificación fiscal de tu país">
+                     </div>
+                     <div class="form-group">
+                        <label for="companyAddress">Dirección Física Principal:</label>
+                        <input type="text" id="companyAddress" name="companyAddress" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="companyCity">Ciudad:</label>
+                            <input type="text" id="companyCity" name="companyCity" required>
+                        </div>
+                         <div class="form-group">
+                            <label for="companyCountry">País:</label>
+                            <input type="text" id="companyCountry" name="companyCountry" required>
+                        </div>
+                    </div>
+
+                    <h3><i class="fas fa-globe"></i> Presencia Online</h3>
+                     <div class="form-group">
+                        <label for="website">Sitio Web Principal:</label>
+                        <input type="url" id="website" name="website" placeholder="https://www.tuempresa.com">
+                    </div>
+                    <div class="form-group">
+                         <label for="appLink">Enlace(s) a Aplicación Móvil (Opcional, separar por comas si hay varios):</label>
+                         <input type="text" id="appLink" name="appLink" placeholder="https://play.google.com/..., https://apps.apple.com/...">
+                     </div>
+
+
+                    <h3><i class="fas fa-user-tie"></i> Contacto Principal</h3>
+                     <div class="form-row">
+                         <div class="form-group">
+                            <label for="contactName">Nombre del Contacto:</label>
+                            <input type="text" id="contactName" name="contactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Correo Electrónico de Contacto:</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required placeholder="Donde te contactaremos">
+                        </div>
+                    </div>
+
+                    <p id="formMessage" class="form-feedback" style="display: none;" aria-live="assertive"></p>
+
+                    <button type="submit" id="submitApplicationButton" class="btn btn-naranja">Enviar Solicitud de Asociación</button>
+
+                 </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer bg-azul-oscuro">
+        <div class="container text-blanco">
+            <p>© 2023 ExpressBoxRD. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/unete.js"></script>
+
+</body>
+</html>

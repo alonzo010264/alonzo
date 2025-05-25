@@ -1,0 +1,72 @@
+/* ===== Variables y Reset (Igual que antes) ===== */
+:root{--amarillo-principal:#FFDB00;--azul-oscuro:#0D2F4F;--naranja-acento:#F37021;--blanco:#FFFFFF;--gris-claro:#f8f9fa;--gris-medio:#e9ecef;--gris-oscuro:#6c757d;--texto-panel:#343a40;--verde-nuevo:#198754;--azul-leido:#0d6efd;--rojo-eliminar:#dc3545;--fuente-principal:'Poppins',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--fuente-principal);background-color:var(--gris-claro);color:var(--texto-panel);line-height:1.6;font-size:15px;}
+a{text-decoration:none;color:inherit;}
+.admin-panel{display:flex;min-height:100vh;}
+
+/* Sidebar (Reutilizar de style-admin.css si es igual) */
+.sidebar{width:240px;background-color:var(--azul-oscuro);color:var(--blanco);display:flex;flex-direction:column;flex-shrink:0;box-shadow:2px 0 10px rgba(0,0,0,0.1);position:fixed;left:0;top:0;height:100%;z-index:100;}
+.sidebar-header{padding:1.5rem 1rem;text-align:center;border-bottom:1px solid rgba(255,255,255,0.1);}
+.admin-logo{max-width:80%;height:auto;}
+.sidebar-nav{margin-top:1.5rem;}
+.sidebar-nav ul{list-style:none;}
+.sidebar-nav li a{display:flex;align-items:center;padding:0.9rem 1.5rem;color:var(--gris-claro);transition:background-color .2s ease,color .2s ease,border-left .2s ease;border-left:4px solid transparent;}
+.sidebar-nav li a .icon{margin-right:1rem;font-size:1.2em;display:inline-block;width:20px;text-align:center;}
+.sidebar-nav li a:hover{background-color:rgba(255,255,255,0.05);color:var(--blanco);}
+.sidebar-nav li.active a{background-color:rgba(255,255,255,0.1);color:var(--amarillo-principal);font-weight:600;border-left-color:var(--amarillo-principal);}
+
+/* Contenido Principal */
+.main-content{flex-grow:1;padding:1.5rem 2rem;margin-left:240px; /* Espacio para sidebar */}
+.main-header{padding-bottom:1rem;margin-bottom:1.5rem;border-bottom:1px solid var(--gris-medio); display: flex; justify-content: space-between; align-items: center;}
+.main-header h1{font-size:1.8rem;color:var(--azul-oscuro);margin:0;text-align:left;}
+.content h2{font-size:1.5rem;margin-bottom:1.5rem;color:var(--azul-oscuro);text-align:left;border-bottom:none;display:block;}
+
+/* Tabla de Contactos */
+.table-container{background-color:var(--blanco);padding:1.5rem;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.05);overflow-x:auto;}
+#adminContactTable{width:100%;border-collapse:collapse;min-width:700px;}
+#adminContactTable th,#adminContactTable td{padding:.8rem 1rem;text-align:left;border-bottom:1px solid var(--gris-medio);vertical-align:middle;font-size:0.95rem;}
+#adminContactTable th{background-color:var(--gris-claro);font-weight:600;color:var(--azul-oscuro);font-size:.85rem;text-transform:uppercase; white-space: nowrap;}
+#adminContactTable tbody tr { transition: background-color 0.2s ease; }
+#adminContactTable tbody tr:hover{background-color:#f1f5f9;}
+#adminContactTable tbody tr.new-message { background-color: #e6f7ff; /* Resaltar nuevo mensaje */ animation: highlightNew 1.5s ease-out; }
+
+@keyframes highlightNew {
+    from { background-color: var(--amarillo-principal); }
+    to { background-color: #e6f7ff; }
+}
+
+.message-preview { max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.info-message { text-align: center; padding: 2rem; color: var(--gris-oscuro); font-style: italic;}
+
+/* Estado (similar a admin anterior) */
+.status{display:inline-block;padding:.2rem .6rem;border-radius:12px;font-size:.8rem;font-weight:600;text-transform:capitalize;}
+.status-new{background-color:var(--verde-exito);color:var(--blanco);}
+.status-read{background-color:var(--azul-leido);color:var(--blanco);} /* Puedes añadir más estados */
+
+/* Botones */
+.btn{display:inline-block;padding:.5rem 1rem;border:none;border-radius:5px;font-weight:600;cursor:pointer;transition:all .3s ease;text-align:center;font-size:0.9rem;line-height: 1.5;}
+.btn-danger{background-color:var(--rojo-eliminar);color:var(--blanco);border: 1px solid var(--rojo-eliminar);}
+.btn-danger:hover{background-color:#b02a37; border-color: #b02a37;}
+
+
+/* Responsividad (Simplificada, ajusta según necesidad) */
+@media(max-width: 992px){
+    .sidebar{width:60px;overflow:hidden;}
+    .sidebar:hover{width:240px;}
+    .sidebar-header .admin-logo{display:none;}
+    .sidebar:hover .sidebar-header .admin-logo{display:block;}
+    .sidebar-nav li a span:not(.icon){display:none;}
+    .sidebar:hover .sidebar-nav li a span:not(.icon){display:inline;}
+    .sidebar-nav li a{justify-content:center;padding:.9rem .5rem;}
+    .sidebar-nav li a .icon{margin-right:0;}
+    .main-content{margin-left:60px;padding:1.5rem;}
+    /* .sidebar:hover ~ .main-content { margin-left: 240px; } */
+}
+@media(max-width: 768px){
+    .sidebar{display:none;}
+    .main-content{margin-left:0;padding:1rem;}
+    .main-header h1{font-size:1.5rem;}
+    .main-header { flex-direction: column; align-items: flex-start; gap: 0.5rem;}
+    #adminContactTable th,#adminContactTable td{padding:.6rem .8rem; font-size: 0.9rem;}
+}

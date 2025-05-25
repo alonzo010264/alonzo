@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitación General de Paquetes - ExpressBoxRD</title>
+    <!-- CAMBIAR: Nombre del archivo CSS -->
+    <link rel="stylesheet" href="assets/css/digitacion.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/images/logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="digitization-panel">
+        <!-- Header del Panel -->
+        <header class="panel-header">
+            <div class="container header-content">
+                <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="panel-logo">
+                <div class="header-info">
+                    <h1><i class="fas fa-keyboard"></i> Digitación General de Paquetes</h1>
+                    <p class="branch-name">Sistema Central ExpressBoxRD</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="container panel-main">
+            <!-- Formulario para Añadir/Actualizar Paquete -->
+            <section class="add-package-section animate-slide-up">
+                <h2><i class="fas fa-box-open"></i> Registrar o Actualizar Paquete</h2>
+                <form id="packageEntryForm" class="data-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="trackingCode">Código de Seguimiento ExpressBoxRD (EB-):</label>
+                            <input type="text" id="trackingCode" name="trackingCode" required placeholder="Ej: EB-1234567X">
+                        </div>
+                        <div class="form-group">
+                            <label for="customerName">Nombre del Cliente (Si se conoce):</label>
+                            <input type="text" id="customerName" name="customerName" placeholder="Opcional si es desconocido">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="packageContent">Contenido del Paquete (Descripción):</label>
+                        <textarea id="packageContent" name="packageContent" rows="3" required placeholder="Ej: Ropa variada, 2x Zapatos deportivos, 1x Libro"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="packageStatus">Estado Actual del Paquete:</label>
+                            <select id="packageStatus" name="packageStatus" required>
+                                <option value="received_warehouse_miami">Recibido en Almacén (Miami)</option>
+                                <option value="received_warehouse_spain">Recibido en Almacén (España)</option>
+                                <option value="received_warehouse_brazil">Recibido en Almacén (Brasil)</option>
+                                <option value="in_transit_to_rd">En Tránsito hacia RD</option>
+                                <option value="customs_rd">En Aduanas RD</option>
+                                <option value="received_branch_rd">En Sucursal RD (Listo para Retiro/Entrega)</option>
+                                <option value="out_for_delivery_rd">En Ruta de Entrega (RD)</option>
+                                <option value="delivered_rd">Entregado (RD)</option>
+                                <option value="unknown_package">Paquete Desconocido (Verificar)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="currentLocation">Ubicación Actual / Notas Adicionales:</label>
+                            <input type="text" id="currentLocation" name="currentLocation" placeholder="Ej: Almacén Miami Sec. A, Vuelo AA123">
+                        </div>
+                    </div>
+                     <div class="form-group checkbox-group">
+                         <input type="checkbox" id="isUnknown" name="isUnknown">
+                         <label for="isUnknown">Marcar como Paquete Desconocido (Sin código EB o nombre claro)</label>
+                     </div>
+                    <button type="submit" class="btn btn-naranja"><i class="fas fa-save"></i> Guardar / Actualizar Paquete</button>
+                    <p id="entryFormMessage" class="form-feedback" style="display: none;"></p>
+                </form>
+            </section>
+
+            <!-- Listado de Paquetes Digitados -->
+            <section class="digitized-packages-section animate-slide-up" style="animation-delay: 0.1s;">
+                <h2><i class="fas fa-boxes-stacked"></i> Listado de Paquetes Digitados</h2>
+                <div class="table-actions-bar">
+                    <input type="text" id="searchInput" placeholder="Buscar por Código o Cliente...">
+                    <button id="clearAllPackagesButton" class="btn btn-danger small-btn"><i class="fas fa-trash-alt"></i> Limpiar Todo (Demo)</button>
+                </div>
+                <div class="table-container">
+                    <table id="digitizedPackagesTable">
+                        <thead>
+                            <tr>
+                                <th>Código EB</th>
+                                <th>Cliente</th>
+                                <th>Contenido</th>
+                                <th>Estado</th>
+                                <th>Ubicación/Notas</th>
+                                <th>Fecha Digitación</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="digitizedPackagesBody">
+                            <!-- Filas se insertarán aquí -->
+                            <tr><td colspan="7" class="loading-placeholder">No hay paquetes digitados.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <footer class="panel-footer bg-azul-oscuro">
+            <div class="container text-blanco">
+                <p>© 2023 ExpressBoxRD - Sistema de Digitación Central</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Script para la lógica del panel -->
+    <script src="assets/js/digitacion.js"></script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Cuenta - ExpressBoxRD</title>
+    <link rel="stylesheet" href="assets/css/cuenta.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="assets/images/logo.jpg" type="image/x-icon">
+</head>
+<body>
+
+    <header class="account-page-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo-link-main">
+                <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="company-logo-main">
+            </a>
+            <div class="user-info-header">
+                <i class="fas fa-user-circle user-icon"></i>
+                <span id="headerUserName">[Nombre Cliente]</span>
+                <span class="header-separator">|</span>
+                <span id="headerUserEBCode">[EB-XXXXXXX]</span>
+                <span class="header-separator">|</span>
+                <span id="headerUserPlan" class="user-plan-display"></span>
+                <span class="header-separator">|</span>
+                <span id="headerUserBranch" class="user-branch-display"><i class="fas fa-store-alt"></i> Sucursal: N/A</span>
+            </div>
+            <div class="account-actions">
+                <button id="notificationsButton" class="btn-icon" aria-label="Notificaciones">
+                    <i class="fas fa-bell"></i>
+                    <span id="notificationBadge" class="notification-badge" style="display: none;">0</span>
+                </button>
+            
+            </div>
+        </div>
+    </header>
+
+    <main class="container main-account-content">
+        <h1 class="page-title animate-fade-in">Bienvenido/a a tu Cuenta, <span id="welcomeName">[Cliente]</span></h1>
+
+
+        <section id="myPlanSection" class="account-section animate-slide-up clickable-section" title="Ver beneficios de mi plan">
+            <h2><i class="fas fa-user-tag"></i> Mi Plan Actual</h2>
+            <div class="plan-details-container">
+                <p>Estás suscrito al plan: <strong id="clientPlanName">--</strong> <span id="clientPlanIcon"></span></p>
+                <small>Haz clic para ver los beneficios.</small>
+            </div>
+        </section>
+
+    
+        <section id="myBranchSection" class="account-section animate-slide-up" style="animation-delay: 0.02s;">
+            <h2><i class="fas fa-map-marker-alt"></i> Mi Sucursal Asignada</h2>
+            <div id="clientBranchInfo" class="info-message">
+                Tus paquetes llegarán a la sucursal: <strong id="clientBranchName">No asignada</strong>.
+            </div>
+        </section>
+
+    
+        <section id="myPackagesSection" class="account-section animate-slide-up" style="animation-delay: 0.05s;">
+            <h2><i class="fas fa-box-open"></i> Mis Paquetes</h2>
+            <div id="noPackagesMessage" class="info-message" style="display: none;">Aún no tienes paquetes registrados.</div>
+            <div class="table-container">
+                <table id="clientPackageTable">
+                    <thead>
+                        <tr>
+                            <th>Tracking Original</th>
+                            <th>Descripción</th>
+                            <th>Valor (USD)</th>
+                            <th>Peso (KG)</th>
+                            <th>Estado ExpressBoxRD</th>
+                            <th>Impuestos (RD$)</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientPackageTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+
+        <section id="preAlertSection" class="account-section animate-slide-up" style="animation-delay: 0.1s;">
+             <h2><i class="fas fa-bell"></i> Pre-Alertar un Paquete</h2>
+             <p>Notifícanos si esperas un paquete para agilizar su recepción.</p>
+             <form id="preAlertForm" class="account-form">
+                <div class="form-row">
+                    <div class="form-group"><label for="originalTracking">Tracking Original:</label><input type="text" id="originalTracking" name="originalTracking" required></div>
+                    <div class="form-group"><label for="storeSender">Tienda/Remitente:</label><input type="text" id="storeSender" name="storeSender" required></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label for="estimatedValue">Valor Estimado (USD):</label><input type="number" id="estimatedValue" name="estimatedValue" required min="0" step="0.01"></div>
+                    <div class="form-group"><label for="packageDescriptionContent">Descripción Contenido:</label><input type="text" id="packageDescriptionContent" name="packageDescriptionContent" required></div>
+                </div>
+                 <div class="form-row">
+                    <div class="form-group">
+                        <label for="estimatedArrival">Fecha Estimada de Llegada (Opcional):</label>
+                        <input type="date" id="estimatedArrival" name="estimatedArrival">
+                    </div>
+                     <div class="form-group">
+                        <label for="estimatedWeight">Peso Estimado (KG) (Opcional):</label>
+                        <input type="number" id="estimatedWeight" name="estimatedWeight" min="0" step="0.01">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-naranja"><i class="fas fa-paper-plane"></i> Enviar Pre-Alerta</button>
+                <p id="preAlertMessage" class="form-feedback" style="display: none;"></p>
+            </form>
+        </section>
+
+
+        <section id="myAddressSection" class="account-section animate-slide-up" style="animation-delay: 0.15s;">
+            <h2><i class="fas fa-home"></i> Mi Dirección de Entrega Principal</h2>
+            <div id="currentAddressDisplay" class="address-display-box">
+                <p><strong>Dirección:</strong> <span id="clientAddressStreet">No especificada</span></p>
+                <p><strong>Ciudad:</strong> <span id="clientAddressCity">N/A</span></p>
+                <p><strong>Sector/Provincia:</strong> <span id="clientAddressProvince">N/A</span></p>
+                <p><strong>Referencia:</strong> <span id="clientAddressReference">N/A</span></p>
+            </div>
+            <button id="editAddressButton" class="btn btn-secondary btn-small" style="margin-top: 1rem;"><i class="fas fa-edit"></i> Editar Dirección</button>
+            
+            <form id="addressForm" class="account-form" style="display:none; margin-top:1.5rem; border-top: 1px dashed var(--gris-medio); padding-top: 1.5rem;">
+                <h3>Actualizar Dirección</h3>
+                <div class="form-group">
+                    <label for="addressStreet">Dirección (Calle, Número, Edificio):</label>
+                    <input type="text" id="addressStreet" name="addressStreet" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="addressCity">Ciudad:</label>
+                        <input type="text" id="addressCity" name="addressCity" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="addressProvince">Sector/Provincia:</label>
+                        <input type="text" id="addressProvince" name="addressProvince" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="addressReference">Punto de Referencia (Opcional):</label>
+                    <textarea id="addressReference" name="addressReference" rows="2"></textarea>
+                </div>
+                <button type="submit" class="btn btn-naranja"><i class="fas fa-save"></i> Guardar Dirección</button>
+                <button type="button" id="cancelAddressEditButton" class="btn btn-secondary">Cancelar</button>
+                <p id="addressMessage" class="form-feedback" style="display: none;"></p>
+            </form>
+        </section>
+
+        
+        <section id="autopaySection" class="account-section animate-slide-up" style="animation-delay: 0.2s;">
+            <h2><i class="fas fa-credit-card"></i> Autopago</h2>
+            <div class="autopay-content">
+                <div class="autopay-info"><p>Activa el autopago para procesar y enviar tus paquetes automáticamente.</p><p><strong>Estado:</strong> <span id="autopayStatus" class="status-indicator status-inactive">Inactivo</span></p></div>
+                <div class="autopay-actions"><button id="activateAutopayButton" class="btn btn-verde">Activar</button><button id="deactivateAutopayButton" class="btn btn-rojo" style="display: none;">Desactivar</button></div>
+            </div>
+             <p id="autopayMessage" class="form-feedback small-feedback" style="display: none;"></p>
+        </section>
+
+        <section id="notifyPickupSection" class="account-section animate-slide-up" style="animation-delay: 0.25s;">
+            <h2><i class="fas fa-store-alt"></i> Notificar Retiro</h2>
+            <p>Avísanos si planeas retirar paquetes en sucursal.</p>
+            <form id="notifyPickupForm" class="account-form">
+                <div class="form-group"><label for="pickupTrackingCodes">Códigos de Paquetes:</label><input type="text" id="pickupTrackingCodes" name="pickupTrackingCodes" required></div>
+                <div class="form-group"><label for="pickupDate">Fecha Estimada Retiro:</label><input type="date" id="pickupDate" name="pickupDate" required></div>
+                <button type="submit" class="btn btn-azul"><i class="fas fa-calendar-check"></i> Notificar</button>
+                <p id="pickupMessage" class="form-feedback" style="display: none;"></p>
+            </form>
+        </section>
+
+
+        <section id="supportSection" class="account-section animate-slide-up" style="animation-delay: 0.3s;">
+            <h2><i class="fas fa-headset"></i> Soporte al Cliente</h2>
+            <p>¿Tienes alguna duda o inconveniente? Envíanos un ticket.</p>
+            <form id="supportTicketForm" class="account-form">
+                <div class="form-group">
+                    <label for="ticketSubject">Asunto:</label>
+                    <input type="text" id="ticketSubject" name="ticketSubject" required>
+                </div>
+                <div class="form-group">
+                    <label for="ticketMessage">Mensaje:</label>
+                    <textarea id="ticketMessage" name="ticketMessage" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-verde"><i class="fas fa-paper-plane"></i> Enviar Ticket</button>
+                <p id="supportTicketMessage" class="form-feedback" style="display: none;"></p>
+            </form>
+        </section>
+
+         <section id="notificationsSection" class="account-section notifications-popup" style="display:none;">
+             <h2><i class="fas fa-bullhorn"></i> Notificaciones</h2>
+             <ul id="notificationsList"><li class="no-notifications">No tienes notificaciones.</li></ul>
+             <button id="markAllReadButton" class="btn btn-secondary btn-small" style="margin-bottom: 0.5rem; display:none;">Marcar todas como leídas</button>
+             <button id="closeNotifications" class="btn btn-secondary">Cerrar</button>
+         </section>
+    </main>
+
+
+    <div id="planBenefitsModal" class="modal-overlay" style="display:none;">
+        <div class="modal-content">
+            <button id="closePlanBenefitsModal" class="modal-close-btn">×</button>
+            <h3 id="modalPlanName">Beneficios del Plan [--]</h3>
+            <ul id="modalPlanBenefitsList">
+                <li>Beneficio de ejemplo 1</li>
+                <li>Beneficio de ejemplo 2</li>
+            </ul>
+        </div>
+    </div>
+
+        <section id="requestPlanChangeSection" class="account-section animate-slide-up" style="animation-delay: 0.35s;">
+            <h2><i class="fas fa-level-up-alt"></i> Solicitar Cambio de Plan</h2>
+            <p>Mejora tu experiencia con nuestros planes Intermedio o Premium.</p>
+            <form id="planChangeRequestForm" class="account-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="requestFullName">Nombre Completo (Automático):</label>
+                        <input type="text" id="requestFullName" name="requestFullName" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestEmail">Correo Registrado (Automático):</label>
+                        <input type="email" id="requestEmail" name="requestEmail" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="requestedPlan">Plan Deseado:</label>
+                    <select id="requestedPlan" name="requestedPlan" required>
+                        <option value="">-- Selecciona un Plan --</option>
+                        <option value="intermedio">Plan Intermedio</option>
+                        <option value="premium">Plan Premium</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="paymentProof">Comprobante de Pago (Imagen o PDF):</label>
+                    <input type="file" id="paymentProof" name="paymentProof" accept="image/*,.pdf" required>
+                    <small>Tamaño máximo 2MB. Formatos: JPG, PNG, PDF.</small>
+                </div>
+                <div class="form-group">
+                    <label for="requestComment">Comentario (Opcional):</label>
+                    <textarea id="requestComment" name="requestComment" rows="3" placeholder="Alguna nota adicional para tu solicitud..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-naranja"><i class="fas fa-paper-plane"></i> Enviar Solicitud</button>
+                <p id="planChangeRequestMessage" class="form-feedback" style="display: none;"></p>
+            </form>
+        </section>
+<section id="premiumBenefitsMessages" class="account-section animate-slide-up" style="animation-delay: 0.4s;">
+    <h2><i class="fas fa-gem"></i> Beneficios Exclusivos Premium</h2>
+    <div id="advancedFeaturesInfo"></div>
+    <div id="promoCodeInfo" style="margin-top:1rem;"></div>
+</section>
+
+
+
+
+<section id="premiumHighlightsSection" class="account-section premium-benefits-box-section animate-slide-up" style="animation-delay: 0.4s;">
+    <h2><i class="fas fa-crown" style="color: gold;"></i> Beneficios Exclusivos Plan Premium</h2>
+    <p class="premium-intro-text">Descubre las ventajas únicas de ser un miembro Premium y lleva tu experiencia al siguiente nivel.</p>
+    
+    <div class="premium-benefits-grid">
+        
+        <div class="benefit-card current">
+            <div class="benefit-icon"><i class="fas fa-shipping-fast"></i></div>
+            <h3>Envíos Ilimitados</h3>
+            <p>Sin restricciones en la cantidad de paquetes que puedes recibir o enviar al mes.</p>
+        </div>
+
+        <div class="benefit-card current">
+            <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+            <h3>Seguro Superior</h3>
+            <p>Mayor cobertura de seguro para tus envíos más valiosos, dándote total tranquilidad.</p>
+        </div>
+
+        <div class="benefit-card current">
+            <div class="benefit-icon"><i class="fas fa-headset"></i></div>
+            <h3>Soporte Prioritario</h3>
+            <p>Atención al cliente VIP con tiempos de respuesta más rápidos y canales dedicados.</p>
+        </div>
+
+        <div class="benefit-card current">
+            <div class="benefit-icon"><i class="fas fa-tags"></i></div>
+            <h3>Promociones Exclusivas</h3>
+            <p>Acceso a códigos de descuento únicos y ofertas especiales solo para ti.</p>
+        </div>
+
+        <div class="benefit-card upcoming"> 
+            <div class="benefit-icon"><i class="fas fa-calendar-alt"></i></div>
+            <h3>Acceso a Eventos VIP</h3>
+            <p>Invitaciones a eventos exclusivos, lanzamientos y experiencias únicas de ExpressBoxRD.</p>
+            <span class="status-tag upcoming-tag">Próximamente</span>
+        </div>
+
+        <div class="benefit-card future"> 
+            <div class="benefit-icon"><i class="fas fa-plane-departure"></i></div>
+            <h3>Club de Viajes Express</h3>
+            <p>Oportunidades únicas de viajar con nosotros a destinos y eventos seleccionados.</p>
+            <span class="status-tag future-tag">En Desarrollo</span>
+        </div>
+
+    </div>
+    <p class="premium-cta">¡Y muchas más sorpresas y mejoras están en camino para nuestros valiosos miembros Premium! <a href="#" class="upgrade-plan-link-box">Hazte Premium Hoy</a></p>
+</section>
+
+
+
+
+<section id="basicPlanHighlightsSection" class="account-section basic-benefits-box-section animate-slide-up" style="animation-delay: 0.5s;">
+    <h2><i class="fas fa-shield-alt" style="color: var(--gris-oscuro);"></i> Beneficios de tu Plan Básico</h2>
+    <p class="basic-intro-text">Tu Plan Básico te ofrece todo lo esencial para comenzar a enviar y recibir con ExpressBoxRD.</p>
+    
+    <div class="basic-benefits-grid"> 
+        
+        <div class="benefit-card-basic current">
+            <div class="benefit-icon-basic"><i class="fas fa-box-open"></i></div>
+            <h3>Recepción de Paquetes</h3>
+            <p>Recibe tus compras online y paquetes personales de forma segura en tu casillero.</p>
+        </div>
+
+        <div class="benefit-card-basic current">
+            <div class="benefit-icon-basic"><i class="fas fa-map-marker-alt"></i></div>
+            <h3>Dirección en Miami</h3>
+            <p>Obtén tu propia dirección física en Miami para todas tus compras en EE.UU.</p>
+        </div>
+
+        <div class="benefit-card-basic current">
+            <div class="benefit-icon-basic"><i class="fas fa-bell"></i></div>
+            <h3>Pre-Alertas Esenciales</h3>
+            <p>Notifícanos la llegada de tus paquetes para agilizar su procesamiento (hasta 5 al mes).</p>
+        </div>
+
+        <div class="benefit-card-basic current">
+            <div class="benefit-icon-basic"><i class="fas fa-truck"></i></div>
+            <h3>Múltiples Opciones de Entrega</h3>
+            <p>Elige retirar en nuestras sucursales o solicita envío a domicilio (costo adicional).</p>
+        </div>
+
+        <div class="benefit-card-basic upcoming"> 
+            <div class="benefit-icon-basic"><i class="fas fa-calculator"></i></div>
+            <h3>Calculadora Estimada</h3>
+            <p>Usa nuestra herramienta para estimar los costos de envío e impuestos de tus paquetes.</p>
+        </div>
+        
+        <div class="benefit-card-basic current">
+            <div class="benefit-icon-basic"><i class="fas fa-headset"></i></div>
+            <h3>Soporte al Cliente</h3>
+            <p>Acceso a nuestro equipo de soporte para resolver tus dudas y consultas.</p>
+        </div>
+
+    </div>
+    <p class="basic-cta">¿Necesitas más? <a href="#" class="upgrade-plan-link-box">Explora nuestros planes Premium e Intermedio</a> para beneficios adicionales.</p>
+</section>
+
+
+
+<section id="intermediatePlanHighlightsSection" class="account-section intermediate-benefits-box-section animate-slide-up" style="animation-delay: 0.6s;">
+    <h2><i class="fas fa-rocket" style="color: var(--azul-info);"></i> Privilegios de tu Plan Intermedio</h2>
+    <p class="intermediate-intro-text">Con el Plan Intermedio, disfrutas de mayor capacidad y mejores ventajas para tus envíos.</p>
+    
+    <div class="intermediate-benefits-grid">
+        
+        <div class="benefit-card-intermediate current">
+            <div class="benefit-icon-intermediate"><i class="fas fa-cubes"></i></div>
+            <h3>Mayor Volumen de Paquetes</h3>
+            <p>Gestiona un volumen significativamente mayor de paquetes al mes (hasta 100) sin preocupaciones.</p>
+        </div>
+
+        <div class="benefit-card-intermediate current">
+            <div class="benefit-icon-intermediate"><i class="fas fa-bell-on"></i></div> 
+            <h3>Más Pre-Alertas</h3>
+            <p>Registra un número extendido de pre-alertas mensuales (hasta 100) para una logística fluida.</p>
+        </div>
+
+        <div class="benefit-card-intermediate current">
+            <div class="benefit-icon-intermediate"><i class="fas fa-shield-check"></i></div> 
+            <h3>Seguro Mejorado</h3>
+            <p>Cobertura de seguro incrementada para tus paquetes, ofreciendo mayor protección.</p>
+        </div>
+        
+        <div class="benefit-card-intermediate current">
+            <div class="benefit-icon-intermediate"><i class="fas fa-percent"></i></div>
+            <h3>Descuentos Leves</h3>
+            <p>Accede a pequeños descuentos en tarifas de envío seleccionadas como miembro Intermedio.</p>
+        </div>
+
+        <div class="benefit-card-intermediate upcoming"> 
+            <div class="benefit-icon-intermediate"><i class="fas fa-tools"></i></div>
+            <h3>Herramientas Avanzadas (Beta)</h3>
+            <p>Prueba algunas de nuestras nuevas herramientas de gestión de envíos antes que nadie.</p>
+            <span class="status-tag upcoming-tag">Acceso Beta</span>
+        </div>
+        
+        <div class="benefit-card-intermediate current">
+            <div class="benefit-icon-intermediate"><i class="fas fa-headset"></i></div>
+            <h3>Soporte Dedicado</h3>
+            <p>Canal de soporte con atención más rápida para resolver tus inquietudes eficazmente.</p>
+        </div>
+
+    </div>
+    <p class="intermediate-cta">El Plan Intermedio es ideal para usuarios frecuentes. ¿Buscas lo máximo? <a href="#" class="upgrade-plan-link-box">Considera Premium</a>.</p>
+</section>
+
+
+
+
+
+<p class="form-usage-info info-message" style="margin-bottom: 1rem; font-size: 0.85rem;"></p> 
+    </main>
+    <main class="container main-account-content">
+
+    <footer class="footer bg-azul-oscuro">
+        <div class="container text-blanco">
+            <p>© 2023 ExpressBoxRD. Todos los derechos reservados. cuenta protegida datos. sifrados.</p>
+        </div>
+    </footer>
+<script src="assets/js/cliente.js"></script>
+
+</body>
+</html>

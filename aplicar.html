@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplica Ahora - Oportunidades ExpressBoxRD</title>
+    <link rel="stylesheet" href="assets/css/aplicar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="assets/images/logo.jpg" type="image/x-icon">
+</head>
+<body>
+
+    <header class="apply-header">
+        <div class="container">
+
+            <a href="index.html">
+                 <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="company-logo">
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+
+
+        <section class="apply-title-section">
+            <h1 class="animate-fade-in">Envía tu Solicitud</h1>
+            <p class="subtitle animate-fade-in" style="animation-delay: 0.1s;">Completa el formulario y adjunta tu documentación para aplicar a nuestras vacantes.</p>
+        </section>
+
+
+        <section class="application-form-container animate-slide-up" style="animation-delay: 0.3s;">
+
+            <form id="applicationForm" enctype="multipart/form-data">
+                <h2>Tus Datos</h2>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Nombre Completo:</label>
+                        <input type="text" id="fullName" name="fullName" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" required aria-required="true">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                         <label for="phone">Teléfono:</label>
+                         <input type="tel" id="phone" name="phone" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="position">Puesto al que Aplicas:</label>
+                        <input type="text" id="position" name="position" required aria-required="true" placeholder="Ej: Gerente de Almacén, Servicio al Cliente">
+                    </div>
+                </div>
+
+                 <div class="form-group">
+                     <label for="country">País de Residencia (donde aplicas):</label>
+                     <select id="country" name="country" required aria-required="true">
+                         <option value="" disabled selected>Selecciona un país...</option>
+                         <option value="República Dominicana">República Dominicana</option>
+                         <option value="USA">USA (Miami)</option>
+                         <option value="Brasil">Brasil</option>
+                         <option value="México">México</option>
+                         <option value="Otro">Otro</option>
+                     </select>
+                 </div>
+
+                <h2>Documentación</h2>
+                 <div class="form-group">
+                     <label for="resumeFile">Adjuntar CV/Hoja de Vida:</label>
+                     <input type="file" id="resumeFile" name="resumeFile" required aria-required="true" accept=".pdf,.doc,.docx,.txt">
+                     <small class="file-note">Formatos aceptados: PDF, DOC, DOCX, TXT. Tamaño máximo: 5MB.</small>
+                 </div>
+
+                 <div class="form-group">
+                     <label for="coverLetter">Carta de Presentación o Mensaje Adicional (Opcional):</label>
+                     <textarea id="coverLetter" name="coverLetter" rows="5" placeholder="Escribe aquí por qué eres el candidato ideal..."></textarea>
+                 </div>
+
+
+                 <p id="formMessage" class="form-feedback" style="display: none;" aria-live="assertive"></p>
+
+                 <button type="submit" id="submitApplicationButton" class="btn btn-naranja">Enviar Aplicación</button>
+
+             </form>
+        </section>
+
+    </main>
+
+    <footer class="footer bg-azul-oscuro">
+        <div class="container text-blanco">
+            <p>© 2023 ExpressBoxRD. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+
+    <script src="assets/js/aplicar.js"></script>
+
+</body>
+</html>

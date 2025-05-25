@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regístrate - ExpressBoxRD</title>
+    <link rel="stylesheet" href="assets/css/registrate.css"> <!-- Manteniendo tu CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CAMBIAR: Ruta a tu favicon (asumo que es el mismo que el logo) -->
+    <link rel="shortcut icon" href="assets/images/logo.jpg" type="image/x-icon">
+</head>
+<body>
+
+    <div class="register-container">
+        <div class="register-box animate-fade-in">
+            <a href="index.html" class="logo-link">
+                <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="company-logo">
+            </a>
+
+            <h1>Crea tu Cuenta ExpressBoxRD</h1>
+            <p class="register-subtitle">Únete para gestionar tus envíos de forma fácil y rápida.</p>
+
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="fullName">Nombre Completo</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Tu nombre y apellido">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                </div>
+
+                <div class="form-group password-group">
+                    <label for="password">Crear Contraseña</label>
+                    <input type="password" id="password" name="password" required placeholder="Mínimo 8 caracteres" minlength="8">
+                    <span class="toggle-password" id="togglePassword" aria-label="Mostrar contraseña">
+                        <i class="far fa-eye"></i>
+                    </span>
+                </div>
+
+                <!-- === NUEVO CAMPO === -->
+                <div class="form-group">
+                    <label for="expressBoxCode">Tu Código Único ExpressBoxRD (EB-)</label>
+                    <input type="text" id="expressBoxCode" name="expressBoxCode" required placeholder="Ej: EB-83879XX (Obtenlo en sucursal)">
+                    <small>Este código es necesario para vincular tus paquetes. Lo obtienes en nuestras sucursales.</small>
+                </div>
+                <!-- ================= -->
+
+                 <div class="form-group">
+                    <label for="address">Dirección Principal</label>
+                    <input type="text" id="address" name="address" required placeholder="Calle, Número, Sector">
+                </div>
+                 <div class="form-group">
+                    <label for="city">Ciudad</label>
+                    <input type="text" id="city" name="city" required placeholder="Ciudad de residencia">
+                 </div>
+
+                 <div class="form-group purpose-title">
+                    <label>Propósito Principal de la Cuenta:</label>
+                 </div>
+                 <div class="purpose-options">
+                    <div class="radio-option">
+                        <input type="radio" id="purposeReceive" name="accountPurpose" value="receive" required>
+                        <label for="purposeReceive"><i class="fas fa-download icon-radio"></i> Recibir Paquetes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="purposeSend" name="accountPurpose" value="send" required>
+                        <label for="purposeSend"><i class="fas fa-paper-plane icon-radio"></i> Enviar Paquetes</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="purposeBoth" name="accountPurpose" value="both" required>
+                        <label for="purposeBoth"><i class="fas fa-exchange-alt icon-radio"></i> Ambos</label>
+                    </div>
+                 </div>
+
+                 <p id="formMessage" class="form-feedback" style="display: none;"></p>
+                <button type="submit" id="registerButton" class="btn btn-naranja btn-register">Registrarse</button>
+            </form>
+
+            <p class="login-link">¿Ya tienes cuenta? <a href="inicio.html">Inicia Sesión aquí</a></p>
+            <p class="privacy-note">🔒 Al registrarte, aceptas nuestros <a href="terminos.html">Términos</a> y <a href="politicas.html">Política de Privacidad</a>.</p>
+        </div>
+    </div>
+<span class="toggle-password" id="togglePassword" aria-label="Mostrar contraseña">
+    <i class="far fa-eye"></i> <!-- or fas fa-eye -->
+</span>
+    <script src="assets/js/registrate.js"></script> <!-- Manteniendo tu JS original para esta página -->
+</body>
+</html>

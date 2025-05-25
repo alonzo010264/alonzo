@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat de Soporte - ExpressBoxRD</title>
+    <!-- CAMBIAR: Nombre del CSS -->
+    <link rel="stylesheet" href="assets/css/chat.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="chat-app-container">
+        <header class="chat-header">
+            <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="chat-logo">
+            <h1>Soporte en Vivo ExpressBoxRD</h1>
+            <span id="agentStatus" class="agent-status offline">Agente Desconectado</span>
+        </header>
+
+        <div class="chat-window">
+            <div id="initialMessageScreen" class="initial-message-screen">
+                <p>Bienvenido al chat de soporte.</p>
+                <button id="startChatButton" class="btn btn-naranja">Iniciar Chat</button>
+            </div>
+
+            <div id="queueMessageScreen" class="queue-message-screen" style="display: none;">
+                <p><i class="fas fa-hourglass-half"></i> Gracias por esperar. Todos nuestros agentes están ocupados.</p>
+                <p>Estás en la posición <strong id="queuePosition">#X</strong> de la cola.</p>
+                <p>Un agente te atenderá pronto.</p>
+            </div>
+
+            <div id="chatBox" class="chat-box" style="display: none;">
+                <!-- Mensajes del chat se añadirán aquí -->
+            </div>
+
+            <div id="chatInputContainer" class="chat-input-container" style="display: none;">
+                <button id="attachFileButton" class="attach-btn" title="Adjuntar imagen (simulado)">
+                    <i class="fas fa-paperclip"></i>
+                </button>
+                <input type="file" id="fileInput" style="display: none;" accept="image/*">
+                <textarea id="messageInput" placeholder="Escribe tu mensaje aquí..." rows="1"></textarea>
+                <button id="sendMessageButton" class="send-btn" title="Enviar mensaje">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAMBIAR: Nombre del JS -->
+    <script src="assets/js/cliente.js"></script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+/* ===== Variables y Reset (Como en otros paneles de admin) ===== */
+:root{--amarillo-principal:#FFDB00;--azul-oscuro:#0D2F4F;--naranja-acento:#F37021;--blanco:#FFFFFF;--gris-claro:#f8f9fa;--gris-medio:#e9ecef;--gris-oscuro:#6c757d;--texto-panel:#343a40;--verde-exito:#198754;--color-error:#dc3545;--rojo-eliminar:#bb2d3b;--azul-info:#0dcaf0;--color-aduana:#6f42c1;--color-unknown:#fd7e14;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--fuente-principal);background-color:var(--gris-claro);color:var(--texto-panel);line-height:1.6;font-size:15px;}
+a{text-decoration:none;color:var(--naranja-acento);}
+button{font-family:inherit;cursor:pointer;}
+.container{max-width:1200px;margin:0 auto;padding:0 1.5rem;}
+
+/* ===== Layout Principal Admin ===== */
+.admin-layout { display: flex; min-height: 100vh; }
+
+/* Sidebar (Reutilizar de otros admin si es idéntica) */
+.sidebar{width:250px;background-color:var(--azul-oscuro);color:var(--blanco);display:flex;flex-direction:column;flex-shrink:0;box-shadow:2px 0 10px rgba(0,0,0,0.1);position:fixed;left:0;top:0;height:100%;z-index:100;overflow-y:auto;}
+.sidebar-header{padding:1.5rem 1rem;text-align:center;border-bottom:1px solid rgba(255,255,255,0.1);}
+.admin-logo{max-width:80%;height:auto;}
+.sidebar-nav{margin-top:1rem;}
+.sidebar-nav ul{list-style:none;}
+.sidebar-nav li a{display:flex;align-items:center;padding:0.8rem 1.5rem;color:var(--gris-claro);font-size:0.95rem;transition:all .2s ease;border-left:4px solid transparent;}
+.sidebar-nav li a .icon{margin-right:1rem;font-size:1.1em;width:20px;text-align:center;}
+.sidebar-nav li a:hover{background-color:rgba(255,255,255,0.05);color:var(--blanco);}
+.sidebar-nav li.active a{background-color:rgba(255,255,255,0.1);color:var(--amarillo-principal);font-weight:600;border-left-color:var(--amarillo-principal);}
+
+/* Contenido Principal */
+.main-content{flex-grow:1;padding:1.5rem 2rem;margin-left:250px;animation:fadeInAdmin .5s ease-out;}
+@keyframes fadeInAdmin {from{opacity:0;} to{opacity:1;}}
+
+.main-header-admin{padding-bottom:1rem;margin-bottom:2rem;border-bottom:1px solid var(--gris-medio); display: flex; justify-content: space-between; align-items: center;}
+.main-header-admin h1{font-size:1.8rem;color:var(--azul-oscuro);margin:0;text-align:left;}
+
+.admin-section{background-color:var(--blanco);padding:2rem;border-radius:8px;box-shadow:0 3px 10px rgba(0,0,0,0.06);margin-bottom:2.5rem;border:1px solid var(--gris-medio);}
+.admin-section h2{font-size:1.5rem;margin-bottom:1.5rem;color:var(--azul-oscuro);text-align:left;border-bottom:none;display:flex; align-items:center; gap: 0.7rem;}
+.admin-section h2 i {color:var(--naranja-acento); font-size: 0.9em;}
+
+/* Dashboard Stats */
+.stats-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;}
+.stat-card {background-color: var(--gris-claro);padding: 1.5rem;border-radius: 5px;text-align: center;border:1px solid var(--gris-medio);}
+.stat-card i {font-size: 2rem;color: var(--azul-oscuro);margin-bottom: 0.5rem;display: block;}
+.stat-card span {font-size: 2.2rem;font-weight: 700;color: var(--naranja-acento);display: block;}
+
+/* Formulario Admin */
+.admin-form { margin-top: 1rem;}
+.form-row { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.form-group { margin-bottom: 1.2rem; flex: 1; min-width: calc(50% - 0.75rem); }
+.form-group label { display: block; margin-bottom: 0.4rem; font-weight: 600; font-size: 0.9rem; }
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+    width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--gris-medio); border-radius: 5px; font-size: 1rem; font-family: inherit;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--azul-oscuro); box-shadow: 0 0 0 2px rgba(13, 47, 79, 0.15); }
+.form-group textarea { resize: vertical; min-height: 70px; }
+.form-group select {appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%236c757d'%3E%3Cpath fill-rule='evenodd' d='M8 11.5a.5.5 0 0 1-.354-.146l-4-4a.5.5 0 0 1 .708-.708L8 10.293l3.646-3.647a.5.5 0 0 1 .708.708l-4 4A.5.5 0 0 1 8 11.5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.7rem center; background-size: 1em; padding-right: 2.5rem; cursor: pointer;}
+.form-group small { display: block; font-size: 0.8rem; color: var(--gris-oscuro); margin-top: 0.2rem; }
+.checkbox-group-admin { display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem; border-top: 1px dashed var(--gris-medio); padding-top: 1.2rem;}
+.checkbox-group-admin input[type="checkbox"] { width: auto; margin-right: 0.3rem; transform: scale(1.2); accent-color: var(--naranja-acento);}
+.checkbox-group-admin label { margin-bottom: 0; font-weight: normal; cursor: pointer; display: flex; align-items: center; gap: 0.4rem;}
+.calculated-taxes { margin: 1rem 0; font-size: 1rem; text-align: right; }
+.calculated-taxes strong { color: var(--naranja-acento); font-size: 1.1em;}
+
+/* Feedback Formulario */
+.form-feedback-admin { margin-top: 1rem; padding: 0.8rem; border-radius: 5px; font-weight: 500; font-size: 0.95rem; display: none; text-align: center; }
+.form-feedback-admin.success { background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; }
+.form-feedback-admin.error { background-color: #f8d7da; color: #842029; border: 1px solid #f5c2c7; }
+
+/* Tablas Admin */
+.search-input-admin { width: 100%; max-width: 450px; padding: 0.7rem 1rem; border: 1px solid var(--gris-medio); border-radius: 5px; font-size: 0.95rem; margin-bottom: 1rem;}
+.table-responsive-admin { overflow-x: auto; }
+#adminUserListTable, #adminPackageListTable, #adminPreAlertsTable, #adminPromoCodesTable { /* Asumo un ID para promos */
+    width: 100%; border-collapse: collapse; min-width: 700px;
+}
+#adminUserListTable th, #adminUserListTable td,
+#adminPackageListTable th, #adminPackageListTable td,
+#adminPreAlertsTable th, #adminPreAlertsTable td,
+#adminPromoCodesTable th, #adminPromoCodesTable td {
+    padding:.7rem .9rem; text-align:left; border-bottom:1px solid var(--gris-medio); vertical-align:middle; font-size:0.9rem;
+}
+#adminUserListTable th, #adminPackageListTable th, #adminPreAlertsTable th, #adminPromoCodesTable th {
+    background-color:var(--gris-claro); font-weight:600; color:var(--azul-oscuro); font-size:.8rem; text-transform:uppercase; white-space: nowrap;
+}
+#adminUserListTable tbody tr:hover, #adminPackageListTable tbody tr:hover,
+#adminPreAlertsTable tbody tr:hover, #adminPromoCodesTable tbody tr:hover {background-color:#f1f5f9;}
+.info-message-admin { text-align: center; padding: 1.5rem; color: var(--gris-oscuro); font-style: italic;}
+/* Estilos de estado (copiar de style-mi-cuenta.css si son los mismos) */
+.status-customs { display: inline-flex; align-items: center; gap: 0.4em; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600; text-transform: capitalize; }
+.status-customs i { font-size: 0.9em; }
+/* Añade aquí tus clases de estado: .status-pending_payment, .status-paid_customs, etc. */
+.status-received_warehouse_origin { background-color: var(--azul-oscuro); color: var(--blanco); }
+.status-in_transit_to_rd { background-color: var(--azul-info); color: var(--blanco); }
+.status-customs_rd { background-color: var(--color-aduana); color: var(--blanco); }
+.status-ready_for_dispatch_cd { background-color: var(--naranja-acento); color: var(--blanco); }
+.status-out_for_delivery_rd { background-color: var(--amarillo-principal); color: var(--azul-oscuro); border: 1px solid var(--azul-oscuro);}
+.status-delivered_rd { background-color: var(--verde-exito); color: var(--blanco); }
+.status-pending_payment_customs { background-color: var(--naranja-acento); color: var(--blanco); }
+.status-paid_customs { background-color: var(--verde-exito); color: var(--blanco); }
+.status-unknown_package_admin { background-color: var(--color-unknown); color: var(--blanco); }
+
+
+/* Promo List Admin (Reutilizar de digitacion-sucursal o adaptar) */
+.promo-list-admin { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed var(--gris-medio); }
+.promo-list-admin h3 { font-size: 1.1rem; margin-bottom: 0.5rem; text-align: left;}
+#adminExistingPromosList { list-style: none; padding: 0; }
+#adminExistingPromosList li { background-color: var(--gris-claro); padding: 0.5rem 1rem; margin-bottom: 0.5rem; border-radius: 4px; font-size: 0.9rem; display: flex; justify-content: space-between; align-items: center;}
+#adminExistingPromosList .promo-code-value { font-weight: bold; font-family: monospace; color: var(--azul-oscuro);}
+#adminExistingPromosList .promo-discount-value { color: var(--verde-exito); }
+#adminExistingPromosList .delete-promo-btn-admin { background: none; border: none; color: var(--rojo-eliminar); cursor: pointer; font-size: 1.1em;}
+
+
+/* Botones Generales */
+.btn{display:inline-flex; align-items: center; gap: 0.6rem; padding:.8rem 1.8rem;border:none;border-radius:5px;font-weight:700;cursor:pointer;transition:all .3s ease;text-align:center;font-size:1rem;text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.5;}
+.btn i { font-size: 0.9em; }
+.btn-naranja{background-color:var(--naranja-acento);color:var(--blanco); border: 2px solid var(--naranja-acento);}
+.btn-naranja:hover:not(:disabled){background-color:#d95f1a;transform:scale(1.02);color:var(--blanco); border-color: #d95f1a;}
+.btn:disabled { background-color: var(--gris-oscuro); border-color: var(--gris-oscuro); cursor: not-allowed; opacity: 0.7; }
+.btn-azul{background-color:var(--azul-oscuro);color:var(--blanco);border: 2px solid var(--azul-oscuro);}
+.btn-azul:hover{background-color:transparent;color:var(--azul-oscuro);transform: scale(1.05);}
+.btn-verde { background-color: var(--verde-exito); color: var(--blanco); border: 2px solid var(--verde-exito); }
+.btn-verde:hover:not(:disabled) { background-color: #147a41; border-color: #147a41; transform: scale(1.02); }
+.btn-danger { background-color: var(--rojo-eliminar); color: var(--blanco); border: 1px solid var(--rojo-eliminar); }
+.btn-danger:hover:not(:disabled) { background-color: #a0232f; border-color: #a0232f; }
+.small-btn { padding: 0.5rem 1rem; font-size: 0.85rem; text-transform: none; letter-spacing: normal;}
+
+
+/* Footer */
+.panel-footer{padding:1rem 0;text-align:center;font-size:0.9rem;margin-top:auto;background-color: var(--azul-oscuro);}
+.panel-footer p{color:var(--blanco);margin-bottom: 0;}
+
+/* Responsividad (Adaptar de otros paneles admin) */
+@media(max-width: 992px){
+    .sidebar{width:60px;overflow:hidden;}
+    .sidebar:hover{width:250px;}
+    .sidebar-header .admin-logo{display:none;}
+    .sidebar:hover .sidebar-header .admin-logo{display:block;}
+    .sidebar-nav li a span:not(.icon){display:none;}
+    .sidebar:hover .sidebar-nav li a span:not(.icon){display:inline;}
+    .sidebar-nav li a{justify-content:center;padding:.8rem .5rem;}
+    .sidebar-nav li a .icon{margin-right:0;}
+    .main-content{margin-left:60px;padding:1.5rem;}
+}
+@media(max-width: 768px){
+    .sidebar{display:none;}
+    .main-content{margin-left:0;padding:1rem;}
+    .main-header-admin h1{font-size:1.5rem;}
+    .admin-section h2{font-size:1.3rem;}
+    .admin-form, .table-responsive-admin { font-size: 0.9rem; } /* Reducir tamaño general en tablas/forms */
+    .form-group { min-width: 100%; }
+    .form-row { flex-direction: column; gap: 0; margin-bottom: 0;}
+    .form-group:not(:last-child) { margin-bottom: 1rem;}
+}
+
+/* ... (tus estilos existentes de admin.css) ... */
+
+/* Sidebar Badge for Open Tickets */
+.sidebar-badge {
+    background-color: var(--naranja-acento);
+    color: var(--blanco);
+    font-size: 0.75em;
+    padding: 0.1em 0.5em;
+    border-radius: 10px;
+    margin-left: 0.5em;
+    font-weight: bold;
+}
+
+/* Admin Modal Styling (Generic, can be reused) */
+.modal-overlay { /* Ensure this is defined if not already from cuenta.css context */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1010; /* Higher than sidebar */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+.admin-modal-content { /* Specific styling for admin modals */
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 600px; /* Wider for admin forms */
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+.admin-modal-content h3 {
+    color: var(--azul-oscuro);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--gris-medio);
+    padding-bottom: 1rem;
+}
+.modal-close-btn { /* Ensure this is defined */
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--gris-oscuro);
+    cursor: pointer;
+    line-height: 1;
+}
+.modal-close-btn:hover {
+    color: var(--rojo-eliminar); /* Using admin panel's red */
+}
+
+/* Edit User Form in Modal */
+#editUserForm .form-group label { /* Ensure labels are styled if not globally */
+    font-weight: 600;
+    margin-bottom: .3rem;
+}
+#editUserForm select, #editUserForm input, #editUserForm textarea {
+    margin-bottom: .8rem; /* Spacing below inputs in modal form */
+}
+#editUserForm h4 { /* For Address subtitle */
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    color: var(--azul-oscuro);
+    border-top: 1px dashed var(--gris-medio);
+    padding-top: 1rem;
+}
+#editUserForm .form-group select option i { /* For icons in select, may not render directly */
+    margin-right: 5px; 
+}
+/* If icons don't render in <option>, consider custom select or just text */
+
+
+/* Support Tickets Table Actions */
+#adminSupportTicketsTable .ticket-status {
+    padding: 0.2em 0.6em;
+    border-radius: 10px;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: var(--blanco);
+}
+#adminSupportTicketsTable .ticket-status-abierto { background-color: var(--naranja-acento); }
+#adminSupportTicketsTable .ticket-status-en_proceso { background-color: var(--azul-info); }
+#adminSupportTicketsTable .ticket-status-resuelto { background-color: var(--verde-exito); }
+
+#adminSupportTicketsTable .action-view-ticket i { color: var(--azul-oscuro); }
+#adminSupportTicketsTable .action-resolve-ticket i { color: var(--verde-exito); }
+
+/* Support Ticket Detail Modal (if you add one) */
+#ticketDetailModalContent {
+    text-align: left;
+}
+#ticketDetailModalContent h4 {
+    font-size: 1.1rem;
+    color: var(--azul-oscuro);
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+#ticketDetailModalContent p {
+    background-color: var(--gris-claro);
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    border: 1px solid var(--gris-medio);
+    margin-bottom: 1rem;
+    white-space: pre-wrap; /* To respect newlines in message */
+}
+/* admin.css */
+.btn-danger {
+    background-color: var(--rojo-eliminar, #dc3545); /* Use your variable or a default red */
+    color: var(--blanco, #FFFFFF);
+    /* border: 1px solid var(--rojo-eliminar, #dc3545); */ /* Optional border */
+}
+.btn-danger:hover:not(:disabled) {
+    background-color: #bb2d3b; /* Darker red on hover */
+    /* border-color: #a0232f; */
+}
+.table-actions .btn-icon-action.btn-danger i { /* Ensure icon color is white on red button */
+    color: var(--blanco, #FFFFFF) !important; 
+}
+.table-actions .btn-icon-action.btn-danger:hover i {
+    color: var(--blanco, #FFFFFF) !important;
+}
+/* ... (your existing admin.css) ... */
+
+/* Sidebar Badge (General, if not already styled well) */
+.sidebar-badge {
+    background-color: var(--naranja-acento);
+    color: var(--blanco);
+    font-size: 0.75em;
+    padding: 0.1em 0.5em;
+    border-radius: 10px;
+    margin-left: 0.5em;
+    font-weight: bold;
+    vertical-align: middle; /* Align with text */
+}
+
+/* Autorizaciones de Retiro Table */
+#adminPickupAuthTable .auth-status {
+    padding: 0.2em 0.6em;
+    border-radius: 10px;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: var(--blanco);
+    white-space: nowrap;
+}
+#adminPickupAuthTable .auth-status-pendiente { background-color: var(--naranja-acento); }
+#adminPickupAuthTable .auth-status-utilizada { background-color: var(--verde-exito); }
+#adminPickupAuthTable .auth-status-vencida { background-color: var(--gris-oscuro); }
+
+#adminPickupAuthTable .action-mark-used i { color: var(--verde-exito); }
+#adminPickupAuthTable .action-view-details i { color: var(--azul-oscuro); }
+
+/* Ensure stat card icons are consistent */
+.stats-grid .stat-card i {
+    font-size: 2rem; /* Or your preferred size */
+    color: var(--azul-oscuro);
+    margin-bottom: 0.5rem;
+    display: block;
+}

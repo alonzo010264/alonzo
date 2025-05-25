@@ -1,0 +1,126 @@
+/* ===== Variables y Reset (Similar a otros) ===== */
+:root{--amarillo-principal:#FFDB00;--azul-oscuro:#0D2F4F;--naranja-acento:#F37021;--blanco:#FFFFFF;--gris-claro:#f8f9fa;--gris-medio:#e9ecef;--gris-oscuro:#6c757d;--texto-principal:#333;--fuente-principal:'Poppins',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--fuente-principal);line-height:1.7;color:var(--texto-principal);background-color:var(--blanco);display:flex;flex-direction:column;min-height:100vh;}
+main{flex-grow:1;}
+h1,h2,h3{color:var(--azul-oscuro);margin-bottom:1rem;line-height:1.3;}
+h1{font-size:2.8rem;text-align:center;}
+h2{font-size:2rem;text-align:center;margin-bottom:2.5rem;}
+.section-title { /* Estilo común para títulos de sección */
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--naranja-acento);
+    display: inline-block; /* Ajustar borde al texto */
+    margin-bottom: 2.5rem; /* Espacio debajo */
+    position: relative; /* Para centrado */
+    left: 50%;
+    transform: translateX(-50%);
+}
+h3{font-size:1.4rem;color:var(--azul-oscuro);margin-bottom:1rem;}
+a{color:var(--naranja-acento);text-decoration:none;font-weight:600;}
+a:hover{text-decoration:underline;}
+img{max-width:100%;height:auto;display:block;border-radius:8px;}
+p{margin-bottom:1.1rem;color:#444; font-size: 1rem;} /* Párrafos ligeramente más oscuros */
+ul{list-style:none;padding-left:0;margin:1.5rem 0;}
+li{padding-left:30px;position:relative;margin-bottom:0.8rem; font-size: 1rem;}
+.icon-bullet{position:absolute;left:0;top:1px;color:var(--naranja-acento);font-size:1.3em;line-height: 1;}
+
+.container{max-width:1100px;margin:0 auto;padding:0 1.5rem;}
+.bg-blanco{background-color:var(--blanco);}
+.bg-azul{background-color:var(--azul-oscuro);}
+.bg-naranja{background-color:var(--naranja-acento);}
+.bg-azul-oscuro{background-color:var(--azul-oscuro);}
+.bg-gris-claro{background-color:var(--gris-claro);}
+.text-blanco{color:var(--blanco) !important;}
+.text-blanco h1,.text-blanco h2,.text-blanco h3,.text-blanco p{color:var(--blanco);}
+.text-blanco a{color:var(--amarillo-principal);}
+.text-center { text-align: center; }
+
+/* ===== Encabezado ===== */
+.donations-header{padding:1rem 0;border-bottom:1px solid var(--gris-medio);background-color: var(--blanco); margin-bottom: 0;}
+.donations-header .container{display:flex;justify-content:center;}
+.donations-header .company-logo{max-width:200px;height: auto;}
+
+/* ===== Hero Section ===== */
+.donations-hero{padding:4rem 1.5rem;text-align:center;}
+.donations-hero h1{margin-bottom:0.5rem;}
+.donations-hero .subtitle{font-size:1.2rem;max-width:800px;margin:0.5rem auto 0 auto;color: var(--gris-claro); opacity: 0.95;}
+
+/* ===== Secciones Generales ===== */
+.commitment-section, .courts-section, .future-section {
+    padding: 4rem 0;
+}
+.commitment-content {
+    max-width: 850px; /* Limitar ancho del texto */
+    margin: 0 auto;
+    text-align: center; /* Centrar párrafo introductorio */
+}
+.commitment-content p {
+    font-size: 1.1rem; /* Texto introductorio un poco más grande */
+    line-height: 1.8;
+    color: var(--texto-principal);
+}
+
+/* Sección Canchas */
+.courts-section { border-top: 1px solid var(--gris-medio); border-bottom: 1px solid var(--gris-medio); }
+.courts-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+    gap: 3rem;
+    align-items: center;
+}
+.courts-text h3 { text-align: left; /* Alinear h3 a la izquierda */ }
+.courts-image img { box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+
+/* Sección Futuro */
+.future-section p {
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+}
+
+/* Botón */
+.btn{display:inline-block;padding:.9rem 2rem;border:none;border-radius:5px;font-weight:700;cursor:pointer;transition:background-color .3s ease,transform .2s ease, color .3s ease;text-align:center;font-size:1rem;text-transform: uppercase; letter-spacing: 0.5px;}
+.btn-naranja{background-color:var(--naranja-acento);color:var(--blanco); border: 2px solid var(--naranja-acento);}
+.btn-naranja:hover{background-color:#d95f1a;transform:scale(1.03);color:var(--blanco); border-color: #d95f1a;}
+/* Puedes añadir .btn-azul si lo usas */
+.btn-azul{background-color:var(--azul-oscuro);color:var(--blanco);border: 2px solid var(--azul-oscuro);}
+.btn-azul:hover{background-color:transparent;color:var(--azul-oscuro);transform: scale(1.05);}
+
+
+/* ===== Footer ===== */
+.footer{padding:1.5rem 0;text-align:center;font-size:0.9rem;margin-top:auto;}
+
+/* ===== Animaciones ===== */
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(25px);}to{opacity:1;transform:translateY(0);}}
+.animate-fade-in{opacity:0;animation:fadeIn 1s ease-out forwards;}
+.animate-slide-up{opacity:0;animation:slideUp 0.7s ease-out forwards;}
+/* Aplicar animaciones */
+.donations-hero .container { animation-delay: 0.1s; }
+.section-title { animation-delay: 0.1s; }
+.commitment-section .container { animation-delay: 0.2s; }
+.courts-content { animation-delay: 0.2s; }
+.future-section .container { animation-delay: 0.2s; }
+
+/* ===== Responsividad ===== */
+@media(max-width:992px){
+    h1{font-size:2.5rem;}h2{font-size:1.8rem;}
+    .courts-content{grid-template-columns: 1fr; gap: 2rem;} /* Apilar */
+    .courts-image{order: -1; margin-bottom: 1.5rem;} /* Imagen arriba */
+    .courts-text h3 { text-align: center; }
+}
+@media(max-width:768px){
+    h1{font-size:2.2rem;}h2{font-size:1.6rem;}h3{font-size:1.2rem;}
+    .container{padding:0 1rem;}
+    .commitment-section, .courts-section, .future-section{padding:3rem 0;}
+    .commitment-content p { font-size: 1rem; }
+}
+@media(max-width:576px){
+    h1{font-size:2rem;}h2{font-size:1.5rem;}
+    .donations-hero{padding:3rem 1rem;}
+    .donations-hero .subtitle{font-size: 1.1rem;}
+    .section-title { margin-bottom: 2rem; }
+}

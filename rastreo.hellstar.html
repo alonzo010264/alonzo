@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rastrea tu Envío Hellstar con ExpressBoxRD</title>
+    <link rel="shortcut icon" href="assets/images/logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/rastreo.hellstar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header class="tracking-client-header">
+        <div class="container header-client-content">
+            <div class="logos-container">
+                <img src="assets/images/logo.jpg" alt="Logo Hellstar" class="partner-logo-client">
+                <span class="plus-icon"><i class="fas fa-plus"></i></span>
+                <img src="logo rolfi.png" alt="Logo ExpressBoxRD" class="expressbox-logo-client">
+            </div>
+            <h1>Seguimiento de tu Compra Hellstar</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="search-client-section animate-fade-in">
+            <p>Ingresa el <strong>código de rastreo original</strong> que te proporcionó Hellstar o la tienda donde compraste:</p>
+            <div class="search-wrapper">
+                <input type="text" id="clientTrackingInput" placeholder="Tu código de rastreo original aquí..." aria-label="Código de Rastreo Original">
+                <button id="clientTrackButton" class="btn btn-naranja">
+                    <i class="fas fa-search"></i> Rastrear
+                </button>
+            </div>
+        </section>
+
+        <section id="clientTrackingResults" class="results-client-section" style="display: none;">
+            <h2 id="clientTrackingCodeHeader">Resultados para: XXXXXXXX</h2>
+            <p class="package-owner">Paquete para: <strong id="clientPackageOwner"></strong></p>
+            <ul class="tracking-timeline" id="clientTimelineList">
+                <!-- El historial de rastreo se insertará aquí -->
+            </ul>
+            <p id="clientErrorMessage" class="error-message" style="display: none;"></p>
+        </section>
+
+        <section class="info-note animate-slide-up">
+            <p><i class="fas fa-info-circle"></i> Este seguimiento muestra el progreso de tu paquete una vez que llega a manos de <strong>ExpressBoxRD</strong> para su envío a República Dominicana. Para el rastreo previo, consulta con Hellstar o el transportista original.</p>
+        </section>
+    </main>
+
+    <footer class="footer bg-azul-oscuro">
+        <div class="container text-blanco">
+            <p>© 2023 Una colaboración Hellstar y ExpressBoxRD.</p>
+        </div>
+    </footer>
+
+    <!-- Script para la lógica de rastreo del cliente -->
+    <script src="assets/js/rastreo.hellstar.js"></script>
+</body>
+</html>

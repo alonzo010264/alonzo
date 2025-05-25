@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planes y Tarifas - ExpressBoxRD</title>
+    <link rel="stylesheet" href="assets/css/planes.css">
+    <link rel="shortcut icon" href="assets/images/logo.jpg" type="image/svg+xml">
+</head>
+    <body>
+
+    <header class="plans-header">
+        <div class="container">
+            <!-- Logo -->
+            <a href="index.html">
+                 <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="company-logo">
+            </a>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Sección Hero / Título Principal -->
+        <section class="plans-hero">
+            <div class="container animate-fade-in">
+                <h1>Nuestros Planes de Suscripción</h1>
+                <p class="subtitle">Elige el plan que mejor se adapta a tus necesidades y disfruta de beneficios exclusivos.</p>
+            </div>
+        </section>
+
+        <!-- Sección Cuadrícula de Planes -->
+        <section class="pricing-grid-section">
+            <div class="container pricing-grid">
+
+                <!-- Plan 1: Básico -->
+                <div class="plan-card animate-slide-up">
+                    <h3 class="plan-name">Plan Básico</h3>
+                    <div class="plan-price">
+                        <span class="amount">$2.99</span><span class="period">/mes</span>
+                    </div>
+                    <p class="plan-description">Ideal para empezar y recibir cómodamente.</p>
+                    <ul class="plan-features">
+                        <li><span class="icon">🏠</span> Recibe tus paquetes directo en casa (Válido por 1 mes)</li>
+                        <li><span class="icon">✅</span> Acceso a red de sucursales</li>
+                        <li><span class="icon">🔍</span> Rastreo estándar online</li>
+                    </ul>
+                    <button class="btn btn-plan btn-outline" data-plan="Básico">Obtener Plan</button>
+                </div>
+
+                <!-- Plan 2: Plus (Recomendado) -->
+                <div class="plan-card popular animate-slide-up" style="animation-delay: 0.15s;">
+                    <div class="popular-badge">Recomendado</div>
+                    <h3 class="plan-name">Plan Plus</h3>
+                    <div class="plan-price">
+                        <span class="amount">$20</span><span class="period">/mes</span>
+                    </div>
+                    <p class="plan-description">Más beneficios y tranquilidad para tus compras online.</p>
+                    <ul class="plan-features">
+                        <li><span class="icon">🏠</span> **Todos los envíos** directo a tu casa ¡GRATIS!</li>
+                        <li><span class="icon">🔍</span> Rastreo detallado y seguro (Ideal para Temu, Amazon, etc.)</li>
+                        <li><span class="icon">🛡️</span> Garantía de entrega en buen estado</li>
+                        <li><span class="icon">✅</span> Acceso a red de sucursales</li>
+                    </ul>
+                    <button class="btn btn-plan btn-naranja" data-plan="Plus">Obtener Plan</button> <!-- Botón destacado -->
+                </div>
+
+                <!-- Plan 3: Premium -->
+                <div class="plan-card animate-slide-up" style="animation-delay: 0.3s;">
+                    <h3 class="plan-name">Plan Premium</h3>
+                    <div class="plan-price">
+                         <span class="amount">$30</span><span class="period">/mes</span>
+                    </div>
+                    <p class="plan-description">La experiencia completa con soporte prioritario.</p>
+                    <ul class="plan-features">
+                         <li><span class="icon">🏠</span> **Todos los envíos** directo a tu casa ¡GRATIS!</li>
+                         <li><span class="icon">🔍</span> Rastreo detallado y seguro</li>
+                         <li><span class="icon">🛡️</span> Garantía de entrega en buen estado</li>
+                         <li><span class="icon">⭐</span> **Asesoría personalizada** en logística</li>
+                         <li><span class="icon">📞</span> **Soporte al cliente prioritario 24/7** (con código)</li>
+                         <li><span class="icon">✅</span> Acceso a red de sucursales</li>
+                    </ul>
+                    <button class="btn btn-plan btn-outline" data-plan="Premium">Obtener Plan</button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer bg-azul-oscuro">
+        <div class="container text-blanco">
+            <p>© 2023 ExpressBoxRD. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal/Popup para Simulación de Pago (Oculto inicialmente) -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content animate-fade-in">
+            <span class="close-modal" title="Cerrar">×</span>
+            <h2>Confirmar Suscripción - Plan <span id="modalPlanName"></span></h2>
+            <p>Por favor, ingresa los datos de tu tarjeta para activar tu plan.</p>
+             <p class="simulation-notice"><strong>Nota:</strong> Esto es solo una simulación. No se realizará ningún cargo real.</p>
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label for="cardName">Nombre en la Tarjeta</label>
+                    <input type="text" id="cardName" required placeholder="Juan Pérez">
+                </div>
+                <div class="form-group">
+                    <label for="cardNumber">Número de Tarjeta</label>
+                    <input type="text" id="cardNumber" required placeholder="**** **** **** ****" pattern="\d{16}" title="Ingresa 16 dígitos">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cardExpiry">Fecha Expiración</label>
+                        <input type="text" id="cardExpiry" required placeholder="MM/AA">
+                    </div>
+                    <div class="form-group">
+                        <label for="cardCVC">CVV</label>
+                        <input type="text" id="cardCVC" required placeholder="123" pattern="\d{3}" title="Ingresa 3 dígitos">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-naranja btn-pay">Activar Plan (Simulación)</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script para interactividad -->
+    <script src="planes.js"></script>
+
+</body>
+</html>

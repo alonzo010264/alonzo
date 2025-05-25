@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - ExpressBoxRD</title>
+    <link rel="stylesheet" href="assets/css/contacto.css">
+
+    <link rel="shortcut icon" href="assets/images/logo.jpg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+
+
+    <header class="contact-header">
+        <div class="container">
+
+            <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="contact-logo">
+            <h1>Ponte en Contacto</h1>
+            <p>¿Tienes preguntas o necesitas una cotización? ¡Estamos aquí para ayudarte!</p>
+        </div>
+    </header>
+
+
+    <main class="contact-main container">
+
+        <div class="contact-wrapper animate-fade-in">
+
+
+            <div class="form-column animate-slide-up">
+                <h2>Envíanos un Mensaje</h2>
+                <form id="contact-form" action="#" method="POST">
+
+                     <div class="form-group">
+                        <label for="name">Nombre Completo:</label>
+                        <input type="text" id="name" name="name" required placeholder="Tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Teléfono (Opcional):</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+1 (XXX) XXX-XXXX">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Asunto:</label>
+                        <input type="text" id="subject" name="subject" required placeholder="Ej: Cotización de envío">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje:</label>
+                        <textarea id="message" name="message" rows="6" required placeholder="Escribe tu consulta aquí..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-naranja">Enviar Mensaje</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="info-column animate-slide-up" style="animation-delay: 0.2s;">
+                <h2>Información de Contacto</h2>
+                <div class="contact-details">
+
+                     <p>
+                        <span class="contact-icon">📞</span>
+                        <strong>Teléfono:</strong> <a href="tel:+1XXXYYYZZZZ">+1 8889-977-0986</a>
+                    </p>
+                    <p>
+                        <span class="contact-icon">✉️</span>
+                        <strong>Email:</strong> <a href="mailto:info@expressboxrd.com">info@expressboxrd.com</a>
+                    </p>
+                    <p>
+                        <span class="contact-icon">📍</span>
+                        <strong>Oficina principal</strong> miami florida united 4 code postal 3654 de 3 plantas.
+                    </p>
+                    <p>
+                         <span class="contact-icon">⏰</span>
+                         <strong>Horario:</strong> Lunes a Viernes: 9:00 AM - 6:00 PM / Sábados: 9:00 AM - 1:00 PM
+                     </p>
+                </div>
+
+
+                <div class="map-placeholder">
+                    <h3>Nuestra Ubicación</h3>
+                    <div id="map-embed">
+
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121000.1188901169!2d-70.01187396206516!3d18.48599781707644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf89f11008ab29%3A0xa972d1e59ef1e115!2sSanto%20Domingo%2C%20Dominican%20Republic!5e0!3m2!1sen!2sus!4v1678886400000!5m2!1sen!2sus"
+                            width="100%"
+                            height="300"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+
+    <footer class="footer bg-azul-oscuro">
+        <div class="container text-blanco">
+            <p>© 2023 ExpressBoxRD. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+
+
+</body>
+</html>

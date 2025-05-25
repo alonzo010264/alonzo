@@ -1,0 +1,259 @@
+/* ===== Variables de Color y Fuentes ===== */
+:root {
+    --amarillo-principal: #FFDB00;
+    --azul-oscuro: #0D2F4F;
+    --naranja-acento: #F37021;
+    --blanco: #FFFFFF;
+    --gris-claro: #f8f9fa;
+    --gris-medio: #e9ecef;
+    --gris-oscuro: #6c757d;
+    --texto-principal: #333;
+    --fuente-principal: 'Poppins', sans-serif;
+}
+
+/* ===== Reseteo Básico y Estilos Globales ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--fuente-principal);
+    line-height: 1.7;
+    color: var(--texto-principal);
+    background-color: var(--gris-claro);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+main { flex-grow: 1; }
+h1, h2, h3 { color: var(--azul-oscuro); margin-bottom: 1rem; line-height: 1.3; }
+h1 { font-size: 3rem; text-align: center; }
+h2 { font-size: 2rem; text-align: center; margin-bottom: 2rem; }
+h3 { font-size: 1.3rem; color: var(--naranja-acento); margin-top: 1.5rem; margin-bottom: 0.8rem; }
+a { color: var(--naranja-acento); text-decoration: none; font-weight: 600; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; height: auto; display: block; }
+p { margin-bottom: 1.1rem; }
+
+ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1.5rem; /* Espacio después de la lista */
+}
+li {
+    padding-left: 25px; /* Espacio para el icono/viñeta */
+    position: relative;
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+}
+.icon-bullet { /* Estilo para iconos o viñetas personalizadas en listas */
+    position: absolute;
+    left: 0;
+    color: var(--naranja-acento); /* Color del icono */
+    font-weight: bold;
+    font-size: 1.1em;
+}
+/* Si usas Font Awesome, reemplaza .icon-bullet por la clase del icono */
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* Utilidades de Color */
+.bg-blanco { background-color: var(--blanco); }
+.bg-azul { background-color: var(--azul-oscuro); }
+.bg-naranja { background-color: var(--naranja-acento); }
+.bg-azul-oscuro { background-color: var(--azul-oscuro); } /* Para el footer */
+.text-blanco { color: var(--blanco) !important; }
+.text-blanco h1, .text-blanco h2, .text-blanco h3, .text-blanco p { color: var(--blanco); }
+.text-blanco a { color: var(--amarillo-principal); } /* Enlaces claros */
+.text-blanco h3 { color: var(--amarillo-principal); } /* Títulos H3 claros */
+
+
+/* ===== Encabezado ===== */
+.consultoria-header {
+    background-color: var(--blanco);
+    padding: 1rem 0;
+    text-align: center;
+    border-bottom: 1px solid var(--gris-medio);
+    margin-bottom: 3rem;
+}
+.consultoria-header .company-logo { max-width: 180px; margin: 0 auto; }
+
+/* ===== Hero ===== */
+.consultoria-hero {
+    text-align: center;
+    padding: 1rem 0 3rem 0;
+    background-color: var(--amarillo-principal); /* Color distintivo */
+    margin-bottom: 3rem;
+    border-bottom: 5px solid var(--azul-oscuro);
+}
+.consultoria-hero h1 { color: var(--azul-oscuro); margin-bottom: 0.5rem; }
+.consultoria-hero .subtitle { font-size: 1.2rem; color: var(--azul-oscuro); max-width: 800px; margin: 0.5rem auto 0 auto; }
+
+/* ===== Secciones de Contenido General ===== */
+.que-ofrecemos-section, .para-quien-section, .proceso-section {
+    padding: 3.5rem 0; /* Padding vertical generoso */
+    margin-bottom: 3rem; /* Espacio entre secciones */
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08); /* Sombra */
+    overflow: hidden; /* Para la sombra */
+}
+.que-ofrecemos-section, .proceso-section { border: 1px solid var(--gris-medio); } /* Borde sutil */
+
+
+/* Estilo de la cuadrícula de contenido (texto + imagen) */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Texto más ancho que imagen */
+    gap: 3rem;
+    align-items: center;
+}
+.image-content img {
+     border-radius: 8px;
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+     width: 100%;
+     height: auto;
+     aspect-ratio: 1 / 1; /* Imagen cuadrada (ajusta si es necesario) */
+     object-fit: cover;
+}
+
+
+/* Estilo de la cuadrícula de público objetivo */
+.target-audience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+.audience-item {
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo semi-transparente claro */
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+}
+.audience-icon {
+    font-size: 2.5rem;
+    color: var(--amarillo-principal); /* Icono color amarillo */
+    margin-bottom: 1rem;
+}
+.audience-item h3 {
+    color: var(--blanco); /* Título H3 blanco */
+    font-size: 1.2rem;
+    margin-top: 0;
+}
+.audience-item p {
+    color: var(--gris-claro); /* Texto gris claro */
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* Estilo del proceso paso a paso */
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+    text-align: center;
+}
+.step {
+    background-color: var(--gris-claro);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--gris-medio);
+    position: relative;
+    padding-top: 3rem; /* Espacio para el número */
+}
+.step-number {
+    position: absolute;
+    top: -15px; /* Fuera del borde */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: var(--naranja-acento);
+    color: var(--blanco);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 3px solid var(--blanco);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.step h3 { font-size: 1.1rem; margin-top: 0.5rem; margin-bottom: 0.5rem;}
+.step p { font-size: 0.95rem; margin-bottom: 0;}
+
+
+/* ===== Sección CTA ===== */
+.consultoria-cta {
+    background-color: var(--naranja-acento);
+    color: var(--blanco);
+    padding: 3rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem; /* Espacio antes del footer */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+.consultoria-cta h2 { color: var(--azul-oscuro); margin-bottom: 1.5rem;}
+.consultoria-cta p { color: var(--blanco); margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;}
+
+.btn{display:inline-block;padding:0.9rem 2rem;border:none;border-radius:5px;font-weight:bold;cursor:pointer;transition:background-color 0.3s ease,transform 0.2s ease;text-align:center;font-size:1rem;}
+.btn-azul{background-color:var(--azul-oscuro);color:var(--blanco);}
+.btn-azul:hover{background-color:#1a4a75;transform:scale(1.05);color:var(--blanco);}
+
+
+/* ===== Footer ===== */
+.footer{padding:1.5rem 0;text-align:center;font-size:0.9rem;margin-top:auto; background-color: var(--azul-oscuro);}
+.footer p { color: var(--blanco); }
+
+/* ===== Animaciones ===== */
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+
+.animate-fade-in{opacity:0;animation:fadeIn 1s ease-out forwards;}
+.animate-slide-up{opacity:0;animation:slideUp 1s ease-out forwards;}
+
+/* Aplicar animaciones con retraso a secciones principales */
+.consultoria-hero .container { animation-delay: 0.1s; opacity: 0;}
+.que-ofrecemos-section { animation: slideUp 1s ease-out forwards; animation-delay: 0.3s; opacity: 0;}
+.para-quien-section { animation: fadeIn 1s ease-out forwards; animation-delay: 0.5s; opacity: 0;}
+.proceso-section { animation: slideUp 1s ease-out forwards; animation-delay: 0.7s; opacity: 0;}
+.consultoria-cta { animation: fadeIn 1s ease-out forwards; animation-delay: 0.9s; opacity: 0;}
+
+
+/* ===== Responsividad ===== */
+@media(max-width: 992px) {
+     h1 { font-size: 2.5rem; }
+     h2 { font-size: 1.8rem; }
+     .content-grid { grid-template-columns: 1fr; gap: 2rem; } /* Apilar contenido y imagen */
+     .image-content { order: -1; } /* Pone la imagen arriba */
+     .target-audience-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); } /* Ajuste columnas */
+     .process-steps { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); } /* Ajuste columnas */
+     .que-ofrecemos-section, .para-quien-section, .proceso-section { padding: 3rem 0; margin-bottom: 2rem;}
+}
+@media(max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.6rem; }
+    h3 { font-size: 1.2rem; }
+    .container { padding: 0 1rem; }
+    .consultoria-hero { padding-bottom: 2rem; margin-bottom: 2rem; }
+    .consultoria-hero .subtitle { font-size: 1.1rem; }
+    .que-ofrecemos-section, .para-quien-section, .proceso-section { padding: 2rem 0; }
+    .content-grid, .target-audience-grid, .process-steps { gap: 1.5rem; }
+    .consultoria-cta { padding: 2rem; margin-bottom: 2rem; }
+}
+@media(max-width: 480px) {
+    h1 { font-size: 1.8rem; }
+    .consultoria-header { margin-bottom: 2rem; }
+    h2 { font-size: 1.4rem; }
+    h3 { font-size: 1.1rem; margin-top: 1rem;}
+    .consultoria-hero { padding: 1rem 0 1.5rem 0; margin-bottom: 1.5rem;}
+    .consultoria-hero .subtitle { font-size: 1rem; }
+    .que-ofrecemos-section, .para-quien-section, .proceso-section { padding: 1.5rem 0; margin-bottom: 1.5rem;}
+    .content-grid, .target-audience-grid, .process-steps { gap: 1rem; }
+    .step { padding: 1.2rem; padding-top: 2.5rem; }
+    .step-number { width: 35px; height: 35px; font-size: 1.1rem; top: -12px; }
+    .consultoria-cta { padding: 1.5rem; margin-bottom: 1.5rem;}
+    .consultoria-cta h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+    .consultoria-cta p { margin-bottom: 1.5rem; font-size: 0.95rem; }
+    .btn { padding: 0.8rem 1.5rem; }
+}

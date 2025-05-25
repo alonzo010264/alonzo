@@ -1,0 +1,149 @@
+/* ===== Variables y Reset ===== */
+:root {
+    --amarillo-principal: #FFDB00;
+    --azul-oscuro: #0D2F4F;
+    --naranja-acento: #F37021;
+    --blanco: #FFFFFF;
+    --gris-claro: #f8f9fa;
+    --gris-medio: #e9ecef;
+    --gris-oscuro: #6c757d;
+    --texto-principal: #333;
+    --fuente-principal: 'Poppins', sans-serif;
+    --verde-exito: #198754; /* Verde más oscuro para éxito */
+    --color-error: #dc3545;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--fuente-principal);
+    line-height: 1.6;
+    color: var(--texto-principal);
+    background-color: var(--blanco); /* Fondo base blanco */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+main { flex-grow: 1; }
+h1, h2, h3 { color: var(--azul-oscuro); margin-bottom: 1rem; line-height: 1.3; }
+h1 { font-size: 2.8rem; text-align: center; }
+h2 { font-size: 2rem; text-align: center; margin-bottom: 2.5rem; }
+.section-title {
+    color: var(--azul-oscuro);
+    margin-bottom: 2.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--naranja-acento);
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+h3 { font-size: 1.3rem; color: var(--azul-oscuro); margin-bottom: 0.6rem; }
+a { color: var(--naranja-acento); text-decoration: none; font-weight: 600; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; height: auto; display: block; }
+p { margin-bottom: 1rem; color: #555; }
+ul { list-style: none; padding-left: 0; margin: 1rem 0; }
+li { padding-left: 25px; position: relative; margin-bottom: 0.8rem; }
+.icon-bullet { position: absolute; left: 0; top: 3px; color: var(--naranja-acento); font-weight: bold; font-size: 1em; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+.bg-blanco { background-color: var(--blanco); }
+.bg-azul { background-color: var(--azul-oscuro); }
+.bg-naranja { background-color: var(--naranja-acento); }
+.bg-azul-oscuro { background-color: var(--azul-oscuro); }
+.bg-gris-claro { background-color: var(--gris-claro); }
+.text-blanco { color: var(--blanco) !important; }
+.text-blanco h1, .text-blanco h2, .text-blanco h3, .text-blanco p { color: var(--blanco); }
+.text-blanco a { color: var(--amarillo-principal); }
+.text-blanco .section-title { color: var(--blanco); border-bottom-color: var(--amarillo-principal); }
+
+/* ===== Encabezado ===== */
+.affiliate-header { padding: 1rem 0; border-bottom: 1px solid var(--gris-medio); background-color: var(--blanco); }
+.affiliate-header .container { display: flex; justify-content: center; }
+.affiliate-header .company-logo { max-width: 200px; height: auto; }
+
+/* ===== Hero ===== */
+.affiliate-hero { padding: 4rem 1.5rem; text-align: center; }
+.affiliate-hero h1 { margin-bottom: 0.5rem; }
+.affiliate-hero .subtitle { font-size: 1.2rem; max-width: 800px; margin: 0.5rem auto 0 auto; color: var(--gris-claro); opacity: 0.9; }
+
+/* ===== Cómo Funciona ===== */
+.how-it-works-section { padding: 4rem 0; }
+.steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; }
+.step-item { text-align: center; padding: 1.5rem; background-color: var(--gris-claro); border-radius: 8px; border: 1px solid var(--gris-medio); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.step-item:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+.step-icon { font-size: 3rem; color: var(--naranja-acento); margin-bottom: 1rem; line-height: 1; }
+.step-item h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+.step-item p { font-size: 0.95rem; }
+
+/* ===== Sección Recompensas ===== */
+.rewards-section { padding: 3rem 0; text-align: center; }
+.rewards-section .section-title { border-bottom-color: var(--azul-oscuro); }
+.reward-highlight { background-color: var(--amarillo-principal); color: var(--azul-oscuro); padding: 2rem; border-radius: 10px; display: inline-block; margin: 1rem auto 1.5rem auto; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.reward-highlight p { font-size: 1.5rem; font-weight: 700; margin: 0; color: var(--azul-oscuro); /* Heredar color */ }
+.reward-highlight .amount { font-size: 2.5rem; display: block; margin-bottom: 0.3rem; }
+.reward-highlight span { font-size: 1rem; display: block; margin-top: 0.5rem; }
+.terms-note { font-size: 0.85rem; color: var(--gris-oscuro); font-style: italic; margin-top: 0; }
+
+/* ===== Formulario de Invitación ===== */
+.invitation-form-section { padding: 4rem 0; }
+.invitation-form { max-width: 550px; margin: 1rem auto 0 auto; background-color: var(--gris-claro); padding: 2.5rem; border-radius: 8px; border: 1px solid var(--gris-medio); box-shadow: 0 3px 10px rgba(0,0,0,0.05); text-align: center; }
+.invitation-form p:first-of-type { margin-bottom: 1.5rem; font-weight: 600; color: var(--azul-oscuro); text-align: left; }
+.form-group { margin-bottom: 1.5rem; text-align: left; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: var(--texto-principal); }
+.form-group input[type="email"] { width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--gris-medio); border-radius: 5px; font-size: 1rem; font-family: inherit; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+.form-group input[type="email"]:focus { outline: none; border-color: var(--naranja-acento); box-shadow: 0 0 0 3px rgba(243, 112, 33, 0.2); }
+
+.btn { display: inline-block; padding: .8rem 1.8rem; border: none; border-radius: 5px; font-weight: 700; cursor: pointer; transition: background-color .3s ease, transform .2s ease, opacity 0.3s ease; text-align: center; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.btn-naranja { background-color: var(--naranja-acento); color: var(--blanco); border: 2px solid var(--naranja-acento); }
+.btn-naranja:hover:not(:disabled) { background-color: #d95f1a; transform: scale(1.03); color: var(--blanco); border-color: #d95f1a; }
+.btn:disabled { background-color: var(--gris-oscuro); border-color: var(--gris-oscuro); cursor: not-allowed; opacity: 0.7; }
+
+.form-feedback { margin-top: 1rem; padding: 0.8rem; border-radius: 5px; font-weight: 500; font-size: 0.95rem; display: none; /* Oculto inicialmente */ }
+.form-feedback.success { background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; }
+.form-feedback.error { background-color: #f8d7da; color: #842029; border: 1px solid #f5c2c7; }
+
+/* ===== Sección Términos ===== */
+.terms-section { padding: 3.5rem 0; }
+.terms-section .section-title { border-bottom-color: var(--azul-oscuro); }
+.terms-content { background-color: var(--gris-claro); padding: 1.5rem; border-radius: 8px; margin-top: 1rem; }
+.terms-content h3 { font-size: 1.2rem; color: var(--azul-oscuro); margin-top: 0; margin-bottom: 1rem; }
+.terms-content ul { margin-top: 1rem; }
+.terms-content li { line-height: 1.7; font-size: 0.9rem; }
+.terms-content li strong { color: var(--azul-oscuro); }
+
+/* ===== Footer ===== */
+.footer { padding: 1.5rem 0; text-align: center; font-size: 0.9rem; margin-top: auto; }
+
+/* ===== Animaciones ===== */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
+.animate-fade-in { opacity: 0; animation: fadeIn 1s ease-out forwards; }
+.animate-slide-up { opacity: 0; animation: slideUp 0.7s ease-out forwards; }
+/* Retrasos */
+.affiliate-hero .container { animation-delay: 0.1s; }
+.section-title { animation-delay: 0.1s; }
+.step-item:nth-child(1) { animation-delay: 0.2s; }
+.step-item:nth-child(2) { animation-delay: 0.3s; }
+.step-item:nth-child(3) { animation-delay: 0.4s; }
+.rewards-section .container { animation-delay: 0.2s; }
+.invitation-form-section .container { animation-delay: 0.2s; }
+.terms-section .container { animation-delay: 0.2s; }
+
+/* ===== Responsividad ===== */
+@media(max-width:992px){h1{font-size:2.5rem;}h2{font-size:1.8rem;} .steps-grid{gap:1.5rem;}}
+@media(max-width:768px){
+    h1{font-size:2.2rem;}h2{font-size:1.6rem;}h3{font-size:1.2rem;}
+    .container{padding:0 1rem;}
+    .how-it-works-section, .rewards-section, .invitation-form-section, .terms-section{padding:3rem 0;}
+    .steps-grid{grid-template-columns: 1fr;}
+    .invitation-form{padding:2rem 1.5rem;}
+}
+@media(max-width:576px){
+    h1{font-size:2rem;}h2{font-size:1.5rem;}
+    .affiliate-hero{padding:3rem 1rem;}
+    .reward-highlight p{font-size: 1.2rem;}
+    .reward-highlight .amount{font-size: 2rem;}
+    .form-group input[type="email"]{font-size: 0.95rem;}
+    .btn{width: 100%; max-width: 300px;}
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitación Hellstar - Centro de Distribución ExpressBoxRD</title>
+    <link rel="stylesheet" href="assets/css/dijitacion.hellstar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="shortcut icon" href="assets/images/logo.jpg" type="image/x-icon">
+</head>
+<body>
+    <div class="digitization-panel">
+        <header class="panel-header">
+            <div class="container header-content">
+                <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="panel-logo expressbox-logo">
+                <div class="partner-logo-container">
+                    <img src="logo rolfi.png" alt="Logo Hellstar" class="panel-logo partner-logo">
+                </div>
+                <div class="header-info">
+                    <h1>Digitación Alianza Hellstar</h1>
+                    <p class="sub-header-info"><i class="fas fa-warehouse"></i> Centro de Distribución ExpressBoxRD</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="container panel-main">
+            <section class="promo-countdown-section animate-fade-in">
+                <h2><i class="fas fa-stopwatch"></i> ¡Envíos Gratis Hellstar + ExpressBoxRD!</h2>
+                <p>Esta promoción especial de envíos totalmente gratuitos finaliza en:</p>
+                <div id="countdownTimer" class="countdown-timer">
+                    <div class="timer-segment"><span id="days">00</span><small>Días</small></div>
+                    <div class="timer-segment"><span id="hours">00</span><small>Horas</small></div>
+                    <div class="timer-segment"><span id="minutes">00</span><small>Minutos</small></div>
+                    <div class="timer-segment"><span id="seconds">00</span><small>Segundos</small></div>
+                </div>
+                <p class="promo-ended-message" id="promoEndedMessage" style="display: none;">¡La promoción de envíos gratis ha finalizado!</p>
+            </section>
+
+            <section class="add-package-section animate-slide-up" style="animation-delay: 0.1s;">
+                <h2><i class="fas fa-box"></i> Registrar Paquete Hellstar</h2>
+                <form id="addHellstarPackageForm" class="data-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="hsTrackingCodeEB">Código Seguimiento ExpressBoxRD (EB-):</label>
+                            <input type="text" id="hsTrackingCodeEB" name="hsTrackingCodeEB" required placeholder="Ej: EB-1234567X">
+                        </div>
+                        <!-- *** NUEVO CAMPO *** -->
+                        <div class="form-group">
+                            <label for="hsOriginalTracking">Tracking Original (Hellstar/Transportista):</label>
+                            <input type="text" id="hsOriginalTracking" name="hsOriginalTracking" required placeholder="Código que usa el cliente de Hellstar">
+                        </div>
+                        <!-- ***************** -->
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="hsCustomerName">Nombre del Cliente:</label>
+                            <input type="text" id="hsCustomerName" name="hsCustomerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hsPromoCode">Código Promocional ExpressBoxRD (Opcional):</label>
+                            <input type="text" id="hsPromoCode" name="hsPromoCode" placeholder="Aplicar código ExpressBoxRD">
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label for="hsPackageContent">Contenido del Paquete (Hellstar):</label>
+                        <textarea id="hsPackageContent" name="hsPackageContent" rows="2" required placeholder="Ej: Camiseta Hellstar, Sudadera Hellstar"></textarea>
+                    </div>
+                    <div class="form-group">
+                         <label for="hsPackageStatus">Estado Actual del Paquete:</label>
+                         <select id="hsPackageStatus" name="hsPackageStatus" required>
+                             <option value="received_warehouse_origin_hellstar">Recibido Almacén Origen (Hellstar)</option>
+                             <option value="in_transit_to_rd_expressbox">En Tránsito a RD (Con ExpressBoxRD)</option>
+                             <option value="customs_rd_expressbox">En Aduanas RD (Gestión ExpressBoxRD)</option>
+                             <option value="ready_for_dispatch_cd_expressbox">En Centro Distribución RD (Listo para Despacho)</option>
+                             <option value="out_for_delivery_rd_expressbox">En Ruta de Entrega RD (Con ExpressBoxRD)</option>
+                             <option value="delivered_rd_expressbox">Entregado por ExpressBoxRD</option>
+                         </select>
+                     </div>
+                    <button type="submit" class="btn btn-naranja"><i class="fas fa-save"></i> Registrar / Actualizar Paquete</button>
+                    <p id="addPackageMessage" class="form-feedback" style="display: none;"></p>
+                </form>
+            </section>
+
+            <section class="digitized-packages-section animate-slide-up" style="animation-delay: 0.2s;">
+                <h2><i class="fas fa-list-alt"></i> Paquetes Hellstar en Sistema</h2>
+                <input type="text" id="searchPackagesInput" placeholder="Buscar por Código EB, Tracking Original o Cliente..." class="search-input">
+                <div class="table-container">
+                    <table id="hellstarPackagesTable">
+                        <thead>
+                            <tr>
+                                <th>Código EB</th>
+                                <th>Tracking Original</th> <!-- *** NUEVA COLUMNA *** -->
+                                <th>Cliente</th>
+                                <th>Contenido</th>
+                                <th>Estado</th>
+                                <th>Fecha Digitación</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="hellstarPackagesBody">
+                            <tr><td colspan="7" class="loading-placeholder">No hay paquetes Hellstar digitados.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Gestión de Códigos Promocionales (Sin cambios estructurales) -->
+            <section class="promo-management-section animate-slide-up" style="animation-delay: 0.3s;">
+                <h2><i class="fas fa-tags"></i> Códigos Promocionales (ExpressBoxRD)</h2>
+                <form id="createPromoForm" class="data-form">
+                    <!-- ... campos del form ... -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="newPromoCode">Nuevo Código (Ej: HELLSTAR24):</label>
+                            <input type="text" id="newPromoCode" name="newPromoCode" required>
+                        </div>
+                        <div class="form-group">
+                             <label for="promoDiscount">Descuento (%):</label>
+                             <input type="number" id="promoDiscount" name="promoDiscount" required min="1" max="100">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-secondary"><i class="fas fa-plus"></i> Crear Código</button>
+                    <p id="createPromoMessage" class="form-feedback" style="display: none;"></p>
+                </form>
+                <div class="promo-list">
+                    <h3>Códigos Existentes:</h3>
+                    <ul id="existingPromosList"><li>No hay códigos creados.</li></ul>
+                </div>
+            </section>
+
+            <!-- Sección Planes Futuros (Sin cambios estructurales) -->
+            <section class="future-plans-section bg-gris-claro animate-slide-up" style="animation-delay: 0.4s;">
+                <!-- ... contenido de planes deshabilitados ... -->
+                 <h2 class="section-title">Planes Especiales Hellstar + ExpressBoxRD (Próximamente)</h2>
+                 <p class="text-center note-future-plans">Los siguientes planes estarán disponibles cuando finalice la promoción actual de envíos gratuitos.</p>
+                 <div class="plans-grid">
+                    <div class="plan-card disabled-plan"><div class="disabled-overlay"><p>NO DISPONIBLE</p></div><div class="plan-header"><h3>Plan Hellstar Básico</h3></div><div class="plan-price">$5 <span class="price-term">USD /mes</span></div><ul class="plan-features"><li><i class="fas fa-dollar-sign"></i> Envío a RD por $5 USD (compras Hellstar hasta $40 USD).</li><li><i class="fas fa-file-invoice-dollar"></i> Impuestos aduanales aplican.</li></ul></div>
+                    <div class="plan-card disabled-plan"><div class="disabled-overlay"><p>NO DISPONIBLE</p></div><div class="plan-header"><h3>Plan Hellstar Plus</h3></div><div class="plan-price">$100 <span class="price-term">USD /mes</span></div><ul class="plan-features"><li><i class="fas fa-shield-alt"></i> Impuestos Aduanales Cubiertos (paquetes Hellstar hasta $300 USD).</li><li><i class="fas fa-box"></i> Pasa límite $200 sin cargos extra (hasta $300).</li></ul></div>
+                    <div class="plan-card recommended disabled-plan"><div class="recommended-badge">VIP</div><div class="disabled-overlay"><p>NO DISPONIBLE</p></div><div class="plan-header"><h3>Plan Hellstar VIP</h3></div><div class="plan-price">$300 <span class="price-term">USD /mes</span></div><ul class="plan-features"><li><i class="fas fa-star"></i> ¡TODO INCLUIDO! Envío GRATIS.</li><li><i class="fas fa-hand-holding-usd"></i> Sin cargos por libra.</li><li><i class="fas fa-headset"></i> Soporte al Cliente VIP.</li></ul></div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="panel-footer bg-azul-oscuro">
+            <div class="container text-blanco">
+                <p>© 2023 ExpressBoxRD - Digitación Alianza Hellstar</p>
+            </div>
+        </footer>
+    </div>
+    <script src="assets/js/digitacion.hellstar.js"></script>
+</body>
+</html>

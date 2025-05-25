@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonios de Clientes - ExpressBoxRD</title>
+    <!-- CAMBIAR: Nombre del archivo CSS -->
+    <link rel="stylesheet" href="assets/css/testimonios.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <header class="testimonial-header">
+        <div class="container">
+            <!-- Logo -->
+            <a href="index.html">
+                 <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="company-logo">
+            </a>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Título Sección -->
+        <section class="testimonial-title-section">
+            <div class="container text-center animate-fade-in">
+                <h1>Lo que Dicen Nuestros Clientes</h1>
+                <p class="subtitle">Experiencias reales de quienes confían en ExpressBoxRD para sus envíos.</p>
+            </div>
+        </section>
+
+        <!-- Cuadrícula de Testimonios -->
+        <section class="testimonials-section">
+            <div class="container testimonials-grid">
+
+                <!-- Testimonio 1 -->
+                <div class="testimonial-card animate-slide-up">
+                    <div class="testimonial-header">
+                        <img src="assets/images/cliente 2.jpg" alt="Foto de [Nombre Cliente 1]" class="profile-pic">
+                        <span class="customer-name">Jose Miguel - Santo Domingo</span>
+                    </div>
+                    <p class="testimonial-text">"¡Increíblemente rápidos! Mi paquete llegó de Miami en menos de 24 horas a la sucursal. El proceso fue súper fácil y el personal muy amable."</p>
+                    <div class="likes-section">
+                        <i class="fas fa-heart liked-icon"></i> <!-- Icono de corazón lleno -->
+                        <span class="like-count">30.1k</span> <!-- Likes fijos -->
+                    </div>
+                    <!-- Sin imagen de paquete para este cliente -->
+                </div>
+
+                <!-- Testimonio 2 (CON Imagen de Paquete) -->
+                <div class="testimonial-card animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="testimonial-header">
+                        <img src="assets/images/cliente 3.jpg" alt="Foto de [Nombre Cliente 2]" class="profile-pic">
+                        <span class="customer-name">Alfonso - Santiago</span>
+                    </div>
+                    <p class="testimonial-text">"Siempre pido por ExpressBoxRD. El servicio de casillero es excelente y me encanta la opción de pre-alerta. ¡Miren cómo llegó mi última compra, impecable!"</p>
+                    <div class="package-image-container">
+                        <!-- CAMBIAR: Ruta a la imagen del paquete del cliente -->
+                        <img src="assets/images/mi paquete en buen estado.jpg" alt="Paquete recibido en buen estado por [Nombre Cliente 2]" class="package-photo">
+                    </div>
+                    <div class="likes-section">
+                        <i class="fas fa-heart liked-icon"></i>
+                        <span class="like-count">30.5k</span>
+                    </div>
+                </div>
+
+                <!-- Testimonio 3 -->
+                <div class="testimonial-card animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="testimonial-header">
+                         <img src="assets/images/cliente.jpg" alt="Foto de [Nombre Cliente 3]" class="profile-pic">
+                         <span class="customer-name">Luis Jorge - Bávaro</span>
+                    </div>
+                    <p class="testimonial-text">"Como dueño de un pequeño negocio online, la eficiencia de ExpressBoxRD es vital. Sus tarifas son claras y el equipo de aduanas me ha ayudado mucho. ¡Totalmente recomendados!"</p>
+                    <div class="likes-section">
+                        <i class="fas fa-heart liked-icon"></i>
+                        <span class="like-count">30.8k</span>
+                    </div>
+                     <!-- Sin imagen de paquete para este cliente -->
+                </div>
+
+                <!-- Puedes añadir más testimonios copiando la estructura .testimonial-card -->
+                <!-- Ejemplo adicional -->
+                 <!--
+                 <div class="testimonial-card animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="testimonial-header">
+                        <img src="PLACEHOLDER_cliente_foto_4.jpg" alt="Foto de [Nombre Cliente 4]" class="profile-pic">
+                        <span class="customer-name">[Nombre Cliente 4] - La Romana</span>
+                    </div>
+                    <p class="testimonial-text">"Usé el Envío Flash dentro de RD y fue espectacular. Mi documento llegó al día siguiente sin problemas. ¡Excelente servicio!"</p>
+                    <div class="likes-section">
+                        <i class="fas fa-heart liked-icon"></i>
+                        <span class="like-count">30.2k</span>
+                    </div>
+                </div>
+                -->
+
+            </div>
+        </section>
+
+         <!-- Sección CTA (Opcional) -->
+        <section class="testimonial-cta-section bg-azul">
+            <div class="container text-center animate-fade-in text-blanco">
+                 <h2>¿Tú también tienes una buena experiencia?</h2>
+                 <p>Nos encantaría escucharla. Tu opinión nos ayuda a seguir mejorando.</p>
+                 <!-- Podría enlazar a un formulario de feedback o redes sociales -->
+                 <a href="contacto.html" class="btn btn-amarillo">Comparte tu Testimonio</a>
+             </div>
+         </section>
+
+
+    </main>
+
+    <footer class="footer bg-azul-oscuro">
+        <div class="container text-blanco">
+            <p>© 2023 ExpressBoxRD. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- No se necesita JS para esta versión estática -->
+
+</body>
+</html>

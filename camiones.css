@@ -1,0 +1,320 @@
+/* ===== Variables de Color y Fuentes ===== */
+:root {
+    --amarillo-principal: #FFDB00;
+    --azul-oscuro: #0D2F4F;
+    --naranja-acento: #F37021;
+    --blanco: #FFFFFF;
+    --gris-claro: #f8f9fa;
+    --gris-medio: #e9ecef;
+    --gris-oscuro: #6c757d;
+    --texto-principal: #333;
+    --fuente-principal: 'Poppins', sans-serif;
+}
+
+/* ===== Reseteo Básico y Estilos Globales ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    line-height: 1.7; /* Buen interlineado para descripciones */
+    color: var(--texto-principal);
+    background-color: var(--gris-claro);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
+h1, h2, h3 {
+    color: var(--azul-oscuro);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+h1 {
+    font-size: 2.8rem;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.8rem;
+    /* El H2 dentro de .service-description tendrá un estilo más específico */
+}
+
+h3 { /* Este H3 es para los "Beneficios Clave" */
+    font-size: 1.3rem;
+    color: var(--naranja-acento);
+    margin-top: 1.5rem;
+}
+
+a {
+    color: var(--naranja-acento);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+p {
+    margin-bottom: 1.1rem;
+}
+
+ul { /* Para la lista de beneficios */
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1.1rem;
+}
+
+li { /* Para los ítems de la lista de beneficios */
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.6rem;
+}
+
+li::before { /* Viñeta personalizada para la lista de beneficios */
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--naranja-acento);
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.bg-azul-oscuro {
+    background-color: var(--azul-oscuro);
+}
+
+.text-blanco {
+    color: var(--blanco) !important;
+}
+
+.text-blanco p {
+    color: var(--blanco);
+}
+
+/* ===== Encabezado Simple ===== */
+.service-page-header {
+    background-color: var(--blanco); /* Fondo blanco limpio */
+    padding: 1rem 0;
+    text-align: center;
+    border-bottom: 1px solid var(--gris-medio);
+    margin-bottom: 2.5rem; /* Separación */
+}
+
+.service-page-header .company-logo {
+    max-width: 180px; /* Tamaño logo en header */
+    margin: 0 auto;
+}
+
+/* ===== Hero del Servicio ===== */
+.service-hero {
+    text-align: center;
+    padding: 1rem 0 2.5rem 0; /* Espacio arriba y abajo */
+    background-color: var(--blanco); /* Fondo blanco */
+    margin-bottom: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.service-hero h1 {
+    color: var(--azul-oscuro);
+    /* Las siguientes líneas estaban comentadas en tu CSS, las mantengo así */
+    /* border-bottom: 3px solid var(--naranja-acento); */
+    /* display: inline-block; */
+    /* padding-bottom: 0.5rem; */
+}
+
+.service-hero .subtitle {
+    font-size: 1.1rem;
+    color: var(--gris-oscuro);
+    max-width: 700px;
+    margin: 0.5rem auto 0 auto;
+}
+
+/* ===== Contenido del Servicio ===== */
+.service-content { /* Esta es la sección que envuelve .content-wrapper */
+    padding: 2rem 0; /* Ajusta padding si el wrapper ya lo tiene */
+}
+
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* Columna imagen más pequeña */
+    gap: 3rem;
+    align-items: center; /* Centrar verticalmente */
+    background-color: var(--blanco);
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom: 3rem; /* Si tienes más secciones abajo */
+}
+
+.service-image img {
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Asegurar que ocupe su columna */
+    height: auto;
+    aspect-ratio: 4 / 3; /* Mantener proporción (opcional) */
+    object-fit: cover; /* Recortar si es necesario */
+}
+
+.service-description {
+    /* Estilos para el texto de descripción */
+}
+
+.service-description h2 { /* H2 dentro de la descripción */
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--gris-medio);
+    text-align: left; /* Alinear a la izquierda */
+}
+
+/* ===== Sección CTA (Llamada a la Acción) ===== */
+.service-cta {
+    background-color: var(--azul-oscuro);
+    color: var(--blanco);
+    padding: 2.5rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 2rem; /* Separación */
+}
+
+.service-cta h2 {
+    color: var(--amarillo-principal);
+    margin-bottom: 1rem;
+    border-bottom: none; /* Quitar borde si lo hereda */
+}
+
+.service-cta p {
+    color: var(--gris-claro);
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn{
+    display:inline-block;
+    padding:0.9rem 2rem;
+    border:none;
+    border-radius:5px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:background-color 0.3s ease,transform 0.2s ease;
+    text-align:center;
+    font-size:1rem;
+}
+
+.btn-naranja{
+    background-color:var(--naranja-acento);
+    color:var(--blanco);
+}
+
+.btn-naranja:hover{
+    background-color:#d95f1a;
+    transform:scale(1.05);
+    color:var(--blanco);
+}
+
+/* ===== Footer ===== */
+.footer{
+    padding:1.5rem 0;
+    text-align:center;
+    font-size:0.9rem;
+    margin-top:auto;
+    background-color: var(--azul-oscuro);
+}
+.footer p {
+    color: var(--blanco);
+    margin-bottom: 0; /* Para que no haya espacio extra */
+}
+
+/* ===== Animaciones ===== */
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+@keyframes slideUp{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+.animate-fade-in{
+    opacity:0;
+    animation:fadeIn 1s ease-out forwards;
+}
+.animate-slide-up{
+    opacity:0;
+    animation:slideUp 0.8s ease-out forwards;
+}
+
+/* Aplicar animaciones con retraso */
+.service-hero {
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.1s;
+    opacity: 0;
+}
+.content-wrapper {
+    animation: slideUp 1s ease-out forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+}
+.service-cta {
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.5s;
+    opacity: 0;
+}
+
+
+/* ===== Responsividad ===== */
+@media(max-width: 992px) {
+    .content-wrapper {
+        grid-template-columns: 1fr; /* Apilar columnas */
+        gap: 2rem;
+        padding: 2rem;
+    }
+    .service-image {
+        order: -1; /* Poner imagen arriba en móvil */
+    }
+}
+
+@media(max-width: 768px) {
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.6rem; }
+    .container { padding: 0 1rem; }
+    .content-wrapper { padding: 1.5rem; }
+    .service-description h2 { text-align: center; } /* Centrar H2 en tablet si se apila */
+}
+
+@media(max-width: 480px) {
+    h1 { font-size: 1.8rem; }
+    .service-hero .subtitle { font-size: 1rem; }
+    .service-page-header { margin-bottom: 1.5rem; }
+    .service-hero { margin-bottom: 2rem; padding: 0.5rem 0 2rem 0; }
+    .content-wrapper { padding: 1.2rem; }
+    .service-cta { padding: 2rem 1rem; }
+    .btn { width: 100%; max-width: 300px; padding: 0.8rem; }
+}

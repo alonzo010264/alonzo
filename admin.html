@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración Maestro - ExpressBoxRD</title>
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="assets/images/logo.jpg" type="image/x-icon">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="admin-logo">
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="#" data-section="dashboard"><i class="fas fa-tachometer-alt icon"></i> Dashboard</a></li>
+                    <li><a href="#" data-section="users"><i class="fas fa-users icon"></i> Usuarios</a></li>
+                    <li><a href="#" data-section="digitizePackage"><i class="fas fa-box-open icon"></i> Digitar Paquete</a></li>
+                    <li><a href="#" data-section="viewPackages"><i class="fas fa-boxes-stacked icon"></i> Ver Paquetes</a></li>
+                    <li><a href="#" data-section="preAlerts"><i class="fas fa-bell icon"></i> Pre-Alertas</a></li>
+                    <li><a href="#" data-section="planRequests"><i class="fas fa-file-signature icon"></i> Solicitudes Plan <span id="pendingPlanRequestsBadge" class="sidebar-badge">0</span></a></li>
+                    <li><a href="#" data-section="supportTickets"><i class="fas fa-headset icon"></i> Tickets Soporte <span id="openTicketsBadge" class="sidebar-badge">0</span></a></li>
+                    <li><a href="#" data-section="notifications"><i class="fas fa-paper-plane icon"></i> Enviar Notificación</a></li>
+                    <li><a href="#" data-section="promoCodes"><i class="fas fa-tags icon"></i> Códigos Promo</a></li>
+                    <li><a href="#" data-section="pickupNotifications"><i class="fas fa-calendar-check icon"></i> Notif. Retiro</a></li>
+                    <li><a href="index.html"><i class="fas fa-sign-out-alt icon"></i> Salir</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header-admin">
+                <h1 id="sectionTitle">Dashboard</h1>
+            </header>
+
+            <div class="content-area-admin">
+                <!-- Sección Dashboard -->
+                <section id="dashboard-content" class="admin-section">
+                    <h2>Resumen General</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card" data-section-target="users"><i class="fas fa-users"></i> Usuarios Registrados: <span id="totalUsersStat">0</span></div>
+                        <div class="stat-card" data-section-target="viewPackages"><i class="fas fa-box"></i> Paquetes Digitados: <span id="totalPackagesStat">0</span></div>
+                        <div class="stat-card" data-section-target="preAlerts"><i class="fas fa-bell"></i> Pre-Alertas Hoy: <span id="todayPreAlertsStat">0</span></div>
+                        <div class="stat-card" data-section-target="supportTickets"><i class="fas fa-headset"></i> Tickets Abiertos: <span id="openTicketsStat">0</span></div>
+                        <div class="stat-card" data-section-target="planRequests"><i class="fas fa-file-signature"></i> Solicitudes Plan Pend.: <span id="pendingPlanRequestsStat">0</span></div>
+                        <div class="stat-card" data-section-target="viewPackages"><i class="fas fa-money-bill-wave"></i> Paquetes con Impuestos: <span id="packagesWithTaxesStat">0</span></div> 
+                    </div>
+                </section>
+
+                <!-- Sección Usuarios -->
+                <section id="users-content" class="admin-section" style="display: none;">
+                    <h2><i class="fas fa-users"></i> Usuarios Registrados</h2>
+                    <input type="text" id="searchUsersInput" class="search-input-admin" placeholder="Buscar usuario...">
+                    <div class="table-responsive-admin">
+                        <table id="adminUserListTable">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Código EB</th>
+                                    <th>Plan</th>
+                                    <th>Expira En</th> 
+                                    <th>Sucursal</th>
+                                    <th>Dirección (Resumen)</th> 
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminUserListTableBody"></tbody>
+                        </table>
+                    </div>
+                    <p id="noUsersMessage" class="info-message-admin" style="display: none;">No hay usuarios.</p>
+                    
+                    <div id="editUserModal" class="modal-overlay" style="display:none;">
+                        <div class="modal-content admin-modal-content">
+                            <button id="closeEditUserModal" class="modal-close-btn">×</button>
+                            <h3>Editar Usuario: <span id="editUserModalTitleEB"></span></h3>
+                            <form id="editUserForm" class="admin-form">
+                                <input type="hidden" id="editingUserEBCode" name="editingUserEBCode">
+                                <div class="form-group">
+                                    <label for="editUserFullName">Nombre Completo:</label>
+                                    <input type="text" id="editUserFullName" name="editUserFullName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editUserEmail">Email:</label>
+                                    <input type="email" id="editUserEmail" name="editUserEmail" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="editUserPlan">Plan:</label>
+                                        <select id="editUserPlan" name="editUserPlan">
+                                            <option value="basico">Básico</option>
+                                            <option value="intermedio">Intermedio</option>
+                                            <option value="premium">Premium</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editUserPlanDurationDays">Duración Plan Actual (Días desde hoy):</label>
+                                        <input type="number" id="editUserPlanDurationDays" name="editUserPlanDurationDays" min="0" placeholder="Ej: 30 (0 o vacío para indefinido)">
+                                        <small>Para Básico o si no expira, dejar en 0 o vacío. Al guardar, se calcula la fecha de expiración.</small>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editUserPlanExpiryDisplay">Plan Expira En (Calculado):</label>
+                                    <input type="text" id="editUserPlanExpiryDisplay" name="editUserPlanExpiryDisplay" readonly style="background-color: var(--gris-claro); cursor: default;">
+                                </div>
+                                <div class="form-row"> 
+                                    <div class="form-group">
+                                        <label for="editUserAutopay">Autopago:</label>
+                                        <select id="editUserAutopay" name="editUserAutopay">
+                                            <option value="false">Inactivo</option>
+                                            <option value="true">Activo</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editUserBranch">Sucursal Asignada:</label>
+                                        <input type="text" id="editUserBranch" name="editUserBranch" placeholder="Ej: Sucursal Principal">
+                                    </div>
+                                </div>
+                                <h4>Dirección Principal</h4>
+                                <div class="form-group">
+                                    <label for="editUserAddressStreet">Calle y Número:</label>
+                                    <input type="text" id="editUserAddressStreet" name="editUserAddressStreet">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="editUserAddressCity">Ciudad:</label>
+                                        <input type="text" id="editUserAddressCity" name="editUserAddressCity">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editUserAddressProvince">Sector/Provincia:</label>
+                                        <input type="text" id="editUserAddressProvince" name="editUserAddressProvince">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editUserAddressReference">Referencia:</label>
+                                    <textarea id="editUserAddressReference" name="editUserAddressReference" rows="2"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-naranja"><i class="fas fa-save"></i> Guardar Cambios</button>
+                            </form>
+                            <p id="editUserFormMessage" class="form-feedback-admin" style="display: none;"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sección Digitar Paquete (Como estaba en tu original, con campos de peso, etc.) -->
+                <section id="digitizePackage-content" class="admin-section" style="display: none;">
+                    <h2><i class="fas fa-box-open"></i> Digitar / Actualizar Paquete</h2>
+                    <form id="adminDigitizePackageForm" class="admin-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="adminClientEBCode">Código EB del Cliente:</label>
+                                <input type="text" id="adminClientEBCode" name="adminClientEBCode" required placeholder="Ej: EB-CLIENT001">
+                            </div>
+                            <div class="form-group">
+                                <label for="adminOriginalTracking">Tracking Original (Opcional):</label>
+                                <input type="text" id="adminOriginalTracking" name="adminOriginalTracking" placeholder="Del courier original">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="adminPackageContent">Descripción del Contenido:</label>
+                            <textarea id="adminPackageContent" name="adminPackageContent" rows="3" required></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="adminDeclaredValue">Valor Declarado (USD):</label>
+                                <input type="number" id="adminDeclaredValue" name="adminDeclaredValue" required min="0" step="0.01">
+                            </div>
+                            <div class="form-group">
+                                <label for="adminPackageWeight">Peso (KG):</label>
+                                <input type="number" id="adminPackageWeight" name="adminPackageWeight" required min="0.01" step="0.01" placeholder="Ej: 1.5">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                             <div class="form-group">
+                                <label for="adminPackageStatus">Estado del Paquete:</label>
+                                <select id="adminPackageStatus" name="adminPackageStatus" required>
+                                     <option value="received_warehouse_origin">Recibido Origen</option>
+                                     <option value="in_transit_to_rd">En Tránsito a RD</option>
+                                     <option value="customs_rd">En Aduanas RD</option>
+                                     <option value="pending_payment_customs">Impuestos Pendientes</option>
+                                     <option value="paid_customs">Impuestos Pagados</option>
+                                     <option value="ready_for_dispatch_cd">Listo en CD</option>
+                                     <option value="out_for_delivery_rd">En Ruta de Entrega</option>
+                                     <option value="delivered_rd">Entregado</option>
+                                     <option value="unknown_package_admin">Paquete Desconocido</option>
+                                </select>
+                            </div>
+                            <div class="form-group checkbox-group-admin" style="border-top: none; padding-top: 0; margin-top: auto; margin-bottom: 0.5rem;">
+                                <input type="checkbox" id="adminIsUnknown" name="adminIsUnknown">
+                                <label for="adminIsUnknown"><i class="fas fa-question-circle"></i> Marcar como Desconocido</label>
+                            </div>
+                        </div>
+                        <div class="calculated-taxes">Impuestos Estimados: <strong id="estimatedTaxesDisplay">RD$ 0.00</strong></div>
+                        <button type="submit" class="btn btn-naranja"><i class="fas fa-save"></i> Guardar Paquete</button>
+                        <p id="adminPackageMessage" class="form-feedback-admin" style="display: none;"></p>
+                    </form>
+                </section>
+
+                <!-- Sección Ver Paquetes (Como estaba, JS se encarga de la columna de acción) -->
+                <section id="viewPackages-content" class="admin-section" style="display: none;">
+                    <h2><i class="fas fa-boxes-stacked"></i> Paquetes Digitados</h2>
+                    <input type="text" id="searchAdminPackagesInput" class="search-input-admin" placeholder="Buscar por Código EB, Tracking, Cliente...">
+                    <div class="table-responsive-admin">
+                        <table id="adminPackageListTable">
+                             <thead>
+                                <tr>
+                                    <th>Cód. EB</th><th>Track. Orig.</th><th>Cliente</th><th>Contenido</th><th>Valor USD</th><th>Peso (KG)</th><th>Estado</th><th>Impuestos RD$</th><th>Fecha</th><th>Acción</th>
+                                </tr>
+                            </thead>
+                             <tbody id="adminPackageListTableBody"></tbody>
+                        </table>
+                    </div>
+                    <p id="noAdminPackagesMessage" class="info-message-admin" style="display: none;">No hay paquetes digitados.</p>
+                </section>
+
+                <!-- Sección Pre-Alertas (Como estaba) -->
+                <section id="preAlerts-content" class="admin-section" style="display: none;">
+                    <h2><i class="fas fa-bell"></i> Pre-Alertas Recibidas</h2>
+                    <input type="text" id="searchPreAlertsInput" class="search-input-admin" placeholder="Buscar pre-alerta por Tracking, Código EB...">
+                    <div class="table-responsive-admin">
+                        <table id="adminPreAlertsTable">
+                             <thead>
+                                <tr>
+                                    <th>Cliente (EB)</th><th>Track. Orig.</th><th>Tienda</th><th>Valor USD</th><th>Peso Est. (KG)</th><th>Contenido</th><th>Llegada Est.</th><th>Recibida</th><th>Acción</th>
+                                </tr>
+                            </thead>
+                             <tbody id="adminPreAlertsTableBody"></tbody>
+                        </table>
+                    </div>
+                    <p id="noPreAlertsMessage" class="info-message-admin" style="display: none;">No hay pre-alertas.</p>
+                </section>
+
+                <!-- Sección Tickets de Soporte (Como estaba) -->
+                <section id="supportTickets-content" class="admin-section" style="display: none;">
+                    <h2><i class="fas fa-headset"></i> Tickets de Soporte de Clientes</h2>
+                    <input type="text" id="searchSupportTicketsInput" class="search-input-admin" placeholder="Buscar ticket por cliente, asunto, ID...">
+                    <div class="table-responsive-admin">
+                        <table id="adminSupportTicketsTable">
+                             <thead>
+                                <tr><th>ID Ticket</th><th>Cliente (EB)</th><th>Asunto</th><th>Fecha Enviado</th><th>Estado</th><th>Acción</th></tr>
+                            </thead>
+                             <tbody id="adminSupportTicketsTableBody"></tbody>
+                        </table>
+                    </div>
+                    <p id="noSupportTicketsMessage" class="info-message-admin" style="display: none;">No hay tickets de soporte.</p>
+                </section>
+
+
+                <section id="planRequests-content" class="admin-section" style="display: none;">
+                    <h2><i class="fas fa-file-signature"></i> Solicitudes de Cambio de Plan</h2>
+                    <input type="text" id="searchPlanRequestsInput" class="search-input-admin" placeholder="Buscar por cliente, EB Code, plan solicitado, estado...">
+                    <div class="table-responsive-admin">
+                        <table id="adminPlanRequestsTable">
+                            <thead>
+                                <tr>
+                                    <th>Fecha Sol.</th>
+                                    <th>Cliente</th>
+                                    <th>EB Code</th>
+                                    <th>Email</th>
+                                    <th>Plan Solicitado</th>
+                                    <th>Comprobante</th>
+                                    <th>Comentario</th>
+                                    <th>Estado Actual</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminPlanRequestsTableBody"></tbody>
+                        </table>
+                    </div>
+                    <p id="noPlanRequestsMessage" class="info-message-admin" style="display: none;">No hay solicitudes de cambio de plan.</p>
+                    <div id="reviewPlanRequestModal" class="modal-overlay" style="display:none;">
+                        <div class="modal-content admin-modal-content">
+                            <button id="closeReviewPlanRequestModal" class="modal-close-btn">×</button>
+                            <h3>Revisar Solicitud de Cambio de Plan</h3>
+                            <div id="reviewPlanRequestDetails">
+                                <p><strong>ID Solicitud:</strong> <span id="modalReqId"></span></p>
+                                <p><strong>Cliente:</strong> <span id="modalReqClientName"></span> (<span id="modalReqClientEB"></span>)</p>
+                                <p><strong>Email:</strong> <span id="modalReqClientEmail"></span></p>
+                                <p><strong>Plan Solicitado:</strong> <span id="modalReqPlan"></span></p>
+                                <p><strong>Comprobante Info:</strong> <span id="modalReqProofInfo" style="font-style: italic;">(Nombre: <span id="modalReqProofName"></span>, Tipo: <span id="modalReqProofType"></span>)</span></p>
+                                <p><strong>Comentario Cliente:</strong></p>
+                                <div id="modalReqComment" class="text-display-box"></div>
+                            </div>
+                            <form id="processPlanRequestForm" class="admin-form" style="margin-top: 1.5rem; border-top:1px solid var(--gris-medio); padding-top:1.5rem;">
+                                <input type="hidden" id="processingRequestId">
+                                <input type="hidden" id="processingRequestClientEB">
+                                <input type="hidden" id="processingRequestTargetPlan">
+
+                                <div class="form-group">
+                                    <label for="processPlanRequestStatus">Procesar como:</label>
+                                    <select id="processPlanRequestStatus" name="processPlanRequestStatus">
+                                        <option value="pendiente">Pendiente</option>
+                                        <option value="aprobado">Aprobado</option>
+                                        <option value="rechazado">Rechazado</option>
+                                    </select>
+                                </div>
+                                <div id="planDurationAdminGroup" class="form-group" style="display:none;">
+                                    <label for="planDurationDaysAdmin">Duración del Plan Aprobado (días desde hoy):</label>
+                                    <input type="number" id="planDurationDaysAdmin" name="planDurationDaysAdmin" min="1" value="30" placeholder="Ej: 30 para un mes">
+                                    <small>La fecha de expiración se calculará automáticamente.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="adminNotesOnRequest">Notas del Admin (para el cliente, opcional):</label>
+                                    <textarea id="adminNotesOnRequest" name="adminNotesOnRequest" rows="2"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-verde"><i class="fas fa-check-circle"></i> Actualizar Solicitud</button>
+                            </form>
+                            <p id="processPlanRequestMessage" class="form-feedback-admin" style="display: none;"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sección Enviar Notificación (Como estaba) -->
+                <section id="notifications-content" class="admin-section" style="display: none;">
+                    <h2><i class="fas fa-paper-plane"></i> Enviar Notificación a Cliente</h2>
+                    <form id="adminSendNotificationForm" class="admin-form">
+                        <div class="form-group"><label for="notificationUserEBCode">Código EB del Cliente Destinatario:</label><input type="text" id="notificationUserEBCode" name="notificationUserEBCode" required placeholder="Ej: EB-CLIENT001"></div>
+                        <div class="form-group"><label for="notificationMessage">Mensaje para el Cliente:</label><textarea id="notificationMessage" name="notificationMessage" rows="4" required></textarea></div>
+                        <button type="submit" class="btn btn-azul"><i class="fas fa-envelope"></i> Enviar Notificación</button>
+                        <p id="notificationFormMessage" class="form-feedback-admin" style="display: none;"></p>
+                    </form>
+                </section>
+
+                <!-- Sección Códigos Promocionales (Como estaba) -->
+                 <section id="promoCodes-content" class="admin-section" style="display: none;">
+                    <h2><i class="fas fa-tags"></i> Gestionar Códigos Promocionales</h2>
+                    <form id="adminCreatePromoForm" class="admin-form">
+                         <div class="form-row">
+                            <div class="form-group"><label for="adminNewPromoCode">Nuevo Código (Ej: VERANO25):</label><input type="text" id="adminNewPromoCode" name="adminNewPromoCode" required></div>
+                            <div class="form-group"><label for="adminPromoDiscount">Descuento (%):</label><input type="number" id="adminPromoDiscount" name="adminPromoDiscount" required min="1" max="100"></div>
+                        </div>
+                        <button type="submit" class="btn btn-verde"><i class="fas fa-plus-circle"></i> Crear Código</button>
+                        <p id="adminCreatePromoMessage" class="form-feedback-admin" style="display: none;"></p>
+                    </form>
+                    <div class="promo-list-admin"><h3>Códigos Existentes:</h3><ul id="adminExistingPromosList"><li>No hay códigos creados.</li></ul></div>
+                </section>
+                
+                <!-- Sección Notificaciones de Retiro (Como estaba) -->
+                <section id="pickupNotifications-content" class="admin-section" style="display: none;">
+                    <h2><i class="fas fa-calendar-check"></i> Notificaciones de Retiro de Clientes</h2>
+                    <input type="text" id="searchPickupNotificationsInput" class="search-input-admin" placeholder="Buscar por Código EB, Cliente, Paquetes...">
+                    <div class="table-responsive-admin">
+                        <table id="adminPickupNotificationsTable">
+                             <thead><tr><th>Cliente (EB)</th><th>Nombre Cliente</th><th>Códigos Paquetes</th><th>Fecha Estimada Retiro</th><th>Notificado En</th><th>Acción</th></tr></thead>
+                             <tbody id="adminPickupNotificationsTableBody"></tbody>
+                        </table>
+                    </div>
+                    <p id="noPickupNotificationsMessage" class="info-message-admin" style="display: none;">No hay notificaciones de retiro pendientes.</p>
+                </section>
+            </div> <!-- Fin content-area-admin -->
+        </main>
+    </div>
+    <script src="assets/js/admin.js"></script>
+</body>
+</html>

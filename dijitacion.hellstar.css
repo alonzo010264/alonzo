@@ -1,0 +1,194 @@
+/* ===== Variables y Reset (Similar a digitacion-sucursal) ===== */
+:root{--amarillo-principal:#FFDB00;--azul-oscuro:#0D2F4F;--naranja-acento:#F37021;--blanco:#FFFFFF;--gris-claro:#f8f9fa;--gris-medio:#e9ecef;--gris-oscuro:#6c757d;--texto-principal:#333;--fuente-principal:'Poppins',sans-serif; --verde-exito: #198754; --color-error: #dc3545; --rojo-eliminar: #bb2d3b; --azul-info: #0dcaf0; --color-aduana: #6f42c1; --color-unknown: #fd7e14;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--fuente-principal);line-height:1.6;color:var(--texto-principal);background-color:var(--gris-claro);font-size:15px;}
+h1,h2,h3{color:var(--azul-oscuro);margin-bottom:1rem;line-height:1.3;}
+h1{font-size:1.6rem; margin: 0; color: var(--blanco); display: flex; align-items: center; gap: 0.7rem;}
+h1 i { font-size: 0.9em; opacity: 0.8;}
+h2{font-size:1.4rem; margin-bottom:1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--gris-medio); display: flex; align-items: center; gap: 0.7rem;}
+h2 i { color: var(--naranja-acento); font-size: 0.9em; }
+.section-title { /* Título para sección de planes */
+    text-align: center; color: var(--azul-oscuro); margin-bottom: 2.5rem;
+    padding-bottom: 0.5rem; border-bottom: 3px solid var(--naranja-acento); display: inline-block;
+    position: relative; left: 50%; transform: translateX(-50%);
+}
+a{color:var(--naranja-acento);text-decoration:none;font-weight:600;}
+img{max-width:100%;height:auto;display:block;}
+p{margin-bottom:1rem;}
+button { font-family: inherit; cursor: pointer;}
+.container{max-width:1200px;margin:0 auto;padding:0 1.5rem;}
+.bg-azul-oscuro{background-color:var(--azul-oscuro);}
+.text-blanco{color:var(--blanco) !important;}
+.text-blanco p{color:var(--blanco);}
+.text-center { text-align: center; }
+
+
+/* Header del Panel */
+.panel-header{padding:0.8rem 0;background-color: var(--azul-oscuro);color:var(--blanco); border-bottom: 4px solid var(--amarillo-principal); }
+.panel-header .container.header-content{display:flex;align-items:center; justify-content: space-between; gap: 1rem;}
+.panel-logo { height: 45px; width: auto; flex-shrink: 0; }
+.expressbox-logo { /* Estilo específico si es necesario */ }
+.partner-logo-container {
+    height: 45px; /* Misma altura que el logo de expressbox */
+    display: flex;
+    align-items: center;
+}
+.partner-logo {
+    max-height: 100%; /* Ajustar al contenedor */
+    width: auto;
+    filter: brightness(0) invert(1); /* Hacer logo Hellstar blanco si es oscuro */
+}
+.header-info { text-align: right; flex-grow: 1;}
+.header-info h1 { justify-content: flex-end;}
+.header-info .sub-header-info { margin: 0; color: var(--amarillo-principal); font-size: 0.9rem; font-weight: 500;}
+.header-info .sub-header-info i { margin-right: 0.5em; }
+
+/* Main Content */
+.panel-main { padding-top: 2.5rem; padding-bottom: 3rem; flex-grow: 1; }
+
+/* Sección Cuenta Regresiva */
+.promo-countdown-section {
+    background-color: var(--amarillo-principal);
+    color: var(--azul-oscuro);
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.promo-countdown-section h2 { color: var(--azul-oscuro); border-bottom: none; margin-bottom: 0.5rem; font-size: 1.5rem; justify-content: center;}
+.promo-countdown-section h2 i { color: var(--azul-oscuro); }
+.promo-countdown-section > p { font-weight: 500; margin-bottom: 1rem; font-size: 1.05rem;}
+.countdown-timer { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem;}
+.timer-segment { background-color: var(--azul-oscuro); color: var(--blanco); padding: 0.8rem 1rem; border-radius: 5px; min-width: 70px;}
+.timer-segment span { display: block; font-size: 2rem; font-weight: 700; line-height: 1.1;}
+.timer-segment small { font-size: 0.8rem; text-transform: uppercase; opacity: 0.8;}
+.promo-ended-message { font-weight: bold; color: var(--color-error); font-size: 1.2rem;}
+
+/* Secciones y Formulario (Similar a digitacion-sucursal) */
+.add-package-section, .digitized-packages-section, .promo-management-section, .future-plans-section {
+    background-color: var(--blanco); padding: 2rem; border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07); margin-bottom: 2.5rem; border: 1px solid var(--gris-medio);
+}
+.data-form { }
+.form-row { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.form-group { margin-bottom: 1.2rem; flex: 1; min-width: calc(50% - 0.75rem); }
+.form-group label { display: block; margin-bottom: 0.4rem; font-weight: 600; font-size: 0.9rem; }
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+    width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--gris-medio); border-radius: 5px; font-size: 1rem; font-family: inherit;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--azul-oscuro); box-shadow: 0 0 0 2px rgba(13, 47, 79, 0.15); }
+.form-group textarea { resize: vertical; min-height: 60px; }
+.form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%236c757d'%3E%3Cpath fill-rule='evenodd' d='M8 11.5a.5.5 0 0 1-.354-.146l-4-4a.5.5 0 0 1 .708-.708L8 10.293l3.646-3.647a.5.5 0 0 1 .708.708l-4 4A.5.5 0 0 1 8 11.5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.7rem center; background-size: 1em; padding-right: 2.5rem; cursor: pointer;}
+
+/* Feedback del Formulario */
+.form-feedback { margin-top: 1rem; padding: 0.8rem; border-radius: 5px; font-weight: 500; font-size: 0.95rem; display: none; text-align: center; }
+.form-feedback.success { background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; }
+.form-feedback.error { background-color: #f8d7da; color: #842029; border: 1px solid #f5c2c7; }
+
+/* Tabla Paquetes Hellstar */
+.search-input { width: 100%; max-width: 400px; padding: 0.6rem 1rem; border: 1px solid var(--gris-medio); border-radius: 5px; font-size: 0.95rem; margin-bottom: 1rem;}
+.table-container{overflow-x:auto;}
+#hellstarPackagesTable{width:100%;border-collapse:collapse;min-width:750px;}
+#hellstarPackagesTable th,#hellstarPackagesTable td{padding:.7rem .9rem;text-align:left;border-bottom:1px solid var(--gris-medio);vertical-align:middle;font-size:0.9rem;}
+#hellstarPackagesTable th{background-color:var(--gris-claro);font-weight:600;color:var(--azul-oscuro);font-size:.8rem;text-transform:uppercase; white-space: nowrap;}
+#hellstarPackagesTable tbody tr:hover{background-color:#f1f5f9;}
+.loading-placeholder{text-align:center;color:var(--gris-oscuro);font-style:italic;padding:1.5rem;}
+.status-badge { display: inline-flex; align-items: center; gap: 0.4em; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600; text-transform: capitalize; }
+.status-badge i { font-size: 0.9em; }
+/* Clases de estado (reutilizar de style-digitacion-general o definir aquí) */
+.status-received_warehouse_origin { background-color: var(--azul-oscuro); color: var(--blanco); }
+.status-in_transit_to_rd { background-color: var(--azul-info); color: var(--blanco); }
+.status-customs_rd { background-color: var(--color-aduana); color: var(--blanco); }
+.status-ready_for_dispatch_cd { background-color: var(--naranja-acento); color: var(--blanco); }
+.status-out_for_delivery_rd { background-color: var(--amarillo-principal); color: var(--azul-oscuro); border: 1px solid var(--azul-oscuro);}
+.status-delivered_rd { background-color: var(--verde-exito); color: var(--blanco); }
+.promo-applied-cell { font-weight: bold; color: var(--verde-exito); }
+
+/* Acciones Tabla */
+.table-actions button { background:none; border:none; cursor:pointer; font-size:1.1rem; margin:0 .2rem; padding: .3rem; transition:color .2s ease; opacity: 0.9;}
+.table-actions button:hover { opacity: 1; }
+.btn-edit-hs { color: var(--azul-info); }
+.btn-delete-hs { color: var(--rojo-eliminar); }
+
+/* Sección Promo Management (Reutilizar de digitacion-sucursal) */
+.promo-list { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed var(--gris-medio); }
+.promo-list h3 { font-size: 1.1rem; margin-bottom: 0.5rem; text-align: left;}
+#existingPromosList { list-style: none; padding: 0; }
+#existingPromosList li { background-color: var(--gris-claro); padding: 0.5rem 1rem; margin-bottom: 0.5rem; border-radius: 4px; font-size: 0.9rem; display: flex; justify-content: space-between; align-items: center;}
+#existingPromosList .promo-code-value { font-weight: bold; font-family: monospace; color: var(--azul-oscuro);}
+#existingPromosList .promo-discount-value { color: var(--verde-exito); }
+#existingPromosList .delete-promo-btn { background: none; border: none; color: var(--rojo-eliminar); cursor: pointer; font-size: 1.1em;}
+
+/* Sección Planes Futuros (Reutilizar de planes.html) */
+.future-plans-section { padding: 3.5rem 0; }
+.note-future-plans { margin-top: -1rem; margin-bottom: 2.5rem; font-style: italic; color: var(--gris-oscuro); }
+.plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; align-items: stretch;}
+.plan-card { background-color: var(--blanco); border: 1px solid var(--gris-medio); border-radius: 10px; padding: 1.5rem; display: flex; flex-direction: column; box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: relative; overflow: hidden;}
+.plan-card.recommended { border: 2px solid var(--naranja-acento); }
+.recommended-badge { position: absolute; top: 12px; right: -30px; background-color: var(--naranja-acento); color: var(--blanco); padding: 4px 30px; font-size: 10px; font-weight: bold; text-transform: uppercase; transform: rotate(45deg); z-index: 2;}
+.plan-header { text-align: center; margin-bottom: 0.8rem; }
+.plan-header h3 { font-size: 1.2rem; margin-bottom: 0.2rem;}
+.plan-price { font-size: 2.2rem; font-weight: 700; color: var(--azul-oscuro); text-align: center; margin-bottom: 0.3rem; line-height: 1; }
+.plan-price .price-term { font-size: 0.9rem; font-weight: 400; color: var(--gris-oscuro); margin-left: 5px; }
+.plan-features { flex-grow: 1; margin-bottom: 1.2rem; font-size: 0.9rem;}
+.plan-features li { padding-left: 25px; margin-bottom: 0.6rem; }
+.plan-features li i { position:absolute; left:0; top:3px; color:var(--naranja-acento); font-size:1.1em; width: 18px; text-align: center;}
+.plan-features li i.fa-check-circle { color: var(--verde-exito); }
+.disabled-plan { opacity: 0.5; background-color: var(--gris-medio); cursor: default;}
+.disabled-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(220, 220, 220, 0.5); display: flex; justify-content: center; align-items: center; z-index: 1;}
+.disabled-overlay p { background-color: var(--azul-oscuro); color: var(--amarillo-principal); padding: 0.4rem 0.8rem; border-radius: 5px; font-weight: bold; font-size: 0.9rem; text-transform: uppercase;}
+
+
+/* Botones Generales */
+.btn{display:inline-flex; align-items: center; gap: 0.6rem; padding:.8rem 1.8rem;border:none;border-radius:5px;font-weight:700;cursor:pointer;transition:all .3s ease;text-align:center;font-size:1rem;text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.5;}
+.btn i { font-size: 0.9em; }
+.btn-naranja{background-color:var(--naranja-acento);color:var(--blanco); border: 2px solid var(--naranja-acento);}
+.btn-naranja:hover:not(:disabled){background-color:#d95f1a;transform:scale(1.02);color:var(--blanco); border-color: #d95f1a;}
+.btn:disabled { background-color: var(--gris-oscuro); border-color: var(--gris-oscuro); cursor: not-allowed; opacity: 0.7; }
+.btn-secondary{background-color:var(--gris-oscuro);color:var(--blanco); border: 2px solid var(--gris-oscuro);}
+.btn-secondary:hover{background-color:#5a6268;transform:scale(1.03);color:var(--blanco); border-color: #5a6268;}
+
+
+/* ===== Footer ===== */
+.panel-footer{padding:1rem 0;text-align:center;font-size:0.9rem;margin-top:auto;}
+.panel-footer p{color:var(--blanco);margin-bottom: 0;}
+
+/* ===== Animaciones ===== */
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.animate-fade-in{opacity:0;animation:fadeIn 1s ease-out forwards;}
+.animate-slide-up{opacity:0;animation:slideUp 0.8s ease-out forwards;}
+/* Aplicar */
+.promo-countdown-section, .add-package-section, .digitized-packages-section, .promo-management-section, .future-plans-section { animation-delay: 0.1s; }
+
+/* ===== Responsividad ===== */
+@media(max-width: 992px){
+    .form-group { min-width: 100%; }
+    .form-row { flex-direction: column; gap: 0; margin-bottom: 0;}
+    .form-group:not(:last-child) { margin-bottom: 1.2rem;} /* Espacio entre campos apilados */
+    .plans-grid{grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;}
+}
+@media(max-width: 768px){
+    h1{font-size:1.4rem;} h2{font-size:1.2rem;} .section-title {font-size: 1.5rem;}
+    .panel-main { padding-top: 1.5rem; padding-bottom: 2rem;}
+    .promo-countdown-section, .add-package-section, .digitized-packages-section, .promo-management-section, .future-plans-section { padding: 1.5rem; margin-bottom: 2rem; }
+    #hellstarPackagesTable th, #hellstarPackagesTable td{padding:.6rem .8rem; font-size: 0.85rem;}
+    .countdown-timer { gap: 0.5rem; }
+    .timer-segment { padding: 0.6rem 0.8rem; min-width: 60px; }
+    .timer-segment span { font-size: 1.5rem;}
+    .timer-segment small { font-size: 0.7rem;}
+}
+@media(max-width: 480px){
+    h1{font-size:1.2rem;}
+    .panel-header .container.header-content { flex-direction: column; gap: 0.5rem; text-align: center;}
+    .header-info { text-align: center; }
+    .header-info h1 { justify-content: center; }
+    .btn{padding: 0.7rem 1.5rem; font-size: 0.9rem;}
+    .search-input { font-size: 0.9rem; }
+    .plans-grid{grid-template-columns: 1fr;}
+    .plan-price { font-size: 2rem; }
+}

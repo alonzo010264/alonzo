@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Boxi Shop (ExpressBoxRD)</title>
+    <link rel="stylesheet" href="assets/css/pagar.css">
+    <link rel="shortcut icon" href="assets/images/logo.jpg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <header class="checkout-header">
+        <div class="container header-content">
+
+            <a href="index.html">
+                 <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="company-logo">
+            </a>
+            <h1>Finalizar Compra - Boxi Shop</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="checkout-layout">
+
+            <section class="order-summary animate-slide-up">
+                <h2>Resumen de tu Pedido</h2>
+                <div id="cartItems" class="cart-items-list">
+
+                    <p>Cargando artículos...</p>
+                </div>
+                <div class="summary-totals">
+                    <p>Subtotal: <span id="subtotalAmount">RD$ 0.00</span></p>
+                    <p>Envío (Estimado): <span id="shippingAmount">RD$ XXX.XX</span></p> 
+
+                    <div class="donation-option">
+                        <input type="checkbox" id="donateCheckbox" name="donate">
+                        <label for="donateCheckbox">
+                            <span class="donation-icon">🌍</span>
+                            <strong>¡Ayuda al Medio Ambiente!</strong> Añade <strong>$2.99 USD</strong> a tu compra.
+                        </label>
+                        <p class="donation-benefit">Como agradecimiento, recibirás <strong>descuentos exclusivos</strong> en nuestros planes de envío futuros.</p>
+                    </div>
+                     <p id="donationLine" style="display: none;">Donación Ambiental: <span id="donationAmount">$2.99 USD</span></p>
+                    <hr>
+                    <p class="total-amount">Total (Aprox.): <strong id="totalAmount">RD$ XXX.XX</strong></p>
+                     <small>(El total final incluyendo conversión y envío exacto se confirmará)</small>
+                </div>
+            </section>
+
+            <section class="checkout-forms animate-slide-up" style="animation-delay: 0.1s;">
+                <form id="checkoutForm">
+
+                    <h2>Dirección de Envío</h2>
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="fullName">Nombre Completo:</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="phone">Teléfono:</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address1">Dirección (Línea 1):</label>
+                        <input type="text" id="address1" name="address1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address2">Dirección (Línea 2 - Opcional):</label>
+                        <input type="text" id="address2" name="address2">
+                    </div>
+                     <div class="form-row">
+                        <div class="form-group third-width">
+                            <label for="city">Ciudad:</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-group third-width">
+                            <label for="province">Provincia/Estado:</label>
+                            <input type="text" id="province" name="province" required>
+                        </div>
+                         <div class="form-group third-width">
+                             <label for="zip">Código Postal:</label>
+                             <input type="text" id="zip" name="zip">
+                         </div>
+                     </div>
+                    <div class="form-group">
+                        <label for="country">País:</label>
+                        <input type="text" id="country" name="country" value="República Dominicana" readonly>
+                    </div>
+
+                    <h2>Información de Pago</h2>
+                     <div class="payment-disclaimer">
+                         <strong>Nota:</strong> Esta es una simulación. No ingrese datos reales de tarjeta.
+                     </div>
+                    <div class="form-group">
+                        <label for="cardName">Nombre en la Tarjeta:</label>
+                        <input type="text" id="cardName" name="cardName" placeholder="Como aparece en la tarjeta">
+                    </div>
+                    <div class="form-group">
+                        <label for="cardNumber">Número de Tarjeta:</label>
+                        <input type="text" id="cardNumber" name="cardNumber" placeholder="XXXX XXXX XXXX XXXX">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="cardExpiry">Fecha Expiración:</label>
+                            <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/AA">
+                        </div>
+                        <div class="form-group half-width">
+                             <label for="cardCVC">CVC/CVV:</label>
+                             <input type="text" id="cardCVC" name="cardCVC" placeholder="123">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="placeOrderButton" class="btn btn-naranja btn-place-order">Realizar Pedido</button>
+                    <p id="formMessage" class="form-feedback" style="display: none;"></p>
+
+                </form>
+            </section>
+
+        </div> 
+    </main>
+
+    <footer class="footer bg-azul-oscuro">
+        <div class="container text-blanco">
+            <p>© 2023 ExpressBoxRD. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+
+    <script src="assets/js/pagar.js"></script>
+
+</body>
+</html>

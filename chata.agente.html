@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Agente - Chat ExpressBoxRD</title>
+    <!-- Reutiliza el CSS o crea uno específico para el panel de agente -->
+    <link rel="stylesheet" href="assets/css/chat.css"> <!-- Puede ser el mismo o style-admin-chat.css -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="chat-app-container agent-view">
+        <header class="chat-header agent-header">
+            <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="chat-logo">
+            <h1>Panel de Agente - Chats</h1>
+            <button id="toggleAgentStatusButton" class="btn btn-status">Conectarse</button>
+        </header>
+
+        <div class="agent-layout">
+            <aside class="waiting-chats-list">
+                <h2>Chats en Espera</h2>
+                <ul id="waitingList">
+                    <!-- Clientes esperando se listarán aquí -->
+                    <li class="no-waiting">No hay clientes en espera.</li>
+                </ul>
+            </aside>
+
+            <div class="chat-area">
+                 <h2 id="currentChatWith" style="display:none;">Chat con: <span></span></h2>
+                <div id="agentChatBox" class="chat-box agent-chat-box" style="display: none;">
+                    <!-- Mensajes del chat se añadirán aquí -->
+                </div>
+                 <p id="selectChatMessage" class="info-message">Selecciona un chat de la lista o espera a que un cliente inicie uno.</p>
+
+                <div id="agentChatInputContainer" class="chat-input-container agent-input-container" style="display: none;">
+                    <button id="agentAttachFileButton" class="attach-btn" title="Adjuntar imagen (simulado)">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                    <input type="file" id="agentFileInput" style="display: none;" accept="image/*">
+                    <textarea id="agentMessageInput" placeholder="Responde al cliente..." rows="1"></textarea>
+                    <button id="agentSendMessageButton" class="send-btn" title="Enviar mensaje">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAMBIAR: Nombre del JS -->
+    <script src="assets/js/agente.js"></script>
+</body>
+</html>

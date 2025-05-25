@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitación Aduanas - ExpressBoxRD</title>
+    <!-- CAMBIAR: Nombre del archivo CSS -->
+    <link rel="stylesheet" href="assets/css/digitacion.aduanas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="customs-panel">
+        <header class="panel-header">
+            <div class="container header-content">
+                <img src="assets/images/logo.jpg" alt="Logo ExpressBoxRD" class="panel-logo expressbox-logo">
+                <div class="partner-logo-container">
+                    <!-- Opcional: Logo DGA si tienes uno genérico -->
+                    <!-- <img src="PLACEHOLDER_logo_dga.png" alt="Logo DGA" class="panel-logo partner-logo"> -->
+                     <span class="dga-emblem"><i class="fas fa-landmark"></i> DGA</span>
+                </div>
+                <div class="header-info">
+                    <h1><i class="fas fa-passport"></i> Plataforma de Digitación Aduanal</h1>
+                    <p class="sub-header-info">Colaboración ExpressBoxRD y Aduanas Dominicanas</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="container panel-main">
+
+            <!-- Formulario Digitación General (Paquetes Comerciales y de Otros Couriers) -->
+            <section class="package-entry-section animate-slide-up">
+                <h2><i class="fas fa-edit"></i> Registrar Paquete para Revisión/Impuestos</h2>
+                <form id="customsPackageForm" class="data-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="trackingNumber">Código de Seguimiento (Original / Manifiesto):</label>
+                            <input type="text" id="trackingNumber" name="trackingNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="courierCompany">Empresa Courier (Si aplica, o "Comercial Directo"):</label>
+                            <input type="text" id="courierCompany" name="courierCompany" placeholder="DHL, FedEx, UPS, Cliente Directo" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                         <div class="form-group">
+                            <label for="declaredValue">Valor Declarado del Paquete (USD):</label>
+                            <input type="number" id="declaredValue" name="declaredValue" required min="0" step="0.01" placeholder="Ej: 250.00">
+                        </div>
+                        <div class="form-group">
+                            <label for="invoiceNotes">Notas en Factura (Ej: LIN para Amazon):</label>
+                            <input type="text" id="invoiceNotes" name="invoiceNotes" placeholder="Escribir 'LIN' si aplica">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="packageContentDescription">Descripción Breve del Contenido:</label>
+                        <textarea id="packageContentDescription" name="packageContentDescription" rows="2" required placeholder="Ej: Electrónicos, Ropa de marca"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipientNameDGA">Nombre del Destinatario en RD:</label>
+                        <input type="text" id="recipientNameDGA" name="recipientNameDGA" required>
+                    </div>
+                     <div class="form-group checkbox-group">
+                         <input type="checkbox" id="isSuspicious" name="isSuspicious">
+                         <label for="isSuspicious"><i class="fas fa-flag"></i> Marcar como sospechoso o con contenido potencialmente indebido (para retención y revisión exhaustiva)</label>
+                     </div>
+
+                    <button type="submit" class="btn btn-naranja"><i class="fas fa-check-circle"></i> Registrar y Calcular Impuestos</button>
+                    <p id="customsFormMessage" class="form-feedback" style="display: none;"></p>
+                </form>
+            </section>
+
+            <!-- Listado de Paquetes con Impuestos Pendientes / En Revisión -->
+            <section class="pending-customs-section animate-slide-up" style="animation-delay: 0.1s;">
+                <h2><i class="fas fa-file-invoice-dollar"></i> Paquetes Procesados en Aduanas</h2>
+                <input type="text" id="searchCustomsPackagesInput" placeholder="Buscar por Tracking o Destinatario..." class="search-input">
+                <div class="table-container">
+                    <table id="customsPackagesTable">
+                        <thead>
+                            <tr>
+                                <th>Tracking Original</th>
+                                <th>Destinatario</th>
+                                <th>Valor (USD)</th>
+                                <th>Impuestos (RD$)</th>
+                                <th>Estado Aduanal</th>
+                                <th>Notas</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customsPackagesBody">
+                            <tr><td colspan="7" class="loading-placeholder">No hay paquetes procesados en aduanas.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sección de Paquetes de Amazon (LIN) - Visualización Separada -->
+            <section class="amazon-lin-section bg-gris-claro animate-slide-up" style="animation-delay: 0.2s;">
+                <h2><i class="fab fa-amazon"></i> Paquetes de Amazon con "LIN" (Libre de Impuestos Nacionales)</h2>
+                 <p class="info-text">Estos paquetes son procesados por Amazon y sus impuestos suelen estar gestionados por ellos directamente. Se registran para control y seguimiento.</p>
+                <input type="text" id="searchAmazonPackagesInput" placeholder="Buscar Amazon por Tracking o Destinatario..." class="search-input">
+                <div class="table-container">
+                    <table id="amazonPackagesTable">
+                        <thead>
+                            <tr>
+                                <th>Tracking Original</th>
+                                <th>Destinatario</th>
+                                <th>Valor (USD)</th>
+                                <th>Estado</th>
+                                <th>Fecha Registro</th>
+                            </tr>
+                        </thead>
+                        <tbody id="amazonPackagesBody">
+                            <tr><td colspan="5" class="loading-placeholder">No hay paquetes Amazon LIN registrados.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="panel-footer bg-azul-oscuro">
+            <div class="container text-blanco">
+                <p>© 2023 ExpressBoxRD - Plataforma de Gestión Aduanal</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Script para la lógica del panel -->
+    <script src="assets/js/digitacion.adunas.js"></script>
+</body>
+</html>
